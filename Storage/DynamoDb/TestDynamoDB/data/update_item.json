@@ -1,0 +1,19 @@
+{
+    "TableName": "Products",
+    "Key": {
+        "ProductId": {
+            "S": "123"
+        },
+        "PublishOn": {
+            "S": "2018-01-01"
+        }
+    },
+    "AttributeUpdates": {
+        "ProductName": {
+            "Action": "PUT",
+            "Value": {
+                "S": "Updated Product Name 123"
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "AttributeDefinitions": [{
+            "AttributeName": "ProductId",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "PublishOn",
+            "AttributeType": "S"
+        }
+    ],
+    "KeySchema": [{
+            "AttributeName": "ProductId",
+            "KeyType": "HASH"
+        },
+        {
+            "AttributeName": "PublishOn",
+            "KeyType": "RANGE"
+        }
+    ],
+    "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+    },
+    "TableName": "Products"
+}

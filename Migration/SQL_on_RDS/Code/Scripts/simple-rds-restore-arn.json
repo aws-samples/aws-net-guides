@@ -1,0 +1,141 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Simple Sample RDS 11",
+
+  "Parameters": {
+    "DBUser": {
+      "Description": "The database admin account username",
+      "Type": "String",
+      "MinLength": "1",
+      "MaxLength": "16",
+      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9]*",
+      "ConstraintDescription": "must begin with a letter and contain only alphanumeric characters."
+    },
+    "DBPassword": {
+	  "NoEcho" : "true",
+      "Description": "The database admin account password",
+      "Type": "String",
+      "MinLength": "8",
+      "MaxLength": "41",
+      "AllowedPattern": "[a-zA-Z0-9]*",
+      "ConstraintDescription": "must contain only alphanumeric characters."
+    },
+
+    "DBInstanceId" : {
+      "Description" : "Database instance identifier",
+      "Type" : "String",
+	  "Default" : "AdventureWorks"
+    }
+  },
+
+  "Resources": {  
+        "SQLMigrationRole": {
+         "Type": "AWS::IAM::Role",
+         "Properties": {
+            "AssumeRolePolicyDocument": {
+               "Version" : "2012-10-17",
+               "Statement": [ {
+                  "Effect": "Allow",
+                  "Principal": {
+                     "Service": [ "rds.amazonaws.com" ]
+                  },
+                  "Action": [ "sts:AssumeRole" ]
+               } ]
+            },
+            "Policies": [ {
+               "PolicyName": "AmazonS3FullAccess",
+				   "PolicyDocument": {
+					  "Version" : "2012-10-17",
+					  "Statement": [ {
+						 "Effect": "Allow",
+						 "Action": "s3:*",
+						 "Resource": "*"
+					  } ]
+				   }
+               },
+			   {
+				   "PolicyName": "AmazonRDSDirectoryServiceAccess",
+				   "PolicyDocument": {
+					  "Version" : "2012-10-17",
+					  "Statement": [ {
+						 "Effect": "Allow",
+						 "Action": [
+								"ds:DescribeDirectories", 
+								"ds:AuthorizeApplication", 
+								"ds:UnauthorizeApplication"
+							],
+						 "Resource": "*"
+					  } ]
+				   }
+               }	
+			   ]
+            }
+      },
+
+    "DBServerSecurityGroup" : {
+		"Type" : "AWS::EC2::SecurityGroup",
+		"Properties" : {
+		  "GroupDescription" : "Enable 1433 access from VPC",
+		  "SecurityGroupIngress" : [
+			 {"IpProtocol" : "tcp", "FromPort" : "1433", "ToPort" : "1433", "CidrIp" : "172.31.0.0/16"}
+			]
+		}
+	  },
+
+    "OptionGroup": {
+      "Type": "AWS::RDS::OptionGroup",	  
+	  "DependsOn" : "SQLMigrationRole",
+      "Properties": {
+        "EngineName": "sqlserver-se",
+        "MajorEngineVersion": "11.00",
+        "OptionGroupDescription": "Option group for SQL Restore from S3",
+        "OptionConfigurations":[
+          {
+            "OptionName": "SQLSERVER_BACKUP_RESTORE",
+			"OptionSettings": [{
+				"Name": "IAM_ROLE_ARN", 
+				"Value" : { "Fn::GetAtt" : ["SQLMigrationRole", "Arn"]}
+			  }]
+          }
+        ]
+      }
+    },
+
+    "DBInstance": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "AllocatedStorage": "200",
+        "AllowMajorVersionUpgrade": "false",
+        "AutoMinorVersionUpgrade": "true",
+        "BackupRetentionPeriod": "30",
+        "DBInstanceClass": "db.m3.xlarge",
+        "DBInstanceIdentifier": {
+          "Ref" : "DBInstanceId"
+        },
+        "Engine": "sqlserver-se",
+        "EngineVersion": "11.00.6020.0.v1",
+        "Iops": "1000",
+        "LicenseModel": "license-included",
+        "PreferredBackupWindow": "01:00-03:00",
+        "PreferredMaintenanceWindow": "sun:06:00-sun:06:30",
+        "MasterUsername": {
+          "Ref": "DBUser"
+        },
+        "MasterUserPassword": {
+          "Ref": "DBPassword"
+        },
+        "OptionGroupName": {
+          "Ref": "OptionGroup"
+        },
+        "PubliclyAccessible": "false",
+        "StorageEncrypted": "true",
+        "StorageType": "io1",
+        "VPCSecurityGroups": [ {
+          "Fn::GetAtt" : [ "DBServerSecurityGroup" , "GroupId" ]
+        } ]
+      },
+      "DeletionPolicy" : "Snapshot"
+    }
+
+  }
+}

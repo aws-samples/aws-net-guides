@@ -1,0 +1,27 @@
+
+{
+    "region" : "us-east-1",
+    "profile" : "default",
+    "configuration" : "Release",
+    "tag"           : "fargatesampleapp:latest",
+    "cluster"       : "fargate-demo",
+    "launch-type"   : "FARGATE",
+    "launch-subnets" : "subnet-ae513bcb,subnet-3dd4bc17",
+    "launch-security-groups" : "sg-20586156",
+    "assign-public-ip"       : true,
+    "task-definition-name"   : "fargatesample-task",
+    "task-cpu"               : "256",
+    "task-memory"            : "512",
+    "task-execution-role"    : "ecsTaskExecutionRole",
+    "container-name"         : "fargatesample",
+    "container-port-mapping" : "80:80",
+    "container-environment-variables" : "\"ASPNETCORE_ENVIRONMENT\"=\"Production\"",
+    "skip-image-push"                 : false,
+    "cluster-service"                 : "fargatesample-svc",
+    "desired-count"                   : 2,
+    "deployment-minimum-healthy-percent" : 50,
+    "deployment-maximum-percent"         : 200,
+    "elb-target-group"                   : "arn:aws:elasticloadbalancing:us-east-1:053915093830:targetgroup/fargatesample-tg/9ff3b69ca336a211",
+    "elb-container-port"                 : 80,
+    "vstoolkit-deployment-mode"          : "DeployService"
+}

@@ -1,0 +1,11 @@
+{
+    "TableName": "Products",
+    "Key": {
+        "ProductId": {
+            "S": "123"
+        },
+        "PublishOn": {
+            "S": "2018-01-01"
+        }
+    }
+}

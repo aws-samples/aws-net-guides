@@ -1,0 +1,17 @@
+{
+    "TableName": "Products",
+    "Item": {
+        "ProductId": {
+            "S": "1234"
+        },
+        "PublishOn": {
+            "S": "2018-01-01"
+        },
+        "ProductName": {
+            "S": "Item 1234"
+        },
+        "ProductDescription": {
+            "S": "This is Item 1234"
+        }
+    }
+}
