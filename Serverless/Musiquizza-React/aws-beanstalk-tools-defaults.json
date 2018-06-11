@@ -1,0 +1,19 @@
+
+{
+    "comment" : "This file is used to help set default values when using the dotnet CLI extension Amazon.ElasticBeanstalk.Tools. For more information run \"dotnet eb --help\" from the project root.",
+    "profile" : "aws-internal",
+    "region"  : "us-east-1",
+    "application" : "MusiquizzaReact",
+    "environment" : "MusiquizzaReact-test",
+    "cname"       : "musiquizzareact-test",
+    "solution-stack" : "64bit Windows Server 2016 v1.2.0 running IIS 10.0",
+    "environment-type" : "SingleInstance",
+    "instance-profile" : "aws-elasticbeanstalk-ec2-role",
+    "service-role"     : "aws-elasticbeanstalk-service-role",
+    "health-check-url" : "/",
+    "instance-type"    : "t2.micro",
+    "key-pair"         : "devKeypair",
+    "iis-website"      : "Default Web Site",
+    "app-path"         : "/",
+    "enable-xray"      : true
+}
