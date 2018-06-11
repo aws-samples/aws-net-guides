@@ -4,5 +4,5 @@ Tara and Nicki here from AWS. We demo'ed this project at the SF summit and would
 
 AUTHORS: kneekey23, tawalke
 DEMO at SF SUMMIT: https://www.twitch.tv/videos/246611593
-Services used: DynamoDb, Lambda
+Services used: DynamoDb, Lambda, API Gateway
 Technology: .NET Core and React.js
