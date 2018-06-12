@@ -1,0 +1,13 @@
+Hi all!
+
+Tara and Nicki here from AWS. We demo'ed this project at the SF summit and would like to share it with you all! We will continue to make change to it as we are still doing a code review of our own code but this is open source so please feel free to give us feedback in the form of updated code! Thanks!!
+
+APP PURPOSE: Musical quiz pulling songs randomly from a Dynamo Db table and then pull lyrics using Shazam's API to display. User must match song title and artist to lyrics.
+AUTHORS: kneekey23, tawalke
+EXAMPLE OF WORKING CODE: https://www.twitch.tv/videos/246611593
+ARCHITECTURE: App pulls song title and artist from dynamo db, then calls a lyrics api to display lyrics on the ui. From there user enters song title and artist and if they match, user succeeds. Hosted serverlessly on Lambda.
+SERVICES USED: DynamoDb (https://aws.amazon.com/dynamodb/), Lambda (https://aws.amazon.com/lambda/), API Gateway (https://aws.amazon.com/api-gateway/)
+TECHNOLOGIES USED: .NET Core and React.js
+NOTE: Updates to this project will be continued to be made as it is still under code review.
+
+
