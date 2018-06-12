@@ -26,8 +26,14 @@ This walk-through provides a .NET Core serverless web application with a React A
   * Amazon DynamoDB Developer Guide: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html
   * AWS CloudFormation Page: https://aws.amazon.com/cloudformation/
   * AWS CloudFormation Developer Guide: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html
+  * AWS Serverless Application Model Github Page: https://github.com/awslabs/serverless-application-model
   * AWS Lambda Page: https://aws.amazon.com/lambda/
   * AWS Lambda Developer Guide: https://docs.aws.amazon.com/lambda/latest/dg/welcome.html
+  * AWS Cognito Page: https://aws.amazon.com/cognito/
+  * AWS Cognito Developer Guide: https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html
+  * AWS X-Ray Page: https://aws.amazon.com/xray/
+  * AWS X-Ray .NET Blog: https://aws.amazon.com/blogs/developer/new-aws-x-ray-net-core-support/
+  
 
 
 + Prerequisites
