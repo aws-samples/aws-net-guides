@@ -18,5 +18,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://w0ez5wni2e.execute-api.us-east-1.amazonaws.com/Prod"
+  "homepage": "%ADD YOUR HOMEPAGE URL HERE%"
 }
