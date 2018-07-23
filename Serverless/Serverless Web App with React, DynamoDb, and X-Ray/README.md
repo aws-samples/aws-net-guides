@@ -16,7 +16,7 @@ This walk-through provides a .NET Core serverless web application with a React A
   *tawalke
 
 + Working Code Example
-  *https://www.twitch.tv/videos/246611593
+  *https://www.youtube.com/watch?v=r0YtDzNKwEU
 
 + Links to documentation
 
