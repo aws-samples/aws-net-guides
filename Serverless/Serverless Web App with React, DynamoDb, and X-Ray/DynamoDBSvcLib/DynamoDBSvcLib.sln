@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWSSvcAppLib", "DynamoDBSvcLib\AWSSvcAppLib.csproj", "{DB114A76-579A-478A-93E4-0C8557932F62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{59699546-4E79-4B46-9048-AAA629FB0F42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB114A76-579A-478A-93E4-0C8557932F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB114A76-579A-478A-93E4-0C8557932F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB114A76-579A-478A-93E4-0C8557932F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB114A76-579A-478A-93E4-0C8557932F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59699546-4E79-4B46-9048-AAA629FB0F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59699546-4E79-4B46-9048-AAA629FB0F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59699546-4E79-4B46-9048-AAA629FB0F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59699546-4E79-4B46-9048-AAA629FB0F42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA26D242-AE9B-4261-877D-245111DE84EF}
+	EndGlobalSection
+EndGlobal
