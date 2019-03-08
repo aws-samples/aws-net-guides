@@ -9,13 +9,12 @@ namespace ses_sendmail_example
         static void Main(string[] args)
         {
             Console.WriteLine("Sending Email...");
-            // new Body(new Content("This is an email message sent from SES."))
-            using (var client = new AmazonSimpleEmailServiceClient(region: Amazon.RegionEndpoint.USEast1))
+            using (var client = new AmazonSimpleEmailServiceClient(Amazon.RegionEndpoint.USEast1))
             {
                 var sendRequest = new SendEmailRequest
                 {
-                    Source = "test@test.com",
-                    Destination = new Destination { ToAddresses = { "test@test.com" } },
+                    Source = "verified-email-address@example.com",
+                    Destination = new Destination { ToAddresses = {"dest@example.com"} },
                     Message = new Message
                     {
                         Subject = new Content("Hello from the Amazon Simple Email Service!"),
@@ -30,11 +29,13 @@ namespace ses_sendmail_example
                 {
                     var response = client.SendEmailAsync(sendRequest).Result;
                     Console.WriteLine("Email sent! Message ID = {0}", response.MessageId);
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Console.WriteLine("Send failed with exception: {0}", ex.Message);
                 }
             }
+
             Console.Write("Press any key to continue...");
             Console.ReadKey();
         }

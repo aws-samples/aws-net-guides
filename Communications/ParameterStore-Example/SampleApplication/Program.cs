@@ -10,11 +10,15 @@ namespace TestParameterStore
         static void Main(string[] args)
         {
             GetConfiguration().Wait();
-            Console.ReadLine();
+			
+			Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
         }
 
         static async Task GetConfiguration()
         {
+			// NOTE: set the region here to match the region used when you created
+			// the parameter
             var region = Amazon.RegionEndpoint.USEast1;
 
             var request = new GetParameterRequest()
@@ -27,11 +31,11 @@ namespace TestParameterStore
                 try
                 {
                     var response = await client.GetParameterAsync(request);
-                    Console.WriteLine("Parameter Value: {0}", response.Parameter.Value);
+                    Console.WriteLine($"Parameter {request.Name} has value: {response.Parameter.Value}");
                 }
                 catch (Exception ex)
                 {
-                    Console.Error.WriteLine("Error occurred: {0}", ex.Message);
+                    Console.Error.WriteLine($"Error occurred: {ex.Message}");
                 }
             }
         }

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.SimpleEmail" Version="3.3.6.3" />
+    <PackageReference Include="AWSSDK.SimpleEmail" Version="3.3.7.37" />
   </ItemGroup>
 
 </Project>
