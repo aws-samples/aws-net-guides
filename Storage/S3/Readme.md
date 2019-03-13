@@ -245,7 +245,11 @@ namespace S3_Example
 }
 ```
 
-This sample code demonstrates a common pattern when developing with the AWS SDK for .NET, which is the use of a client object to represent an AWS service. That client object then exposes functionality via methods, such as the "*CreateBucket*" method in this example.
+This sample code demonstrates the pattern that is common across all AWS services when programming against them with the AWS SDK for .NET. Each service exposes a client object which implements an interface with methods corresponding to the service API. Each API has a request and response class defined, named after the API operation, which enable you to set the input values for an operation and retrieve the results on return from an API call.
+
+The SDK takes care of marshaling the request and response data to the service so that you do not need to consider whether the service accepts XML, JSON etc. It also takes care of programmatic signing of the request which is required by the majority of AWS services.
+
+In the example code shown above we have used only the *Async* apis exposed on the service. These are the only APIs exposed for .NET Core. If you are using the .NET Framework then synchronous APIs are also available to you. For example, for .NET Framework the IAmazonS3 interface exposes *CreateBucket* and *CreateBucketAsync*. For .NET Core, only *CreateBucketAsync* is exposed.
 
 ## Run the Sample
 
