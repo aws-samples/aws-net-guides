@@ -65,7 +65,7 @@ The complete sample application can be found in the SampleApplication subfolder 
 
 > Glacier requires you to provide a vault name and your AWS account ID when calling its APIs. The AWS account ID value must match the AWS account ID associated with the credentials used by the SDK to sign each API request. For most Glacier API calls you can either explicitly specify an AWS account ID or optionally use a single '-' (hyphen) to indicate to Glacier that it should use the AWS account ID associated with the credentials used to sign the API request.
 >
-> The sample makes use of the SetVaultAccessPolicy API which requires you to include an Amazon Resource Name (ARN) in the policy, which requires your actual account ID. When a vault is created, the vault location value in the response contains the account ID as the first component. The sample application retrieves the value and uses it in the policy it builds for the SetVaultAccessPolicy API call **if** the value of the `accountId` member is a hyphen. You may however elect to edit the value of `accountId` in the sample instead.
+> The sample makes use of the SetVaultAccessPolicy API which requires you to include an Amazon Resource Name (ARN) in the policy, which requires your actual account ID. When a vault is created, the vault location value in the response contains the account ID as the first component. The sample application retrieves the value and uses it in the policy it builds for the SetVaultAccessPolicy API call **if** the value of the `_accountId` member is a hyphen. You may however elect to edit the value of `_accountId` in the sample instead.
 
 ```csharp
 using System;
