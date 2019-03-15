@@ -20,7 +20,7 @@ namespace S3_Example
             // named 'default', or have set credentials in environment variables
             // AWS_ACCESS_KEY_ID & AWS_SECRET_ACCESS_KEY, or have an application settings
             // file. See https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-creds.html
-            // for more details and other
+            // for more details and other constructor options.
             using (var s3 = new AmazonS3Client(RegionEndpoint.USWest2))
             {
                 CreateBucket(s3);
