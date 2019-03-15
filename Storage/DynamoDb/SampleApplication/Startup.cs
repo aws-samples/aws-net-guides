@@ -10,9 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using TestDynamoDB.Utilities;
+using DynamoDBWebApiSample.Utilities;
 
-namespace TestDynamoDB
+namespace DynamoDBWebApiSample
 {
     public class Startup
     {

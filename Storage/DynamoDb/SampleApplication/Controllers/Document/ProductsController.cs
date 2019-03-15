@@ -4,9 +4,9 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.Runtime;
 using Microsoft.AspNetCore.Mvc;
-using TestDynamoDB.Utilities;
+using DynamoDBWebApiSample.Utilities;
 
-namespace TestDynamoDB.Controllers.Document
+namespace DynamoDBWebApiSample.Controllers.Document
 {
     [Route("api/document/[controller]")]
     public class ProductsController : Controller
@@ -111,7 +111,7 @@ namespace TestDynamoDB.Controllers.Document
             }
             return StatusCode(500);
         }
-        
+
         [HttpDelete("{productId}/{publishedOn}")]
         public async Task<IActionResult> Delete(string productId, string publishedOn)
         {

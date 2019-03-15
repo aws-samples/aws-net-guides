@@ -5,10 +5,10 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.Runtime;
 using Microsoft.AspNetCore.Mvc;
-using TestDynamoDB.ObjectPersistenceModels;
-using TestDynamoDB.Utilities;
+using DynamoDBWebApiSample.ObjectPersistenceModels;
+using DynamoDBWebApiSample.Utilities;
 
-namespace TestDynamoDB.Controllers.ObjectPersistence
+namespace DynamoDBWebApiSample.Controllers.ObjectPersistence
 {
     [Route("api/opm/[controller]")]
     public class ProductsController : Controller
@@ -112,7 +112,7 @@ namespace TestDynamoDB.Controllers.ObjectPersistence
             }
             return StatusCode(500);
         }
-        
+
         [HttpDelete("{productId}/{publishedOn}")]
         public async Task<IActionResult> Delete(string productId, string publishedOn)
         {

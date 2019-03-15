@@ -4,7 +4,7 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
 
-namespace TestDynamoDB.Utilities
+namespace DynamoDBWebApiSample.Utilities
 {
     public class DynamoDBTableBuilder
     {

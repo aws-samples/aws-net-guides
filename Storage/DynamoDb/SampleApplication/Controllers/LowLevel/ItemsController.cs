@@ -5,9 +5,9 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
 using Amazon.Runtime;
 using Microsoft.AspNetCore.Mvc;
-using TestDynamoDB.Utilities;
+using DynamoDBWebApiSample.Utilities;
 
-namespace TestDynamoDB.Controllers.LowLevel
+namespace DynamoDBWebApiSample.Controllers.LowLevel
 {
     [Route("api/lowlevel/[controller]")]
     public class ItemsController : Controller

@@ -5,7 +5,7 @@ using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.Model;
 using Microsoft.Extensions.Configuration;
 
-namespace TestDynamoDB.Utilities
+namespace DynamoDBWebApiSample.Utilities
 {
     public class DynamoDBContextBuilder
     {

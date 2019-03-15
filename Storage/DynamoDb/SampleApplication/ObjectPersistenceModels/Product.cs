@@ -1,6 +1,6 @@
 using Amazon.DynamoDBv2.DataModel;
 
-namespace TestDynamoDB.ObjectPersistenceModels
+namespace DynamoDBWebApiSample.ObjectPersistenceModels
 {
     [DynamoDBTable("ObjectPersistenceProducts")]
     public class Product

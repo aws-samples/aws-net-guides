@@ -3,7 +3,7 @@ using Amazon.DynamoDBv2;
 using Amazon.Runtime;
 using Microsoft.AspNetCore.Mvc;
 
-namespace TestDynamoDB.Utilities
+namespace DynamoDBWebApiSample.Utilities
 {
     public static class AmazonExceptionHandlers
     {
