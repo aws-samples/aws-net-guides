@@ -151,51 +151,72 @@ This very simple example method will run synchronously. If you create a Lambda f
 Now, we’ll use the Lambda publishing wizard in the AWS Toolkit for Visual Studio to publish the function to AWS Lambda, and then test it using the toolkit’s built-in testing functionality.
 
 1.	Right-click the project node in the Visual Studio Solution Explorer pane, and select, Publish to AWS Lambda. This launches the publishing wizard.
-![Figure 4 - Publish to AWS Lambda... Menu](media/Figure04.png "Figure 4 - Publish to AWS Lambda... Menu")
+
+    ![Figure 4 - Publish to AWS Lambda... Menu](media/Figure04.png "Figure 4 - Publish to AWS Lambda... Menu")
+
 1.	In the first step of the wizard, ensure the Region drop-down shows the region to which you want to publish and run the Lambda function. Type in a name for your function, and confirm that the Assembly Name, Type Name, and Method Name fields are properly filled in. If you didn’t change the name of the class or method, the Type Name should be <project name>.Function and the Method Name should be FunctionHandler (where <project name> is the name you chose for the project).
-![Figure 5 - Upload Lambda Function Wizard Step 1](media/Figure05.png "Figure 5 - Upload Lambda Function Wizard Step 1")
+
+    ![Figure 5 - Upload Lambda Function Wizard Step 1](media/Figure05.png "Figure 5 - Upload Lambda Function Wizard Step 1")
+
 1. Click the **Next** button, which displays the Advanced Function Details step of the Lambda wizard. 
-![Figure 6 - Upload Lambda Function Wizard Step 2](media/Figure06.png "Figure 6 - Upload Lambda Function Wizard Step 2")
+
+    ![Figure 6 - Upload Lambda Function Wizard Step 2](media/Figure06.png "Figure 6 - Upload Lambda Function Wizard Step 2")
+
 1.	In the Advanced Function Details, click the drop-down next to Role Name, scroll down to the entries under New Role based on AWS managed policy and select AWSLambdaBasicExecutionRole.
     > Note:	For any production app, you should create a role with the minimum permissions required for the Lambda function to operate.
 
     ![Figure 7 - Upload Lambda Function Wizard Policy Dropdown](media/Figure07.png "Figure 7 - Upload Lambda Function Wizard Policy Dropdown")
 
 1.	Leave the other settings to the default values. We won’t be running this Lambda in your VPC, so do not select anything for VPC Subnets. 
-![Figure 8 - Publish to AWS Lambda... Menu](media/Figure08.png "Figure 8 - Publish to AWS Lambda... Menu")
+
+    ![Figure 8 - Publish to AWS Lambda... Menu](media/Figure08.png "Figure 8 - Publish to AWS Lambda... Menu")
+
 1. Click the **Upload** button to finish deploying your Lambda function.
-![Figure 12 - Publish to AWS Lambda Dialog](media/Figure12.png "Figure 12 - Publish to AWS Lambda Dialog")
+ 
+    ![Figure 12 - Publish to AWS Lambda Dialog](media/Figure12.png "Figure 12 - Publish to AWS Lambda Dialog")
+
 ### Step 3: Deploy to AWS using .NET Core CLI
 Now we will use the AWS Lambda tools for .NET Core to deploy the Lambda function to AWS. The tools were automatically added when you ran `dotnet restore` in the previous step. 
 1. Use the dotnet lambda deploy-function command to deploy your function. You can either enter it without any arguments, in which case you will be prompted for the name of the function and the region, or you can supply them as arguments like this:
     ```shell
     dotnet lambda deploy-function DotNetLambdaCli --region us-west-2
     ```
-2. When prompted to assign a role from the numbered list of roles or to create a new role, type the number next to *** Create new IAM Role *** and press Enter.
+1. When prompted to assign a role from the numbered list of roles or to create a new role, type the number next to *** Create new IAM Role *** and press Enter.
+
     ![Figure 9 - dotnet lambda deploy-function command](media/Figure09.png "Figure 9 - dotnet lambda deploy-function command")
+
 1.	When prompted for a name for the new role, provide a name of *Lambda-basic-permissions-role* and press enter.
+
     ![Figure 10 - Lambda role name prompt](media/Figure10.png "Figure 10 - Lambda role name prompt")
+
 1.	When prompted to select an IAM policy to attach to the new role, type the number next to
 AWSLambdaBasicExecutionRole (Provides write permissions to CloudWatch Logs.)
 and press Enter.
+
     ![Figure 11 - Lambda role policy selection](media/Figure11.png "Figure 11 - Lambda role policy selection")
 
-It will take a few moments for the new role to propagate to all the AWS regions. After the new role is propagated out, you should see the message, New Lambda function created. 
+    It will take a few moments for the new role to propagate to all the AWS regions. After the new role is propagated out, you should see the message, New Lambda function created. 
 
 #### Step 4: Test using Visual Studio 2019 for Windows
 
 After the wizard is finished deploying your function, the View Function pane will open automatically in Visual Studio. If it doesn’t open automatically, you can open it by expanding the AWS Lambda node in the AWS Explorer  and double-clicking your function. Refresh the pane if it isn’t showing in the list.
+
 ![Figure 13 - View Function tab](media/Figure13.png "Figure 13 - View Function tab")
 
 Now, we’ll test our function with sample input from the View Function pane and view the result.
 1.	In the View Function pane, ensure that Test Function is selected in the left menu bar.
 1.	In the drop-down next to Example Requests, select **Hello World**. 
+
     ![Figure 14 - Example request selection](media/Figure14.png "Figure 14 - Example request selection")
+
 1. The input window will display a sample JSON payload. Delete the entire JSON blob, and type in some text, such as: **Hello from .NET Core!**
+
     ![Figure 15 - Lambda Payload](media/Figure15.png "Figure 15 - Lambda Payload")
+
 1.	Click the Invoke button to invoke your Lambda function with your text as the input.
 1.	View the response in the Response area. You should see the following response text:
 **!eroC TEN. morf olleH**
+
     ![Figure 16 - Lambda Invocation result](media/Figure16.png "Figure 16 - Lambda Invocation result")
 
 Congratulations, you have successfully created, deployed and tested a .NET Lambda function to AWS using the AWS Toolkit for Visual Studio!
@@ -208,6 +229,7 @@ We can invoke our function from the command line and pass a string as input usin
     dotnet lambda invoke-function DotNetLambdaCli --region us-west-2 --payload "Hello from .NET Core!"
     ```    
 1. After the function executes, you should see the output as:
+
     ![Figure 17 - Lambda Invocation result](media/Figure17.png "Figure 17 - Lambda Invocation result")
 
     You will also see some logging information including the total duration, billed duration, and memory size.
