@@ -101,7 +101,7 @@ If you are using Visual Studio 2019 on Windows as your development environment, 
 1. In Visual Studio, from the menu, select *File > New > Project* to launch the New Project dialog.
 1. In the New Project dialog, click on *AWS* in the Platform dropdown
 
-    ![Platform in New Project Dialog](media/Figure06.png "New AWS Serverless Application in New Project Dialog")
+    ![Platform in New Project Dialog](media/figure06.png "New AWS Serverless Application in New Project Dialog")
 
 2. Select the *AWS Serverless Application (.NET Core - C#)* project type.
 
