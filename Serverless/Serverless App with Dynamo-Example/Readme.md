@@ -105,15 +105,15 @@ If you are using Visual Studio 2019 on Windows as your development environment, 
 
 2. Select the *AWS Serverless Application (.NET Core - C#)* project type.
 
-    ![New AWS Serverless Application in New Project Dialog](media/Figure03.png "New AWS Serverless Application in New Project Dialog")
+    ![New AWS Serverless Application in New Project Dialog](media/figure03.png "New AWS Serverless Application in New Project Dialog")
 
 3. Select a name for your project, and then click the **Create** button.
 
-    ![Configure your new project Dialog](media/Figure04.png "Configure your new project Dialog")
+    ![Configure your new project Dialog](media/figure04.png "Configure your new project Dialog")
 
 4. On the Select Blueprint dialog, select the *Empty Serverless Application* blueprint then click the **Finish** button. Visual Studio will take a few moments to create the solution and will then open the **Solution Explorer** window containing a variety of files.
 
-    ![AWS Lambda Blueprints Dialog](media/Figure05.png "AWS Lambda Blueprints Dialog")
+    ![AWS Lambda Blueprints Dialog](media/figure05.png "AWS Lambda Blueprints Dialog")
 
 #### Step 1: Create Project using .NET Core CLI
 
@@ -234,21 +234,21 @@ Now, we’ll use the Lambda publishing wizard in the AWS Toolkit for Visual Stud
 
 1.	Right-click the project node in the Visual Studio Solution Explorer pane, and select, **Publish to AWS Lambda**. This launches the publishing wizard.
 
-    ![Publish to AWS Lambda... Menu](media/Figure07.png "Publish to AWS Lambda... Menu")
+    ![Publish to AWS Lambda... Menu](media/figure07.png "Publish to AWS Lambda... Menu")
 
 1.	In the first step of the wizard, ensure the Region drop-down shows the region to which you want to publish and run the Lambda function. Type in the stack name and S3 bucket. 
 
     > If you already have a suitable S3 bucket for storing deployment files you can select it in the drop-down, otherwise create a new S3 bucket by clicking New next the S3 Bucket drop-down, entering a suitable name, and then clicking Ok.
 
-    ![Publish AWS Serverless Application Wizard](media/Figure08.png "Publish AWS Serverless Application Wizard")
+    ![Publish AWS Serverless Application Wizard](media/figure08.png "Publish AWS Serverless Application Wizard")
 
 1. Click the **Publish** button to finish the deployment. The dialog will display a Publishing progress bar and will show all the deployment actions as it carries them out.
 
-    ![Publish AWS Serverless Application Wizard Publishing Progress](media/Figure09.png "Publish AWS Serverless Application Wizard Publishing Progress")
+    ![Publish AWS Serverless Application Wizard Publishing Progress](media/figure09.png "Publish AWS Serverless Application Wizard Publishing Progress")
 
 1. Visual Studio will now display details of the CloudFormation stack in a Stack window, and you can use the window to review including the CloudFormation actions that were executed, and the resources created during deployment.
 
-    ![CloudFormation Stack](media/Figure10.png "CloudFormation Stack")
+    ![CloudFormation Stack](media/figure10.png "CloudFormation Stack")
 
 You are now ready to test the deployed solution.
 
@@ -268,7 +268,7 @@ Now we will use the [.NET Core Global Tools for AWS](https://aws.amazon.com/blog
 
     The command will then display progress as it deploys the components to AWS, and on successful completion will print the message shown below.
 
-	![CloudFormation Stack](media/Figure11.png "CloudFormation Stack")
+	![CloudFormation Stack](media/figure11.png "CloudFormation Stack")
 
 You are now ready to test the deployed solution.
 
@@ -278,12 +278,12 @@ To test the deployed solution, expand the **AWS Explorer** window in Visual Stud
 
 The window contains a number of tabs, and you can use the Test Function tab to test the function by clicking the Invoke button.
 
-![Test Function tab](media/Figure12.png "Test Function tab")
+![Test Function tab](media/figure12.png "Test Function tab")
 
 Now, we’ll test our function with sample input from the View Function pane and view the result.
 The window contains a number of tabs such as "Test Function" and Configuration on the left side of the pane.,You can use the **Test Function** tab to test the function by clicking the **Invoke** button.
 
-![Test Function Resutls](media/Figure13.png "Test Function Resutls")
+![Test Function Resutls](media/figure13.png "Test Function Resutls")
 
 After the call to the API Gateway and the Lambda function completes, you will see the full JSON response in the Response area of the screen, and the Log output area shows details of the request, including its execution time.
 
@@ -303,7 +303,7 @@ Now we will use the AWS Lambda tools for .NET Core to test the Lambda function.
 
 1. When the command completes successfully you should see a Payload message displayed in the terminal or command-line window that contains the body provided by your Lambda function, `"Hello AWS Serverless"`.
 
-![Test Function Resutls](media/Figure14.png "Test Function Resutls")
+![Test Function Resutls](media/figure14.png "Test Function Resutls")
 
 Congratulations! You’ve now created a working Lambda function and deployed it along with an API Gateway endpoint to AWS. 
 
@@ -493,25 +493,25 @@ Now, we’ll use the Lambda publishing wizard in the AWS Toolkit for Visual Stud
 
 1. Before deploying the solution you will need to build the application. You can do this by right-clicking the project node in the Visual Studio Solution Explorer pane, and select, **Build**.
 
-    ![Build Menu](media/Figure15.png "Build Menu")
+    ![Build Menu](media/figure15.png "Build Menu")
 
 	Once the build has completed successfully you are ready to deploy the solution.
 
 1.	Right-click the project node in the Visual Studio Solution Explorer pane, and select, **Publish to AWS Lambda**. This launches the publishing wizard.
 
-    ![Publish to AWS Lambda... Menu](media/Figure07.png "Publish to AWS Lambda... Menu")
+    ![Publish to AWS Lambda... Menu](media/figure07.png "Publish to AWS Lambda... Menu")
 
 1.	In the first step of the wizard, the dialog should now be pre-populated with the answers you entered last time.
 
-    ![Publish AWS Serverless Application Wizard](media/Figure08.png "Publish AWS Serverless Application Wizard")
+    ![Publish AWS Serverless Application Wizard](media/figure08.png "Publish AWS Serverless Application Wizard")
 
 1. Click the **Publish** button to finish the deployment. The dialog will display a Publishing progress bar and will show all the deployment actions as it carries them out.
 
-    ![Publish AWS Serverless Application Wizard Publishing Progress](media/Figure09.png "Publish AWS Serverless Application Wizard Publishing Progress")
+    ![Publish AWS Serverless Application Wizard Publishing Progress](media/figure09.png "Publish AWS Serverless Application Wizard Publishing Progress")
 
 2. Visual Studio will now display details of the CloudFormation stack in a Stack window, and you can use the window to review including the CloudFormation actions that were executed, and the resources created during deployment.
 
-    ![CloudFormation Stack](media/Figure10.png "CloudFormation Stack")
+    ![CloudFormation Stack](media/figure10.png "CloudFormation Stack")
 
 You are now ready to test the deployed solution.
 
@@ -525,7 +525,7 @@ Now we will use the [.NET Core Global Tools for AWS](https://aws.amazon.com/blog
 	dotnet build
 	```
 
-	![Build Output](media/Figure20.png "Build Output")
+	![Build Output](media/figure20.png "Build Output")
 
 2. Use the dotnet lambda deploy-serverless function command to deploy your function. You can either enter it without any arguments, in which case you will be prompted for the name of the stack, the region, and S3 bucket, or you can supply them as arguments when executing the command. Replace `<BUCKET NAME>` in the commands below with the s3 bucket you created in the previous module.
 
@@ -535,7 +535,7 @@ Now we will use the [.NET Core Global Tools for AWS](https://aws.amazon.com/blog
 
     The command will then display progress as it deploys the components to AWS, and on successful completion will print the message shown below.
 
-	![CloudFormation Stack](media/Figure21.png "CloudFormation Stack")
+	![CloudFormation Stack](media/figure21.png "CloudFormation Stack")
 
 You are now ready to test the deployed solution.
 
@@ -545,26 +545,26 @@ To test the deployed solution, expand the **AWS Explorer** window in Visual Stud
 
 The window contains a number of tabs, and you can use the Test Function tab to test the function by clicking the Invoke button.
 
-![Test Function tab](media/Figure12.png "Test Function tab")
+![Test Function tab](media/figure12.png "Test Function tab")
 
 Now, we’ll test our function with sample input from the View Function pane and view the result.
 The window contains a number of tabs such as "Test Function" and Configuration on the left side of the pane.,You can use the **Test Function** tab to test the function by clicking the **Invoke** button.
 
-![Test Function Results](media/Figure16.png "Test Function Results")
+![Test Function Results](media/figure16.png "Test Function Results")
 
 After the call to the API Gateway and the Lambda function completes, you will see the full JSON response in the Response area of the screen, although since there’s no data in the DynamoDB table the response will be minimal. To make it a bit more interesting you can add some data as follows:
 
 1.	In the AWS Explorer expand the Amazon DynamoDB section and then double-click on the **readingList** table to open a Table window. Refresh the pane if it isn’t showing in the list.
 
-	![Dynamo DB Table](media/Figure17.png "Dynamo DB Table")
+	![Dynamo DB Table](media/figure17.png "Dynamo DB Table")
 
 1.	The Table window is split into two parts, the top past allowing you to set Scan settings, and the bottom part showing you items in the table. Since the table is empty we’re going to add an item. Click on the row under ItemId and enter a value **A1** for ItemId, and **Cross-platform .NET** for the title. To save the item to DynamoDB click Commit Changes at the top of the window. Once the item has been added it will change colour, and you can add some other rows. 
 
-	![Dynamo DB Table with Data](media/Figure18.png "Dynamo DB Table with Data")
+	![Dynamo DB Table with Data](media/figure18.png "Dynamo DB Table with Data")
 
 1. If you now go back to the Function window and invoke the Test Function again, your response will be full on JSON containing details of the items you just added to DynamoDB. 
 
-	![Test Function Results](media/Figure19.png "Test Function Results")
+	![Test Function Results](media/figure19.png "Test Function Results")
 
 Congratulations! You’ve now extended your Lambda function to call Dynamo DB, deployed the updated Lambda function and DynamoDB table to AWS, and demonstrated that they’re working seamlessly together.
 
@@ -581,7 +581,7 @@ Now we will use the AWS Lambda tools for .NET Core to test the Lambda function.
 
 1. When the command completes successfully you should see a Payload message displayed in the terminal or command-line window that contains the body provided by your Lambda function, `although since there’s no data in the DynamoDB table the response will be minimal.
 
-	![Test Function Results](media/Figure22.png "Test Function Results")
+	![Test Function Results](media/figure22.png "Test Function Results")
 
 1. To make the test a bit more interesting you can add an item to the DynamoDB table by running the following command in a terminal or command-line window, remembering to change the region for your chosen region:
 
@@ -599,7 +599,7 @@ Now we will use the AWS Lambda tools for .NET Core to test the Lambda function.
 
 1. If you now go re-run the test command in the terminal or command-line window, the payload displayed will now be full of JSON containing details of the items you added to DynamoDB.
 
-	![Test Function Results](media/Figure23.png "Test Function Results")
+	![Test Function Results](media/figure23.png "Test Function Results")
 
 Congratulations! You’ve now extended your Lambda function to call Dynamo DB, deployed the updated Lambda function and DynamoDB table to AWS, and demonstrated that they’re working seamlessly together.
 
@@ -622,11 +622,11 @@ To delete a CloudFormation stack from Visual Studio:
 
 1.	In **AWS Explorer**, expand the **AWS Cloud Formation** entry. Right-click on the **TestServerless** stack and then select Delete. 
 
-	![CloudFormation on AWS Explorer](media/Figure24.png "CloudFormation on AWS Explorer")
+	![CloudFormation on AWS Explorer](./media/figure24.png "CloudFormation on AWS Explorer")
 
 1.	A dialog will pop-up asking you if you’re sure you want to delete the stack. Click **Yes** to confirm deletion of the stack.
 
-	![Delete CloudFormation Stack Dialog](media/Figure25.png "Delete CloudFormation Stack Dialog")
+	![Delete CloudFormation Stack Dialog](media/figure25.png "Delete CloudFormation Stack Dialog")
 
 While it might seem a shame to delete a working solution, one of the great advantages of Cloud Formation is that recreating the resources is simply a matter of executing the publish command from Visual Studio and waiting briefly as the resources are automatically created by Cloud Formation.
 
@@ -641,7 +641,7 @@ Once you’ve had enough playing with the solution, deleting the AWS resources i
 
 1.	On successful deletion the command will print the message `CloudFormation stack TestServerless deleted`
 	
-	![Delete CloudFormation Stack Command](media/Figure26.png "Delete CloudFormation Stack Command")
+	![Delete CloudFormation Stack Command](media/figure26.png "Delete CloudFormation Stack Command")
 
 One of the great advantages of CloudFormation is creating and deleting resources can be execute through commands, so if you want to re-create the serverless application, you just need to re-run the dotnet lambda deploy-serverless command and waiting briefly as the resources are automatically provisioned by CloudFormation.
 
