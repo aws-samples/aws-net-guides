@@ -1,6 +1,7 @@
 *.swp
 *.*~
 project.lock.json
+package-lock.json
 .DS_Store
 *.pyc
 
