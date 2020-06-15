@@ -51,7 +51,7 @@ This walk-through is broken up into four modules. You must complete each module 
     ✓ An AWS Account\*\*
 
     ✓ An IAM user with access key credentials\*\*\*\
-    ✓ (Optionally) Visual Studio 2017 for Windows
+    ✓ (Optionally) Visual Studio 2017+ for Windows
 
 \*This estimate assumes you follow the recommended configurations throughout the tutorial and terminate all resources within 24 hours.
 
@@ -63,7 +63,7 @@ This walk-through is broken up into four modules. You must complete each module 
 
 In this module, you configure your development environment for working
 with AWS Systems Manager. We present two different choices for your
-development environment: Visual Studio 2017 for Windows, or the .NET
+development environment: Visual Studio 2017+ for Windows, or the .NET
 Core CLI on Windows, Mac, or Linux, using an editor of your choice.
 
 #### Things to Note
@@ -74,11 +74,11 @@ Core CLI on Windows, Mac, or Linux, using an editor of your choice.
 
 Follow the instructions below to setup your development environment.
 
-#### Step 1: Setup Visual Studio 2017 for Windows
+#### Step 1: Setup Visual Studio 2017+ for Windows
 
-If your development environment is Visual Studio 2017 on Windows, you need to install the following components:
+If your development environment is Visual Studio 2017 or higher on Windows, you need to install the following components:
 
-* The **.NET Core SDK 2.x** for Windows:\
+* The **.NET Core SDK 3.x** for Windows:\
     <https://www.microsoft.com/net/download/>
 
 * Visual Studio 2017 version 15.3 or later
@@ -87,7 +87,7 @@ If your development environment is Visual Studio 2017 on Windows, you need to in
 
 If you are using .NET Core CLI on Windows, Mac, or Linux, you will need to install a few components, as follows:
 
-* The **.NET Core SDK 2.x** for Windows, Mac, or Linux:\
+* The **.NET Core SDK 3.x** for Windows, Mac, or Linux:\
     <https://www.microsoft.com/net/download/>
 
 #### Step 2: Setup either the AWS Tools for PowerShell or the AWS CLI
@@ -195,11 +195,11 @@ These instructions provide options for two different development environments: V
 
 Follow the instructions below to create the console application depending on your choice of development environment.
 
-#### Create Project using Visual Studio 2017 for Windows
+#### Create Project using Visual Studio 2017+ for Windows
 
-You can run the sample application provided in the SampleApplication subfolder, which assumes the parameter exists in the US East (N. Virginia) region, or you can create your own. If you are using Visual Studio 2017 on Windows as your development environment, you can create a solution as follows:
+You can run the sample application provided in the SampleApplication subfolder, which assumes the parameter exists in the US East (N. Virginia) region, or you can create your own. If you are using Visual Studio 2017+ on Windows as your development environment, you can create a solution as follows:
 
-1. Open the **Visual Studio 2017** desktop application.
+1. Open the **Visual Studio 2017+** desktop application.
 
 1. Create a new project by selecting **File \> New \> Project**.
 
@@ -300,7 +300,7 @@ static void Main(string[] args)
 
 Save your changes to the file. You are now ready to build and test the project.
 
-#### Build and Test using Visual Studio 2017 for Windows
+#### Build and Test using Visual Studio 2017+ for Windows
 
 You can build and test the project in Visual Studio by selecting **Debug** **\> Start Debugging**.
 

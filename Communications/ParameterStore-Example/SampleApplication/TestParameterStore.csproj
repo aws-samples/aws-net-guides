@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.SimpleSystemsManagement" Version="3.3.17.2" />
+    <PackageReference Include="AWSSDK.SimpleSystemsManagement" Version="3.3.125.3" />
   </ItemGroup>
 
 </Project>
