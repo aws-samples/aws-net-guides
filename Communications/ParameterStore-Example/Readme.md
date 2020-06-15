@@ -4,7 +4,7 @@
 
 This guide walks through how to store and retrieve application configuration settings at runtime for an application instead of hard-coding the configuration values into the application's code and configuration files. The sample application, a simple .NET Core console application, shows how to use the [AWS SDK for .NET](https://docs.aws.amazon.com/sdk-for-net/) to retrieve configuration values from [AWS Systems Manager](https://aws.amazon.com/systems-manager/) Parameter Store.
 
-The walk-through includes creating test values in Parameter Store, creating and testing an application that reads from Parameter Store in either Visual Studio 2017, or via the .NET Core CLI, and then deleting the test values from Parameter Store.
+The walk-through includes creating test values in Parameter Store, creating and testing an application that reads from Parameter Store in either Visual Studio 2017+, or via the .NET Core CLI, and then deleting the test values from Parameter Store.
 
 * Links to documentation
   * [AWS Systems Manager](https://aws.amazon.com/systems-manager/)
