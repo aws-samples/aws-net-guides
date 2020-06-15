@@ -4,7 +4,7 @@
 
 This guide walks through how to store and retrieve application configuration settings at runtime for an application instead of hard-coding the configuration values into the application's code and configuration files. The sample application, a simple .NET Core console application, shows how to use the [AWS SDK for .NET](https://docs.aws.amazon.com/sdk-for-net/) to retrieve configuration values from [AWS Systems Manager](https://aws.amazon.com/systems-manager/) Parameter Store.
 
-The walk-through includes creating test values in Parameter Store, creating and testing an application that reads from Parameter Store in either Visual Studio 2017+, or via the .NET Core CLI, and then deleting the test values from Parameter Store.
+The walk-through includes creating test values in Parameter Store, creating and testing an application that reads from Parameter Store in either Visual Studio 2019+, or via the .NET Core CLI, and then deleting the test values from Parameter Store.
 
 * Links to documentation
   * [AWS Systems Manager](https://aws.amazon.com/systems-manager/)
@@ -51,7 +51,7 @@ This walk-through is broken up into four modules. You must complete each module 
     ✓ An AWS Account\*\*
 
     ✓ An IAM user with access key credentials\*\*\*\
-    ✓ (Optionally) Visual Studio 2017+ for Windows
+    ✓ (Optionally) Visual Studio 2019+ for Windows
 
 \*This estimate assumes you follow the recommended configurations throughout the tutorial and terminate all resources within 24 hours.
 
@@ -63,7 +63,7 @@ This walk-through is broken up into four modules. You must complete each module 
 
 In this module, you configure your development environment for working
 with AWS Systems Manager. We present two different choices for your
-development environment: Visual Studio 2017+ for Windows, or the .NET
+development environment: Visual Studio 2019+ for Windows, or the .NET
 Core CLI on Windows, Mac, or Linux, using an editor of your choice.
 
 #### Things to Note
@@ -74,14 +74,14 @@ Core CLI on Windows, Mac, or Linux, using an editor of your choice.
 
 Follow the instructions below to setup your development environment.
 
-#### Step 1: Setup Visual Studio 2017+ for Windows
+#### Step 1: Setup Visual Studio 2019+ for Windows
 
-If your development environment is Visual Studio 2017 or higher on Windows, you need to install the following components:
+If your development environment is Visual Studio 2019 or higher on Windows, you need to install the following components:
 
 * The **.NET Core SDK 3.x** for Windows:\
     <https://www.microsoft.com/net/download/>
 
-* Visual Studio 2017 version 15.3 or later
+* Visual Studio 2019 version 16.4 or later
 
 #### Step 1: Setup .NET Core CLI on Windows, Mac, or Linux
 
@@ -189,17 +189,17 @@ In this module you will create a simple project for a .NET Core Console applicat
 
 * Services Used---AWS Systems Manager Parameter Store
 
-These instructions provide options for two different development environments: Visual Studio 2017 for Windows, or .NET Core CLI on Windows, Mac, or Linux.
+These instructions provide options for two different development environments: Visual Studio 2019 for Windows, or .NET Core CLI on Windows, Mac, or Linux.
 
 ### Implementation Instructions
 
 Follow the instructions below to create the console application depending on your choice of development environment.
 
-#### Create Project using Visual Studio 2017+ for Windows
+#### Create Project using Visual Studio 2019+ for Windows
 
-You can run the sample application provided in the SampleApplication subfolder, which assumes the parameter exists in the US East (N. Virginia) region, or you can create your own. If you are using Visual Studio 2017+ on Windows as your development environment, you can create a solution as follows:
+You can run the sample application provided in the SampleApplication subfolder, which assumes the parameter exists in the US East (N. Virginia) region, or you can create your own. If you are using Visual Studio 2019+ on Windows as your development environment, you can create a solution as follows:
 
-1. Open the **Visual Studio 2017+** desktop application.
+1. Open the **Visual Studio 2019+** desktop application.
 
 1. Create a new project by selecting **File \> New \> Project**.
 
@@ -300,7 +300,7 @@ static void Main(string[] args)
 
 Save your changes to the file. You are now ready to build and test the project.
 
-#### Build and Test using Visual Studio 2017+ for Windows
+#### Build and Test using Visual Studio 2019+ for Windows
 
 You can build and test the project in Visual Studio by selecting **Debug** **\> Start Debugging**.
 
