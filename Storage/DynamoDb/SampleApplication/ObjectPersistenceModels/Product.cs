@@ -2,11 +2,11 @@ using Amazon.DynamoDBv2.DataModel;
 
 namespace DynamoDBWebApiSample.ObjectPersistenceModels
 {
-    [DynamoDBTable("ObjectPersistenceProducts")]
+    [DynamoDBTable("Products")]
     public class Product
     {
         [DynamoDBHashKey]
-        public string ObjectPersistenceProductId { get; set; }
+        public string ProductId { get; set; }
         [DynamoDBRangeKey]
         public string PublishOn { get; set; }
         public string ProductName { get; set; }

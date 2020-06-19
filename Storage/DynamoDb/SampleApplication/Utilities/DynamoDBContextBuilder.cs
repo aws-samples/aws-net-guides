@@ -10,7 +10,7 @@ namespace DynamoDBWebApiSample.Utilities
     public class DynamoDBContextBuilder
     {
         private IAmazonDynamoDB _dynamoClient;
-        public const string TableName = "ObjectPersistenceProducts";
+        public const string TableName = "Products";
         public DynamoDBContextBuilder(IAmazonDynamoDB dynamo)
         {
             _dynamoClient = dynamo;
@@ -22,12 +22,12 @@ namespace DynamoDBWebApiSample.Utilities
             req.TableName = TableName;
             req.KeySchema = new List<KeySchemaElement>()
             {
-                new KeySchemaElement() { AttributeName = "ObjectPersistenceProductId",  KeyType = KeyType.HASH },
+                new KeySchemaElement() { AttributeName = "ProductId",  KeyType = KeyType.HASH },
                 new KeySchemaElement() { AttributeName = "PublishOn",  KeyType = KeyType.RANGE }
             };
             req.AttributeDefinitions = new List<AttributeDefinition>()
             {
-                new AttributeDefinition() { AttributeName = "ObjectPersistenceProductId",  AttributeType = "S" },
+                new AttributeDefinition() { AttributeName = "ProductId",  AttributeType = "S" },
                 new AttributeDefinition() { AttributeName = "PublishOn",  AttributeType = "S" },
             };
             req.ProvisionedThroughput = new ProvisionedThroughput()

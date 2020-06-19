@@ -17,11 +17,19 @@ namespace DynamoDBWebApiSample.Controllers.LowLevel
         {
             _dynamoClient = dynamoClient;
         }
-        [HttpGet]
-        public async Task<IActionResult> Get([FromBody] GetItemRequest request)
+        [HttpGet("{tableName}")]
+        public async Task<IActionResult> Get(string tableName)
         {
             try
             {
+                Dictionary<string, AttributeValue> queryInfo = new Dictionary<string, AttributeValue>();
+                var queryString = HttpContext.Request.Query;
+                foreach(var queryVariable in queryString)
+                {
+                    queryInfo.Add(queryVariable.Key, new AttributeValue(queryVariable.Value));
+                }
+                GetItemRequest request = new GetItemRequest(tableName, queryInfo);   
+                
                 var res = await _dynamoClient.GetItemAsync(request);
                 return Ok(res.Item);
             }

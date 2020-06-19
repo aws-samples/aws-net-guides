@@ -27,7 +27,7 @@ namespace DynamoDBWebApiSample.Controllers.ObjectPersistence
             {
                 var product = await db.LoadAsync<Product>(hashKey: productId, rangeKey: publishedOn);
                 if (product == null) return NotFound();
-                Console.WriteLine(product.ObjectPersistenceProductId);
+                Console.WriteLine(product.ProductId);
                 Console.WriteLine(product.PublishOn);
                 return Ok(product);
             }
@@ -52,13 +52,13 @@ namespace DynamoDBWebApiSample.Controllers.ObjectPersistence
             var db = await _dbContextBuilder.Build();
             try
             {
-                Console.WriteLine(product.ObjectPersistenceProductId);
+                Console.WriteLine(product.ProductId);
                 Console.WriteLine(product.PublishOn);
                 await db.SaveAsync<Product>(product);
                 return new JsonResult(
                     new
                     {
-                        message = $"Created new product: {product.ObjectPersistenceProductId}",
+                        message = $"Created new product: {product.ProductId}",
                         product = product
                     })
                 { StatusCode = 201 };
@@ -68,7 +68,7 @@ namespace DynamoDBWebApiSample.Controllers.ObjectPersistence
                 if (addbe.ErrorCode == "ConditionalCheckFailedException") return new JsonResult(
                      new
                      {
-                         message = $"Product {product.ObjectPersistenceProductId} already exists"
+                         message = $"Product {product.ProductId} already exists"
                      })
                 { StatusCode = 409 };
                 return AmazonExceptionHandlers.HandleAmazonDynamoDBException(addbe);
@@ -91,7 +91,7 @@ namespace DynamoDBWebApiSample.Controllers.ObjectPersistence
             {
                 var checkForProduct = await db.LoadAsync<Product>(productId, publishedOn);
                 if (checkForProduct == null) return NotFound();
-                product.ObjectPersistenceProductId = productId;
+                product.ProductId = productId;
                 product.PublishOn = publishedOn;
                 await db.SaveAsync<Product>(product,
                     new DynamoDBOperationConfig { SkipVersionCheck = true, IgnoreNullValues = true });

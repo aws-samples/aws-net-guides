@@ -14,12 +14,12 @@ To accompany the sample application, this file also contains a set of *PowerShel
 
 ### Prerequisites
 
-* .NET Core 2.x SDK or higher installed
+* .NET Core 3.1 SDK or higher installed
 * AWS Account with credentials configured locally in an AWS credential profile named **local-test-profile**. See [Configuring the AWS SDK for .NET with .NET Core](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-netcore.html) for more information.
 
 > Note: You can update the sample to use a different credential profile by editing the *appsettings.Development.json* file in the *SampleApplication* subfolder.
 
-* Optional: Visual Studio 2017 (you can also use the command line for .NET Core)
+* Optional: Visual Studio 2019+ (you can also use the command line for .NET Core)
 
 ## Included in the Web API Application
 
@@ -96,9 +96,8 @@ Invoke-RestMethod -Method 'Post' -Uri $URI -ContentType 'application/json' -Body
 #### Get an Item
 
 ```powershell
-$URI = "http://localhost:5000/api/lowlevel/items"
-$BODY = Get-Content -Raw -Path data\get_item.json
-Invoke-RestMethod -Method 'Get' -Uri $URI -ContentType 'application/json' -Body $BODY
+$QUERY = Get-Content -Raw -Path data\get_item.txt
+Invoke-RestMethod $QUERY
 ```
 
 #### Update an Item
@@ -123,7 +122,7 @@ Invoke-RestMethod -Method 'Delete' -Uri $URI -ContentType 'application/json' -Bo
 
 ```powershell
 Invoke-RestMethod http://localhost:5000/api/document/products/1234/2018-01-01
-```powershell
+```
 
 #### Create a Product
 
@@ -152,7 +151,7 @@ Invoke-RestMethod -Method 'Delete' http://localhost:5000/api/document/products/1
 #### Get a Product
 
 ```powershell
-Invoke-RestMethod http://localhost:5000/api/opm/products/123/08-01-2018
+Invoke-RestMethod http://localhost:5000/api/opm/products/1234/08-01-2018
 ```
 
 #### Create a Product
@@ -243,7 +242,7 @@ Invoke-RestMethod -Method 'Delete' http://localhost:5000/api/opm/products/1234/2
 
 #### Get a Product
 
-`curl http://localhost:5000/api/opm/products/123/08-01-2018`
+`curl http://localhost:5000/api/opm/products/1234/08-01-2018`
 
 #### Create a Product
 
