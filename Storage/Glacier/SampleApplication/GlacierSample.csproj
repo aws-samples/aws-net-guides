@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.Glacier" Version="3.3.2.63" />
+    <PackageReference Include="AWSSDK.Glacier" Version="3.3.100.196" />
   </ItemGroup>
 
 </Project>

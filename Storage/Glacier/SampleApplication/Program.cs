@@ -103,7 +103,7 @@ namespace GlacierSample
                 ""Statement"":[
                 {
                     ""Sid"": ""glacier-perm"",
-                    ""Principal"": ""*"",
+                    ""Principal"": {""AWS"":""arn:aws:iam::" + _accountId + @":root""},
                     ""Effect"": ""Allow"",
                     ""Action"": [
                         ""glacier:*""

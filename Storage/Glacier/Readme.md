@@ -10,11 +10,11 @@ This walk-through illustrates how to use Amazon Glacier from a .NET applicaton t
 
 ### Prerequisites
 
-* .NET Core 2.0 or higher installed
+* .NET Core 3.1 or higher installed
 
 * AWS Account with credentials configured locally in the [AWS Toolkit for Visual Studio](https://aws.amazon.com/visualstudio/), or using the [AWS Tools for PowerShell](https://aws.amazon.com/powershell/) or the [AWS CLI](https://aws.amazon.com/cli/)
 
-* Optional: Visual Studio 2017. This walk-through illustrates using the dotnet CLI but you can also use the *File* > *New Project* and the NuGet Package Manager inside Visual Studio to create and manipulate the project.
+* Optional: Visual Studio 2019+. This walk-through illustrates using the dotnet CLI but you can also use the *File* > *New Project* and the NuGet Package Manager inside Visual Studio to create and manipulate the project.
 
 ***
 **Important Note**
@@ -173,7 +173,7 @@ namespace GlacierSample
                 ""Statement"":[
                 {
                     ""Sid"": ""glacier-perm"",
-                    ""Principal"": ""*"",
+                    ""Principal"": {""AWS"":""arn:aws:iam::" + _accountId + @":root""},
                     ""Effect"": ""Allow"",
                     ""Action"": [
                         ""glacier:*""
