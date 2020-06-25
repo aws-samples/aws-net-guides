@@ -16,9 +16,9 @@ This walk-through illustrates how to use Amazon Kinesis from .NET applications u
 
 ### Prerequisites
 
-* .NET Core SDK 2.x ***or*** .NET Framework on Windows
+* .NET Core SDK 3.x ***or*** .NET Framework on Windows
   <https://www.microsoft.com/net/download/>
-* Visual Studio 2017 or another IDE/editor suitable for working with C# code.
+* Visual Studio 2019 or another IDE/editor suitable for working with C# code.
 * AWS Account with credentials configured locally in the [AWS Toolkit for Visual Studio](https://aws.amazon.com/visualstudio/), or using the [AWS Tools for PowerShell](https://aws.amazon.com/powershell/) or the [AWS CLI](https://aws.amazon.com/cli/)\*
 
 **AWS Experience:** Beginner\
@@ -73,14 +73,14 @@ Log into the AWS Management Console and select a region to create in which to cr
 
 1. Select *Kinesis* under *Analytics*.
 
-1. Click the **Get started** button.
+1. Ensure that the *Kinesis Data Streams* radio button is selected
 
-1. Click the **Create data stream** button in the *Ingest and process streaming data with Kinesis streams* section.
+2. Click the **Create data stream** button in the *Get started* section.
 
-1. In the *Create Kinesis stream* page that us displayed:
+3. In the *Create a data stream* page that is displayed:
     1. Type a name for your Kinesis stream name
-    1. Type a number for Number of shards
-    1. Click the **Create Kinesis stream** button.
+    2. Type a number for Number of shards
+    3. Click the **Create data stream** button.
 
     ![Create stream](media/image2.png)
 
@@ -118,11 +118,9 @@ In this module you will set up an IAM User and configure permissions to permit a
 
     ![Specify ARN](media/image5.png)
 
-1. Click the **Add** button.
-
 1. Click the **Review policy** button.
 
-1. Enter a name for the policy and then click the **Create policy** button.
+2. Enter a name for the policy and then click the **Create policy** button.
 
     ![Policy review](media/image6.png)
 
@@ -420,7 +418,7 @@ dotnet add package Newtonsoft.Json
 
 1. In the *Kinesis data streams* panel click on your stream name.
 
-1. Select the *Monitoring* tab in the resulting view.
+1. Select the *Monitoring* tab in the resulting view and scroll down until you see the *Put Record* graphs.
 
     ![Monitoring](media/image9.png)
 
@@ -517,9 +515,7 @@ In this module you will clean up resources to avoid charges.
 
 1. Check the box next to your Kinesis stream.
 
-1. Click the *Actions* drop down menu.
-
-1. Click **Delete** to delete the stream.
+1. Click **Delete** button to delete the stream and follow directions on *Delete* confirmation screen.
 
 ### Step 2. Delete the Analytics application
 
