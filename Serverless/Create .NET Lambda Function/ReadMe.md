@@ -4,7 +4,7 @@
 
 [AWS Lambda](https://aws.amazon.com/lambda/) provides a serverless compute service that abstracts away the underlying computing infrastructure and resources, allowing you to run code in response to events from a variety of sources, including HTTP requests, data changes, and file updates. The uses of Lambda functions are far and wide, although they’re frequently used to extend other AWS services with custom logic, or to create full backend services. 
 
-You can create Lambda functions in a number of runtimes - including .NET Core 2.1, the Long Term Support (LTS) version of .NET Core. Additionally, you can use the [Amazon.Lambda.RuntimeSupport](https://github.com/aws/aws-lambda-dotnet/blob/master/Libraries/src/Amazon.Lambda.RuntimeSupport) library to easily create Lambda functions using .NET standard compatible runtimes. This is enabled by a Lambda feature called [custom runtimes](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html). When developing in .NET Core you should generally choose .NET Core 2.1 for any new Lambda functions you are creating, but there are some cases when it might be useful to leverage a custom runtime.
+You can create Lambda functions in a number of runtimes - including .NET Core 3.1, the latest Long Term Support (LTS) version of .NET Core. Additionally, you can use the [Amazon.Lambda.RuntimeSupport](https://github.com/aws/aws-lambda-dotnet/blob/master/Libraries/src/Amazon.Lambda.RuntimeSupport) library to easily create Lambda functions using .NET standard compatible runtimes. This is enabled by a Lambda feature called [custom runtimes](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html). When developing in .NET Core you should generally choose .NET Core 3.1 for any new Lambda functions you are creating, but there are some cases when it might be useful to leverage a custom runtime.
 
 This walk-through serves as an introduction to developing Lambda functions using .NET Core, and demonstrates creating, deploying, and testing a basic Lambda function that takes a single string and returns a reversed copy of the string. 
 
@@ -43,7 +43,7 @@ In this module, you'll configure your development environment for working with A
 #### Step 1: Setup Visual Studio 2019 for Windows
 If your development environment is Visual Studio 2019 on Windows, you will need to ensure the following components are installed:
 
-1.	The .NET Core SDK 2.1 for Windows: https://dotnet.microsoft.com/download/dotnet-core
+1.	The .NET Core SDK 3.1 for Windows: https://dotnet.microsoft.com/download/dotnet-core
 1.	Visual Studio 2019
 1.	The AWS Toolkit for Visual Studio: https://aws.amazon.com/visualstudio/ 
 
@@ -51,7 +51,7 @@ If your development environment is Visual Studio 2019 on Windows, you will need 
 
 If you are using .NET Core CLI on Windows, Mac, or Linux, you will need to install a few components, as follows:
 
-1.	The .NET Core SDK 2.1 for Windows, Mac, or Linux: https://dotnet.microsoft.com/download/dotnet-core
+1.	The .NET Core SDK 3.1 for Windows, Mac, or Linux: https://dotnet.microsoft.com/download/dotnet-core
 1.	Install the AWS Lambda templates with the AWS Lambda NuGet package by running the following in a terminal window.
     ```shell
     dotnet new -i Amazon.Lambda.Templates::*
@@ -60,7 +60,7 @@ If you are using .NET Core CLI on Windows, Mac, or Linux, you will need to insta
     ```shell
 	dotnet new lambda.EmptyFunction -l
 	```
-	If the command returns details of a single Lambda Empty Function template then the templates have been installed correctly.
+	If the command returns details of a single *Lambda Empty Function* template then the templates have been installed correctly.
 1. Install the [.NET Core Global Tools for AWS](https://aws.amazon.com/blogs/developer/net-core-global-tools-for-aws/). To install Amazon.Lambda.Tools use the dotnet tool install command.
    ```shell
    dotnet tool install -g Amazon.Lambda.Tools
@@ -82,7 +82,7 @@ These instructions provide options for 2 different development environments: Vis
 If you are using Visual Studio 2019 on Windows as your development environment, you can create a solution as follows:
 
 1. In Visual Studio, from the menu, select *File > New > Project* to launch the New Project dialog.
-2. In the New Project dialog, click on *AWS Lambda* in the left menu and select the *AWS Lambda Project (.NET Core - C#)* project type.
+2. In the New Project dialog, click on *AWS Lambda* in the left menu, select the *AWS Lambda Project (.NET Core - C#)* project type, and click the **Next** button.
 
     ![Figure 1 - New AWS Lambda Project in New Project Dialog](media/Figure01.png "Figure 1 - New AWS Lambda Project in New Project Dialog")
 
@@ -162,7 +162,7 @@ Now, we’ll use the Lambda publishing wizard in the AWS Toolkit for Visual Stud
 
     ![Figure 6 - Upload Lambda Function Wizard Step 2](media/Figure06.png "Figure 6 - Upload Lambda Function Wizard Step 2")
 
-1.	In the Advanced Function Details, click the drop-down next to Role Name, scroll down to the entries under New Role based on AWS managed policy and select AWSLambdaBasicExecutionRole.
+1.	In the Advanced Function Details, click the drop-down next to Role Name, scroll down to the entries under New Role based on AWS managed policy and select **AWSLambdaBasicExecutionRole**.
     > Note:	For any production app, you should create a role with the minimum permissions required for the Lambda function to operate.
 
     ![Figure 7 - Upload Lambda Function Wizard Policy Dropdown](media/Figure07.png "Figure 7 - Upload Lambda Function Wizard Policy Dropdown")
@@ -199,7 +199,7 @@ and press Enter.
 
 #### Step 4: Test using Visual Studio 2019 for Windows
 
-After the wizard is finished deploying your function, the View Function pane will open automatically in Visual Studio. If it doesn’t open automatically, you can open it by expanding the AWS Lambda node in the AWS Explorer  and double-clicking your function. Refresh the pane if it isn’t showing in the list.
+After the wizard is finished deploying your function, the View Function pane will open automatically in Visual Studio. If it doesn’t open automatically, you can open it by expanding the *AWS Lambda* node in the AWS Explorer  and double-clicking your function. Refresh the pane if it isn’t showing in the list.
 
 ![Figure 13 - View Function tab](media/Figure13.png "Figure 13 - View Function tab")
 
