@@ -59,7 +59,7 @@ In this module, you'll configure your development environment for working with A
 #### Step 1: Setup Visual Studio 2019 for Windows
 If your development environment is Visual Studio 2019 on Windows, you will need to ensure the following components are installed:
 
-1. The .NET 5 for Windows: https://dotnet.microsoft.com/download/dotnet
+1. .NET 5 for Windows: https://dotnet.microsoft.com/download/dotnet
 1. Visual Studio 2019
 1. The AWS Toolkit for Visual Studio: https://aws.amazon.com/visualstudio/ 
 1. The AWS CLI https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
@@ -68,7 +68,7 @@ If your development environment is Visual Studio 2019 on Windows, you will need 
 
 If you are using .NET CLI on Windows, Mac, or Linux, you will need to install a few components, as follows:
 
-1. The .NET for Windows, Mac, or Linux: https://dotnet.microsoft.com/download/dotnet
+1. .NET for Windows, Mac, or Linux: https://dotnet.microsoft.com/download/dotnet
 1. Install the AWS Lambda templates with the AWS Lambda NuGet package by running the following in a terminal window.
     ```shell
     dotnet new -i Amazon.Lambda.Templates::*
