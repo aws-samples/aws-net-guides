@@ -13,6 +13,6 @@
     "template"      : "serverless.template",
     "template-parameters" : "",
     "docker-host-build-output-dir" : "./bin/Release/net5.0/linux-x64/publish",
-    "s3-bucket"                    : "csantosb-artifacts-uw2",
+    "s3-bucket"                    : "",
     "stack-name"                   : "TestServerless"
 }

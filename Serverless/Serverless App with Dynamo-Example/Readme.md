@@ -422,8 +422,7 @@ Use the editor of your choice to edit the code in the file **Function.cs**, whic
 2. You also need to ensure the DynamoDB table is created when the solution is deployed, which can be done by making the following changes to the **serverless.template** file:
    
     * Change the **Command** in the **AWS::Serverless::Function** section to **GetAsync**, since we updated the name of the method in the Function.cs file. 
-    * Change the permissions granted to the Lambda function by updating the Policies parameter to include **AmazonDynamoDBFullAccess**, since it’ll now need permission to call the DynamoDB table. 
-    > While using AmazonDynamoDBFullAccess for this example is fine, in a production system you should restrict the Lambda function’s permissions using the principle of least privilege.
+    * Change the permissions granted to the Lambda function by updating the Policies parameter to include **dynamodb:Scan**, since it’ll now need permission to call the DynamoDB table. The sample below shows a policy providing just that permission for the readingList DynamoDB table created.
     * Finally, you need to add a new resource section containing settings for the DynamoDB table.
 
     The **serverless.template** file should now look like the following:
@@ -451,7 +450,19 @@ Use the editor of your choice to edit the code in the file **Function.cs**, whic
         "MemorySize": 128,
         "Timeout": 30,
         "Role": null,
-        "Policies": [ "AWSLambdaBasicExecutionRole", "AmazonDynamoDBFullAccess" ],
+        "Policies": [ 
+          "AWSLambdaBasicExecutionRole",
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [ "dynamodb:Scan" ],
+                "Resource": { "Fn::GetAtt": [ "readingListDynamoDBTable", "Arn" ] }
+              }
+            ]
+          }
+        ],
         "Events": {
           "RootGet": {
             "Type": "Api",

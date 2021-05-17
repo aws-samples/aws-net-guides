@@ -21,7 +21,17 @@
         "Timeout": 30,
         "Role": null,
         "Policies": [
-          "AWSLambdaBasicExecutionRole", "AmazonDynamoDBFullAccess"
+          "AWSLambdaBasicExecutionRole",
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [ "dynamodb:Scan" ],
+                "Resource": { "Fn::GetAtt": [ "readingListDynamoDBTable", "Arn" ] }
+              }
+            ]
+          }
         ],
         "Events": {
           "RootGet": {
