@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29230.47
+VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestServerless", "TestServerless\TestServerless.csproj", "{7818B2B6-59C9-4A00-B8AF-EC56DA5CE148}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestServerless", "TestServerless\TestServerless.csproj", "{0F41263C-51A5-4BBC-A5ED-C69735AD2112}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7818B2B6-59C9-4A00-B8AF-EC56DA5CE148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7818B2B6-59C9-4A00-B8AF-EC56DA5CE148}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7818B2B6-59C9-4A00-B8AF-EC56DA5CE148}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7818B2B6-59C9-4A00-B8AF-EC56DA5CE148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F41263C-51A5-4BBC-A5ED-C69735AD2112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F41263C-51A5-4BBC-A5ED-C69735AD2112}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F41263C-51A5-4BBC-A5ED-C69735AD2112}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F41263C-51A5-4BBC-A5ED-C69735AD2112}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AC00E91C-A2C0-4D8E-AF40-AB5942988B5B}
+		SolutionGuid = {2F8BEBA4-DEDD-434E-B0B9-E7E02E4BD0B9}
 	EndGlobalSection
 EndGlobal
