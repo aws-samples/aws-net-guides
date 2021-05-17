@@ -26,10 +26,10 @@ The CloudFormation template contains configuration details for each component, a
 ### Modules
 This workshop is broken up into four modules. You must complete each module before proceeding to the next.
 
-1.    Setup Environment
-1.    Create a Basic Lambda Function
-1.    Integrate Lambda with DynamoDB
-1.    Delete Serverless Resources
+1. Setup Environment
+1. Create a Basic Lambda Function
+1. Integrate Lambda with DynamoDB
+1. Delete Serverless Resources
 
 ### Prerequisites
 
@@ -49,7 +49,7 @@ This workshop is broken up into four modules. You must complete each module befo
 
 ## Module 1: Setup Environment
 
-In this module, you'll configure your development environment for working with AWS Lambda functions. These instructions provide 2 different options to choose from for your development environment, Visual Studio 2019 for Windows, or the .NET Core CLI on Windows, Mac, or Linux, using an editor of your choice.
+In this module, you'll configure your development environment for working with AWS Lambda functions. These instructions provide 2 different options to choose from for your development environment, Visual Studio 2019 for Windows, or the .NET CLI on Windows, Mac, or Linux, using an editor of your choice.
 
 ### Things to Note
 * Time to Complete - 10 mins
@@ -59,26 +59,26 @@ In this module, you'll configure your development environment for working with A
 #### Step 1: Setup Visual Studio 2019 for Windows
 If your development environment is Visual Studio 2019 on Windows, you will need to ensure the following components are installed:
 
-1.    The .NET 5 for Windows: https://dotnet.microsoft.com/download/dotnet
-1.    Visual Studio 2019
-1.    The AWS Toolkit for Visual Studio: https://aws.amazon.com/visualstudio/ 
+1. The .NET 5 for Windows: https://dotnet.microsoft.com/download/dotnet
+1. Visual Studio 2019
+1. The AWS Toolkit for Visual Studio: https://aws.amazon.com/visualstudio/ 
 1. The AWS CLI https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
 
 #### Step 2: Setup .NET CLI on Windows, Mac, or Linux
 
-If you are using .NET Core LI on Windows, Mac, or Linux, you will need to install a few components, as follows:
+If you are using .NET CLI on Windows, Mac, or Linux, you will need to install a few components, as follows:
 
-1.    The .NET for Windows, Mac, or Linux: https://dotnet.microsoft.com/download/dotnet
-1.    Install the AWS Lambda templates with the AWS Lambda NuGet package by running the following in a terminal window.
+1. The .NET for Windows, Mac, or Linux: https://dotnet.microsoft.com/download/dotnet
+1. Install the AWS Lambda templates with the AWS Lambda NuGet package by running the following in a terminal window.
     ```shell
     dotnet new -i Amazon.Lambda.Templates::*
     ``` 
-1.    Verify the new AWS Lambda templates have been installed by running the following in a terminal window.
+1. Verify the new AWS Lambda templates have been installed by running the following in a terminal window.
     ```shell
     dotnet new lambda.EmptyFunction -l
     ```
     If the command returns details of a single Lambda Empty Function template then the templates have been installed correctly.
-1. Install the [.NET Core Global Tools for AWS](https://aws.amazon.com/blogs/developer/net-core-global-tools-for-aws/). To install Amazon.Lambda.Tools use the dotnet tool install command.
+1. Install the [.NET Global Tools for AWS](https://aws.amazon.com/blogs/developer/net-core-global-tools-for-aws/). To install Amazon.Lambda.Tools use the dotnet tool install command.
    ```shell
    dotnet tool install -g Amazon.Lambda.Tools
    ```
@@ -88,7 +88,7 @@ You will also need a text editor or an IDE for modifying, such as vi, emacs, nan
 ## Module 2: Create a Basic Lambda Function
 
 In this module you'll create a project for your Lambda function, write the code for a basic Lambda function, and finally deploy and test the Lambda function. 
-These instructions provide options for 2 different development environments: Visual Studio 2019 for Windows, or .NET Core CLI on Windows, Mac, or Linux.
+These instructions provide options for 2 different development environments: Visual Studio 2019 for Windows, or .NET CLI on Windows, Mac, or Linux.
 
 ### Things to Note
 * Time to Complete - 20 mins
@@ -123,32 +123,32 @@ For this walk-through, we’ll make use of the same blueprint (template) that we
 
 Follow the steps below to create your Lambda function.
 1. Open a command line or terminal window.
-2. Create a folder to contain your new project. The folder name becomes the name of your .NET Core project, so choose something meaningful. For this walk-through, we are using *TestServerless* as the folder name.
+2. Create a folder to contain your new project. The folder name becomes the name of your .NET project, so choose something meaningful. For this walk-through, we are using *TestServerless* as the folder name.
 3. Navigate to the folder created above and to create the new Lambda project enter the command 
     ```shell
     dotnet new serverless.image.EmptyServerless
     ```
-    This creates two subfolders-*src* and *test*-each of which has a .NET Core project folder inside. We won’t use the *test* project in this walk-through.
+    This creates two subfolders-*src* and *test*-each of which has a .NET project folder inside. We won’t use the *test* project in this walk-through.
 
 #### Step 2: Open Solution Files in Visual Studio 2019 for Windows
 The solution will already contain the skeleton code required to build and deploy a basic Lambda function and an API Gateway.
 
-1.    In the *Solution Explorer* pane, expand the **TestServerless** project node for the app and double-click **Function.cs**, which contains the code for our basic Lambda function, to open it in an editing pane.
-1.    In the *Solution Explorer* pane, double-click **serverless.template**, which contains the CloudFormation template for deployment, to open it in an editing pane.
+1. In the *Solution Explorer* pane, expand the **TestServerless** project node for the app and double-click **Function.cs**, which contains the code for our basic Lambda function, to open it in an editing pane.
+1. In the *Solution Explorer* pane, double-click **serverless.template**, which contains the CloudFormation template for deployment, to open it in an editing pane.
 
-#### Step 2: Open Solution Files using .NET Core CLI
+#### Step 2: Open Solution Files using .NET CLI
 The solution will already contain the skeleton code required to build and deploy a basic Lambda function and an API Gateway.
 
-1.    Change directory into the *src* folder, and then into the project folder. For example:
+1. Change directory into the *src* folder, and then into the project folder. For example:
     ```shell
     cd src/TestServerless
     ```
-1.    Use the editor of your choice to review the code in the file **Function.cs**, which contains the code for our basic Lambda function, and **serverless.template**, which contains the CloudFormation template for deployment.
+1. Use the editor of your choice to review the code in the file **Function.cs**, which contains the code for our basic Lambda function, and **serverless.template**, which contains the CloudFormation template for deployment.
 
 #### Step 3: Review Lambda Function Code
 The **Function.cs** file contains the C# code for the auto-generated Lambda function.
 
-1.    Look through the *Functions* class and locate the *Get* method. This is the method that will be called when your Lambda function is invoked and contains the logic you want to execute.
+1. Look through the *Functions* class and locate the *Get* method. This is the method that will be called when your Lambda function is invoked and contains the logic you want to execute.
 
     > Note: You can create other methods and classes to hold your logic and call them from Get, as well as referencing other .NET Standard libraries. You can also change the name of the Get method, as the name of the method is part of the Lambda configuration. For this walk-through, we’ll keep the default name.
 
@@ -244,31 +244,31 @@ Save your changes to the file and you are now ready to build the solution and de
 
 Now, we’ll use the Lambda publishing wizard in the AWS Toolkit for Visual Studio to publish the function to AWS Lambda, and then test it using the toolkit’s built-in testing functionality.
 
-    > Before starting the Lambda publishing wizard, make sure that Docker has been configured to use Linux containers.
+> Before starting the Lambda publishing wizard, make sure that Docker has been configured to use Linux containers.
 
-1.    Right-click the project node in the Visual Studio Solution Explorer pane, and select, **Publish to AWS Lambda**. This launches the publishing wizard.
+1. Right-click the project node in the Visual Studio Solution Explorer pane, and select, **Publish to AWS Lambda**. This launches the publishing wizard.
 
-    ![Publish to AWS Lambda... Menu](media/figure07.png "Publish to AWS Lambda... Menu")
+<img src="media/figure07.png" alt="Publish" width="75%" />
 
-1.    In the first step of the wizard, ensure the Region drop-down shows the region to which you want to publish and run the Lambda function. Type in the stack name and S3 bucket. 
+2. In the first step of the wizard, ensure the Region drop-down shows the region to which you want to publish and run the Lambda function. Type in the stack name and S3 bucket. 
 
-    > If you already have a suitable S3 bucket for storing deployment files you can select it in the drop-down, otherwise create a new S3 bucket by clicking New next the S3 Bucket drop-down, entering a suitable name, and then clicking Ok.
+> If you already have a suitable S3 bucket for storing deployment files you can select it in the drop-down, otherwise create a new S3 bucket by clicking New next the S3 Bucket drop-down, entering a suitable name, and then clicking Ok.
 
-    ![Publish AWS Serverless Application Wizard](media/figure08.png "Publish AWS Serverless Application Wizard")
+![Publish AWS Serverless Application Wizard](media/figure08.png "Publish AWS Serverless Application Wizard")
 
-1. Click the **Publish** button to finish the deployment. The dialog will display a Publishing progress bar and will show all the deployment actions as it carries them out.
+3. Click the **Publish** button to finish the deployment. The dialog will display a Publishing progress bar and will show all the deployment actions as it carries them out.
 
-    ![Publish AWS Serverless Application Wizard Publishing Progress](media/figure09.png "Publish AWS Serverless Application Wizard Publishing Progress")
+![Publish AWS Serverless Application Wizard Publishing Progress](media/figure09.png "Publish AWS Serverless Application Wizard Publishing Progress")
 
-1. Visual Studio will now display details of the CloudFormation stack in a Stack window, and you can use the window to review including the CloudFormation actions that were executed, and the resources created during deployment.
+4. Visual Studio will now display details of the CloudFormation stack in a Stack window, and you can use the window to review including the CloudFormation actions that were executed, and the resources created during deployment.
 
-    ![CloudFormation Stack](media/figure10.png "CloudFormation Stack")
+![CloudFormation Stack](media/figure10.png "CloudFormation Stack")
 
 You are now ready to test the deployed solution.
 
-### Step 5: Deploy to AWS using .NET Core CLI
+### Step 5: Deploy to AWS using .NET CLI
 
-Now we will use the [.NET Core Global Tools for AWS](https://aws.amazon.com/blogs/developer/net-core-global-tools-for-aws/) to deploy the Lambda function to AWS. The tools were installed in Module 1. Before deploying the solution you will need to choose a region to deploy the resources to, and you will also need an S3 bucket in that region for storing the deployment assets. When you’ve chosen a region and an S3 bucket, you can deploy your serverless application as follows:
+Now we will use the [.NET Global Tools for AWS](https://aws.amazon.com/blogs/developer/net-core-global-tools-for-aws/) to deploy the Lambda function to AWS. The tools were installed in Module 1. Before deploying the solution you will need to choose a region to deploy the resources to, and you will also need an S3 bucket in that region for storing the deployment assets. When you’ve chosen a region and an S3 bucket, you can deploy your serverless application as follows:
 
 1. Replace `<BUCKET NAME>` in the commands below with the s3 bucket you will be using.
     ```shell
@@ -305,9 +305,9 @@ Congratulations! You’ve now created a working Lambda function and deployed it 
 
 If you want to play with the function you can easily change the message returned in the Function.cs file, re-deploy the solution, and then test it again.
 
-### Step 6: Test API Gateway and Lambda using .NET Core CLI
+### Step 6: Test API Gateway and Lambda using .NET CLI
 
-Now we will use the AWS Lambda tools for .NET Core to test the Lambda function. 
+Now we will use the AWS Lambda tools for .NET to test the Lambda function. 
 
 1. Use the lambda invoke-function command to execute the test. You can either enter the command without any arguments, in which case you will be prompted for the name of the function and the region, or you can supply them as arguments like this, replacing the region with the region code you selected previously:
 
@@ -327,7 +327,7 @@ If you want to play with the function you can easily change the message returned
 
 In this module you'll extend the solution from Module 2 by creating a DynamoDB table to store reading list details, and then updating the Lambda function to retrieve the reading list data from DynamoDB.
 
-These instructions provide options for 2 different development environments: Visual Studio 2019 for Windows, or .NET Core CLI on Windows, Mac, or Linux.
+These instructions provide options for 2 different development environments: Visual Studio 2019 for Windows, or .NET CLI on Windows, Mac, or Linux.
 
 ### Things to Note
 * Time to Complete - 25 mins
@@ -339,30 +339,30 @@ These instructions provide options for 2 different development environments: Vis
 First of all, you need to add some additional NuGet packages to the Visual Studio solution, one to provide access to DynamoDB, and the other to carry out some rudimentary JSON formatting.
 To add the required NuGet packages:
 
-1.    Open the solution from Module 2 in Visual Studio.
-1.    Open the Package Manager Console by going to **Tools > NuGet Package Manager > Package Manager Console**
-1.    In the Package Manager Console window, enter the following command to install the Newtonsoft JSON package:
+1. Open the solution from Module 2 in Visual Studio.
+1. Open the Package Manager Console by going to **Tools > NuGet Package Manager > Package Manager Console**
+1. In the Package Manager Console window, enter the following command to install the Newtonsoft JSON package:
     ```shell
     Install-Package Newtonsoft.Json
     ```
-1.    Once it has successfully installed, add the AWS SDK's DynamoDBv2 package by running the following command in the Package Manager Console window 
+1. Once it has successfully installed, add the AWS SDK's DynamoDBv2 package by running the following command in the Package Manager Console window 
     ```shell
     Install-Package AWSSDK.DynamoDBv2
     ```
 
-#### Step 1: Add NuGet Packages using .NET Core CLI
+#### Step 1: Add NuGet Packages using .NET CLI
 
 Before updating the solution code, you first of all need to add some additional NuGet packages to the solution, one providing access to DynamoDB, and the other to help format the reading list results as JSON.
 
 To add the required NuGet packages:
 
-1.    Open a command-line or terminal window.
-1.    Navigate to the **/TestServerless/src/TestServerles**s directory
-1.    Run the following command 
+1. Open a command-line or terminal window.
+1. Navigate to the **/TestServerless/src/TestServerles**s directory
+1. Run the following command 
     ```shell
     dotnet add package Newtonsoft.Json
     ```
-1.    Once it has successfully completed, run the command 
+1. Once it has successfully completed, run the command 
     ```shell
     dotnet add package AWSSDK.DynamoDBv2
     ```
@@ -518,7 +518,7 @@ Use the editor of your choice to edit the code in the file **Function.cs**, whic
   }
 }
 ```
-#### Step 3: Build and Deploy using Visual Studio 2019 for Windows
+#### Step 3: Build and Deploy to AWS using Visual Studio 2019 for Windows
 
 Now, we’ll use the Lambda publishing wizard in the AWS Toolkit for Visual Studio to publish the function to AWS Lambda, and then test it using the toolkit’s built-in testing functionality. Deploying the solution is almost exactly the same as before
 
@@ -528,27 +528,27 @@ Now, we’ll use the Lambda publishing wizard in the AWS Toolkit for Visual Stud
 
     Once the build has completed successfully you are ready to deploy the solution.
 
-1.    Right-click the project node in the Visual Studio Solution Explorer pane, and select, **Publish to AWS Lambda**. This launches the publishing wizard.
+1. Right-click the project node in the Visual Studio Solution Explorer pane, and select, **Publish to AWS Lambda**. This launches the publishing wizard.
 
     ![Publish to AWS Lambda... Menu](media/figure07.png "Publish to AWS Lambda... Menu")
 
-1.    In the first step of the wizard, the dialog should now be pre-populated with the answers you entered last time.
+1. In the first step of the wizard, the dialog should now be pre-populated with the answers you entered last time.
 
     ![Publish AWS Serverless Application Wizard](media/figure08.png "Publish AWS Serverless Application Wizard")
 
-1. Click the **Publish** button to finish the deployment. The dialog will display a Publishing progress bar and will show all the deployment actions as it carries them out.
+2. Click the **Publish** button to finish the deployment. The dialog will display a Publishing progress bar and will show all the deployment actions as it carries them out.
 
     ![Publish AWS Serverless Application Wizard Publishing Progress](media/figure09.png "Publish AWS Serverless Application Wizard Publishing Progress")
 
-2. Visual Studio will now display details of the CloudFormation stack in a Stack window, and you can use the window to review including the CloudFormation actions that were executed, and the resources created during deployment.
+3. Visual Studio will now display details of the CloudFormation stack in a Stack window, and you can use the window to review including the CloudFormation actions that were executed, and the resources created during deployment.
 
     ![CloudFormation Stack](media/figure10.png "CloudFormation Stack")
 
 You are now ready to test the deployed solution.
 
-### Step 5: Deploy to AWS using .NET Core CLI
+### Step 3: Build and Deploy to AWS using .NET CLI
 
-Now we will use the [.NET Core Global Tools for AWS](https://aws.amazon.com/blogs/developer/net-core-global-tools-for-aws/) to deploy the Lambda function to AWS. The tools were installed in Module 1. 
+Now we will use the [.NET Global Tools for AWS](https://aws.amazon.com/blogs/developer/net-core-global-tools-for-aws/) to deploy the Lambda function to AWS. The tools were installed in Module 1. 
 
 1. Before deploying the solution you will need to build the application. You can do this by executing the following command in the terminal or command-line window:
 
@@ -570,7 +570,7 @@ Now we will use the [.NET Core Global Tools for AWS](https://aws.amazon.com/blog
 
 You are now ready to test the deployed solution.
 
-#### Step 6: Test API Gateway and Lambda using Visual Studio 2019 for Windows
+#### Step 4: Test API Gateway and Lambda using Visual Studio 2019 for Windows
 
 To test the deployed solution, expand the **AWS Explorer** window in Visual Studio, and then under **AWS Lambda** double-click on the **TestServerless** Lambda function to open its *Function* window. Refresh the pane if it isn’t showing in the list.
 
@@ -585,11 +585,11 @@ The window contains a number of tabs such as "Test Function" and Configuration o
 
 After the call to the API Gateway and the Lambda function completes, you will see the full JSON response in the Response area of the screen, although since there’s no data in the DynamoDB table the response will be minimal. To make it a bit more interesting you can add some data as follows:
 
-1.    In the AWS Explorer expand the Amazon DynamoDB section and then double-click on the **readingList** table to open a Table window. Refresh the pane if it isn’t showing in the list.
+1. In the AWS Explorer expand the Amazon DynamoDB section and then double-click on the **readingList** table to open a Table window. Refresh the pane if it isn’t showing in the list.
 
     ![Dynamo DB Table](media/figure17.png "Dynamo DB Table")
 
-1.    The Table window is split into two parts, the top past allowing you to set Scan settings, and the bottom part showing you items in the table. Since the table is empty we’re going to add an item. Click on the row under ItemId and enter a value **A1** for ItemId, and **Cross-platform .NET** for the title. To save the item to DynamoDB click Commit Changes at the top of the window. Once the item has been added it will change colour, and you can add some other rows. 
+1. The Table window is split into two parts, the top past allowing you to set Scan settings, and the bottom part showing you items in the table. Since the table is empty we’re going to add an item. Click on the row under ItemId and enter a value **A1** for ItemId, and **Cross-platform .NET** for the title. To save the item to DynamoDB click Commit Changes at the top of the window. Once the item has been added it will change colour, and you can add some other rows. 
 
     ![Dynamo DB Table with Data](media/figure18.png "Dynamo DB Table with Data")
 
@@ -600,9 +600,9 @@ After the call to the API Gateway and the Lambda function completes, you will se
 Congratulations! You’ve now extended your Lambda function to call Dynamo DB, deployed the updated Lambda function and DynamoDB table to AWS, and demonstrated that they’re working seamlessly together.
 
 
-### Step 6: Test API Gateway and Lambda using .NET Core CLI
+### Step 4: Test API Gateway and Lambda using .NET CLI
 
-Now we will use the AWS Lambda tools for .NET Core to test the Lambda function. 
+Now we will use the AWS Lambda tools for .NET to test the Lambda function. 
 
 1. Use the lambda invoke-function command to execute the test. You can either enter the command without any arguments, in which case you will be prompted for the name of the function and the region, or you can supply them as arguments like this, replacing the region with the region code you selected previously:
 
@@ -638,39 +638,39 @@ Congratulations! You’ve now extended your Lambda function to call Dynamo DB, d
 
 Once you’ve had enough playing with the solution you created in Modules 1–3, deleting the AWS resources is simply a matter of deleting the CloudFormation stack, which automatically deletes the associated resources.
 
-These instructions provide options for 2 different development environments: Visual Studio 2017 for Windows, or .NET Core CLI on Windows, Mac, or Linux.
+These instructions provide options for 2 different development environments: Visual Studio 2017 for Windows, or .NET CLI on Windows, Mac, or Linux.
 
 ### Things to Note
 * Time to Complete - 5 mins
 
 ### Implementation Instructions
 
-#### Step 1: Deleting the CloudFormation stack using Visual Studio 2019 for Windows
+#### Step 1: Deleting the CloudFormation Stack using Visual Studio 2019 for Windows
 
 Once you’ve had enough playing with the solution, deleting the AWS resources is simply a matter of deleting the CloudFormation stack, which automatically deletes the associated resources.
 
 To delete a CloudFormation stack from Visual Studio:
 
-1.    In **AWS Explorer**, expand the **AWS Cloud Formation** entry. Right-click on the **TestServerless** stack and then select Delete. 
+1. In **AWS Explorer**, expand the **AWS Cloud Formation** entry. Right-click on the **TestServerless** stack and then select Delete. 
 
     ![CloudFormation on AWS Explorer](./media/figure24.png "CloudFormation on AWS Explorer")
 
-1.    A dialog will pop-up asking you if you’re sure you want to delete the stack. Click **Yes** to confirm deletion of the stack.
+1. A dialog will pop-up asking you if you’re sure you want to delete the stack. Click **Yes** to confirm deletion of the stack.
 
     ![Delete CloudFormation Stack Dialog](media/figure25.png "Delete CloudFormation Stack Dialog")
 
 While it might seem a shame to delete a working solution, one of the great advantages of Cloud Formation is that recreating the resources is simply a matter of executing the publish command from Visual Studio and waiting briefly as the resources are automatically created by Cloud Formation.
 
-#### Step 1: Deleting the CloudFormation stack using .NET Core CLI
+#### Step 1: Deleting the CloudFormation Stack using .NET CLI
 
 Once you’ve had enough playing with the solution, deleting the AWS resources is simply a matter of deleting the CloudFormation stack, which automatically deletes the associated resources.
 
-1.    In the terminal or command-line window, execute the following command: 
+1. In the terminal or command-line window, execute the following command: 
     ```shell
     dotnet lambda delete-serverless --stack-name TestServerless --region us-west-2
     ```
 
-1.    On successful deletion the command will print the message `CloudFormation stack TestServerless deleted`
+1. On successful deletion the command will print the message `CloudFormation stack TestServerless deleted`
     
     ![Delete CloudFormation Stack Command](media/figure26.png "Delete CloudFormation Stack Command")
 
