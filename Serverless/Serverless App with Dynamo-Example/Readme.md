@@ -248,7 +248,7 @@ Now, we’ll use the Lambda publishing wizard in the AWS Toolkit for Visual Stud
 
 1. Right-click the project node in the Visual Studio Solution Explorer pane, and select, **Publish to AWS Lambda**. This launches the publishing wizard.
 
-<img src="media/figure07.png" alt="Publish" width="500px" />
+    <img src="media/figure07.png" alt="Publish" width="500px" />
 
 2. In the first step of the wizard, ensure the Region drop-down shows the region to which you want to publish and run the Lambda function. Type in the stack name and S3 bucket. 
 
@@ -530,7 +530,7 @@ Now, we’ll use the Lambda publishing wizard in the AWS Toolkit for Visual Stud
 
 1. Right-click the project node in the Visual Studio Solution Explorer pane, and select, **Publish to AWS Lambda**. This launches the publishing wizard.
 
-    ![Publish to AWS Lambda... Menu](media/figure07.png "Publish to AWS Lambda... Menu")
+    <img src="media/figure07.png" alt="Publish" width="500px" />
 
 1. In the first step of the wizard, the dialog should now be pre-populated with the answers you entered last time.
 
