@@ -9,6 +9,22 @@ namespace ses_sendmail_example
         static void Main(string[] args)
         {
             Console.WriteLine("Sending Email...");
+
+            /* The code in this sample assumes you have a credential profile names 'default',
+             * which the SDK will use unless overridden.
+             * To use credentials from a different profile, uncomment the code below
+             * and change the instantiation of the AmazonSimpleEmailService client as shown.
+            */
+
+            // code to use a specific credential profile
+            // var chain = new Amazon.Runtime.CredentialManagement.CredentialProfileStoreChain();
+            // Amazon.Runtime.AWSCredentials awsCredentials;
+            // if (!chain.TryGetAWSCredentials("steve-demo", out awsCredentials))
+            // {
+            //     throw new Exception("Unable to load credentials from the specified profile");
+            // }
+            // using (var client = new AmazonSimpleEmailServiceClient(awsCredentials, Amazon.RegionEndpoint.USEast1))
+
             using (var client = new AmazonSimpleEmailServiceClient(Amazon.RegionEndpoint.USEast1))
             {
                 var sendRequest = new SendEmailRequest

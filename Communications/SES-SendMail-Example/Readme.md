@@ -1,84 +1,86 @@
-# Sending Emails with Amazon Simple Email Service (SES) and .NET
+# Sending Emails with Amazon Simple Email Service (Amazon SES) and .NET
 
 ## Overview
 
-This guide walks through how to send email from an application using Amazon Simple Email Service (SES). The walk-through includes verifying the sender email address in the AWS console, creating and configuring a simple .NET Core console application in either Visual Studio or via the command line, and then running the app to actually send the email. The code could easily be run in a Lambda function or anywhere else .NET code (Framework or Core) can run.
+This guide walks through how to send email from an application using Amazon Simple Email Service (Amazon SES). The walk-through includes verifying the sender email address in the AWS console, creating and configuring a simple .NET console application using either Visual Studio or 'dotnet' command line tool, and then running the app to actually send the email. The code could easily be run in an AWS Lambda function (.NET Core 3.1/.NET 5+), or anywhere else .NET code (.NET Framework/.NET Core/.NET 5+) can run.
 
 * Links to documentation
-  * [SES Service Page](https://aws.amazon.com/ses/)
-  * [SES Documentation](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/)
+  * [Amazon SES Service Page](https://aws.amazon.com/ses/)
+  * [Amazon SES Developer Guide](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/)
 
 ## Introduction
 
-The Amazon Simple Email Service (SES) is an email platform that provides an easy and cost-effective way to send and receive email without managing mail servers or other infrastructure. It's integrated with the AWS SDKs, so programmatically sending emails from your .NET applications is fast and easy. You can send email with SES using either the APIs, or SMTP.
+Amazon SES is an email platform that provides an easy and cost-effective way to send and receive email without managing mail servers or other infrastructure. A [NuGet package](https://www.nuget.org/packages/AWSSDK.SimpleEmail/) for the AWS SDK for .NET enables you to to programmatically send emails from your .NET application code.
 
-For this walk-through, we'll use the AWS Management Console to do the one-time verification of the email address we'll use to send mail from. Next, we'll create a new .NET console application (you can use either the .NET Framework or .NET Core) and add the AWS SDK for SES to it. Finally, we'll send some email using our app!
+In this walk-through, you will use the AWS Management Console to do the one-time verification of the email address you'll use to send mail from. Next, you'll create a new .NET console application. You may use any .NET version that supports [.NET Standard 2.0 or higher](https://docs.microsoft.com/en-us/dotnet/standard/net-standard). This includes.NET Framework 4.6 and higher, .NET Core 2 and higher, or .NET 5 and higher. The sample code provided with this guide uses .NET 5. Then you'll add the AWS SDK for .NET [NuGet package for SES](https://www.nuget.org/packages/AWSSDK.SimpleEmail/) to the project, update the application code to call Amazon SES, and run the application to send an email.
 
 ### Prerequisites
 
-* .NET Framework 3.5 or higher, **or** .NET Core 1.0 or higher installed
+* A version of .NET supporting .NET Standard 2.0 or higher
 
 * AWS Account with credentials configured locally in Visual Studio, or using the AWS Tools for PowerShell or the AWS CLI
 
-* Optional: Visual Studio 2017 or Visual Studio Code, or your preferred editor. You can also use the command line for .NET Core.
+* Optional: Visual Studio 2017 or higher, or Visual Studio Code, JetBrains Rider, or your preferred editor. You can also use the dotnet command line tool for .NET Core/.NET 5+.
 
-## Verify an Email Address in SES
+## Verifying Email Addresses in Amazon SES
 
-Amazon SES requires you to verify either the email addresses or the entire domain that you use to send email from, or that you use in the return address. For this walk-through, we'll just confirm a single email address.
+Amazon SES requires you to verify either the email addresses or the entire domain that you use to send email from, or that you use in the return address. For this walk-through, you'll just confirm a single email address.
 
-> *Note: Email addresses are case-sensitive. If you verify
-> <sender@EXAMPLE.com>, you can't send from <sender@example.com> without
-> also verifying that address.*
+> *Note:* Email addresses are case-sensitive. If you verify <sender@EXAMPLE.com>, you can't send from <sender@example.com> without also verifying that address.
 
-**Step 1: Select a Region**
+Also, if your account is still in the Amazon SES sandbox, you will need to verify any email addresses that you send emails to, except for email addresses provided by the [Amazon SES mailbox simulator](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-simulator.html).
 
-Amazon SES is a regional service. Log into the AWS Management Console, and using the region-selector at the top-right, select the region you want to verify your email address in.
+## Step 1: Log in, and Select an AWS Region in the AWS Management Console
 
-**Step 2: Verify an Email Address**
+Amazon SES is a regional service. Log into the AWS Management Console, and using the region-selector at the top-right, select the region you want to verify your email address in. This guide, and the provided sample code, assumes you are using the US East (N. Virginia) region.
 
-1. Go to SES dashboard. In the navigation pane, under **Identity
-    Management**, select **Email Addresses**.
+## Step 2: Verify an Email Address
 
-1. Choose **Verify a New Email Address**.
+1. Navigate to the Amazon SES dashboard in the management console.
 
-1. In the **Verify a New Email Address** dialog box, type your email address in the **Email Address** field, and then choose **Verify This Email Address**.
+1. In the navigation pane, under **Identity Management**, select **Email Addresses**.
 
-    a.  Note: If your SES service has only "sandbox" access, you have to verify both sending and receiving email addresses for the email delivery to be successful.
+1. Click **Verify a New Email Address**.
+
+1. In the **Verify a New Email Address** dialog box, type your email address in the **Email Address** field, and then click **Verify This Email Address**.
+
+    > **Note:** If your SES service has only "sandbox" access, you have to verify both sending and receiving email addresses for the email delivery to be successful, or run the application code using an address from the SES simulator.
 
 1. You should receive an email with the subject line, "Amazon Web Services -- Email Address Verification Request in region *\<RegionName\>*." Click the link in the body of the message.
 
-1. Back in the AWS SES console, verify that your email status is "verified". Click the refresh icon at the top-right of the email list if necessary. See Figure 1 below.
+1. Back in the Amazon SES console, verify that your email status is "verified". Click the refresh icon at the top-right of the email list if necessary. See Figure 1 below.
 
-![SES Console](media/image1.png)
+    ![SES Console](media/image1.png)
 
-Figure 1 -- Verified Email Address in SES Console
+    Figure 1. Verified Email Address
 
-> *Note: If you don't see the email verification email in your inbox,
-> follow the [troubleshooting steps in the SES Developer
-> Guide](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses-procedure.html#verify-email-addresses-troubleshooting).*
+> **Note:**: If you do not see the email verification email in your inbox, follow the [troubleshooting steps in the Amazon SES Developer Guide](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses-procedure.html#verify-email-addresses-troubleshooting).
 
-## Create and Configure a Console Application
+## Step 3: Create a New Console Application Project
 
-**Step 1: Create an empty console application project**
+You can create, build, and run the application using either Visual Studio or from the command line. Instructions for the command line assume you are using .NET Core or .NET 5+. Follow the steps under the relevant heading below. Alternatively you can use the prewritten code contained in the SampleApplication folder of this guide. Note that the provided code assumes use of .NET 5 and the US East (N. Virginia) region.
 
-You can create, build and run the application using either Visual Studio (.NET Framework or .NET Core), or from the command line (.NET Core only). Follow the steps under the relevant heading below. Alternatively you can use the provided sample in the SampleApplication folder of this guide. Note that the provided sample assumes use of the US East (N. Virginia) region.
+The complete application can be found in the SampleApplication folder for this guide, and you can use this if you wish (skip to step 5 to make changes to the provided code and then run it). Alternately, follow the steps below to create and update a new application project. Follow the steps appropriate to your chosen environment below.
 
-**Visual Studio:**
+### Create Project Using Visual Studio
 
-1. Select File New Project from the main menu.
+1. Select **New Project** from the **File** menu.
 
-1. In the New Project dialog, select Console App (.NET Framework) **or** Console App (.NET Core).\
-    *Note that in Figure 2 below, we have chosen .NET Core.*
+1. In the _New Project_ dialog, select the **Console App** project template and fill out the project settings appropriately (name, location, and .NET version).\
+    \
+    **Note:** The screenshots below show the process for selecting a .NET 5.0 console application project in Visual Studio 2019. Your version may differ.
 
-1. Select a name for your project, and then click the "Ok" button.
+    ![New Project dialog](media/image2.png)
 
-![New Project dialog](media/image2.png)
+    ![Configure project settings 1](media/image3.png)
 
-Figure 2 -- New Console App in Visual Studio New Project Dialog
+    ![Choose .NET version](media/image4.png)
 
-**Command Line:**
+1. You can now skip to Step 4 below, _Add the Simlple Email Service_ NuGet Package.
 
-We'll create a new directory, and then create the console app project in it using the following commands in either a Windows command prompt or Mac OS X or Linux bash shell:
+### Create Project Using the 'dotnet' Command Line Tool
+
+Run the commands below in a command prompt on Windows, macOS, or Linux to create a new directory, and then create the console application project.
 
 ```bash
 mkdir ses-sample
@@ -88,33 +90,43 @@ dotnet new console
 
 The *dotnet new* command will create the project files, and restore packages referenced by the template.
 
-**Step 2: Add the SES NuGet Package**
+## Step 4: Add the Amazon SES NuGet Package**
 
-**Visual Studio:**
+Next you'll add the NuGet package from the AWS SDK for .NET that your application code can use to call Amazon SES APIs.
 
-1. Right-click the project node for your project in the Solution Explorer, and select, "Manage NuGet Packages..." from the context menu.
+You have a choice of using the NuGet Package Manager console in Visual Studio, or adding the package at the command line. Follow the steps appropriate to your chosen environment below.
 
-1. In the NuGet tab that appears, click "Browse" from the horizontal menu, and in the search box type "AWSSDK.SimpleEmail".
+### Add NuGet Package Using Visual Studio
 
-1. When the package appears in the list area, select it, and then click the "Install" button in the details pane (see Figure 3 below).
+1. Right-click the project node for your project in the Solution Explorer, and select **Manage NuGet Packages...** from the context menu.
 
-1. If prompted to accept the license agreement, click the "I Accept" button in the dialog.
+1. In the NuGet window that appears, click the **Browse** link  and in the search box enter **AWSSDK.SimpleEmail**.
 
-> ![NuGet Package](media/image3.png)
+    > **Tip:** There are two packages on NuGet for Amazon SES. For this walk-through, select the _AWSSDK.SimpleEmail_ package to match the provided example code.
 
-Figure 3 -- Adding the AWS SES NuGet Package in Visual Studio
+1. When the package appears in the list area, select it, and then click the **Install** button in the details pane, shown in Figure 3 below.
 
-**Command Line:**
+    > **Note:** If prompted to accept the license agreement, click the "I Accept" button in the dialog.
 
-Add the NuGet package *AWSSDK.SimpleEmail* to the project with the following command in either a Windows command prompt or Mac OS X or Linux bash shell:
+    ![NuGet Package](media/image5.png)
 
-```bash
-dotnet add package AWSSDK.SimpleEmail
-```
+    Figure 2. Adding the NuGet Package for Amazon SES in Visual Studio 2019
 
-**Step 3: Edit the C\# Code**
+1. You can now skip to Step 5 below, _Edit the C\# Code_.
 
-You can use the complete project contained in the SampleApplication folder for this guide and edit the *Program.cs* file, or copy and paste the code in Figure 4 below into the *Program.cs* file of your own project using either Visual Studio or a code editor of your choice.
+### Add NuGet Package Using the Command Line
+
+1. In your command line shell ensure you are located in the same folder as the project you just created.
+
+2. Run the command below to add the NuGet package *AWSSDK.SimpleEmail* to the project.
+
+    ```bash
+    dotnet add package AWSSDK.SimpleEmail
+    ```
+
+## Step 5: Edit the C\# Code
+
+If you are following the steps in this guide with a new project, copy and paste the code below to replace the contents of *Program.cs* in your new project using either Visual Studio or a code editor of your choice. If you are instead using the provided code in the SampleApplication folder, skip to _Ensure you make the following changes in the code_ below.
 
 ```csharp
 using System;
@@ -162,31 +174,31 @@ namespace ses_sendmail_example
 }
 ```
 
-Figure 4 -- Program.cs file
-
-This sample code demonstrates a common pattern when developing with the AWS SDK for .NET, which is the use of a client object to represent an AWS service. That client object then exposes functionality via methods, such as the `SendEmailAsync` method in this example.
+This sample code demonstrates a common pattern when developing with the AWS SDK for .NET, which is the use of a client object to represent an AWS service. That client object then exposes the service's APIs via methods on the client object, such as the `SendEmailAsync` method in this example.
 
 Ensure you make the following changes in the code:
 
-- Replace "*verified-email-address@example.com*" with the email address you verified earlier
+* Replace _verified-email-address@example.com_ with the email address you verified earlier
 
-- Replace "*dest@example.com*" with your email address (where emails will be sent)
+* Replace _dest@example.com_ with your email address (where emails will be sent).
 
-- Replace the region parameter in the `AmazonSimpleEmailServiceClient` instantiation with the region you would like to send from. In our example, we have it set to us-east-1.
+    > **Note:** If your account is in the SES sandbox, the destination address you provide must have been verified, or you can use test email addresses and the SES simulator. see [Testing email sending in Amazon SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-simulator.html) for more details.
 
-> *Note: For our sample app, we're sending an HTML-formatted email. If
-> you wish to send a plain text email, just change the email body
-> property to be* new Content("your text here")
+* Replace the region parameter in the `AmazonSimpleEmailServiceClient` instantiation with the region you would like to send from. In our example, we have it set to us-east-1 corresponding to the US East (N. Virginia) region.
 
-## Send Emails!
+For our sample app, we're sending an HTML-formatted email. If you wish to send a plain text email, change the email body property in the code to read `Content("your text here")`
+
+> *Note:* The code shown above, and in the provided sample application, assumes you have a credential profile named _default_ set up on your local machine. The SDK automatically looks for and loads credentials from this profile when no other credentials are specified. See the sample application provided with this guide for an example of how to use an alternate credential profile, with a different name.
+
+## Step 6: Run the Application and Send an Email
 
 To send email using the console app, just run it using either Visual Studio or the command line.
 
-**Visual Studio:**
+### In Visual Studio
 
-Just press F5 to build and run the app.
+Just press **F5** to build and run the app.
 
-**Command Line:**
+### Command Line
 
 Use the following command to build (compile) and run the app:
 
