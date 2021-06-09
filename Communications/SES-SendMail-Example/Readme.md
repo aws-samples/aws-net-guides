@@ -76,7 +76,7 @@ The complete application can be found in the SampleApplication folder for this g
 
     ![Choose .NET version](media/image4.png)
 
-1. You can now skip to Step 4 below, _Add the Simlple Email Service_ NuGet Package.
+1. You can now skip to Step 4 below, _Add the Simple Email Service_ NuGet Package.
 
 ### Create Project Using the 'dotnet' Command Line Tool
 
