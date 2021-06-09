@@ -54,7 +54,7 @@ Amazon SES is a regional service. Log into the AWS Management Console, and using
 
     Figure 1. Verified Email Address
 
-> **Note:**: If you do not see the email verification email in your inbox, follow the [troubleshooting steps in the Amazon SES Developer Guide](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses-procedure.html#verify-email-addresses-troubleshooting).
+> **Note:** If you do not see the email verification email in your inbox, follow the [troubleshooting steps in the Amazon SES Developer Guide](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses-procedure.html#verify-email-addresses-troubleshooting).
 
 ## Step 3: Create a New Console Application Project
 
@@ -76,7 +76,7 @@ The complete application can be found in the SampleApplication folder for this g
 
     ![Choose .NET version](media/image4.png)
 
-1. You can now skip to Step 4 below, _Add the Simple Email Service_ NuGet Package.
+1. You can now skip to Step 4 below, _Add the Amazon SES NuGet Package_.
 
 ### Create Project Using the 'dotnet' Command Line Tool
 
@@ -90,7 +90,7 @@ dotnet new console
 
 The *dotnet new* command will create the project files, and restore packages referenced by the template.
 
-## Step 4: Add the Amazon SES NuGet Package**
+## Step 4: Add the Amazon SES NuGet Package
 
 Next you'll add the NuGet package from the AWS SDK for .NET that your application code can use to call Amazon SES APIs.
 
