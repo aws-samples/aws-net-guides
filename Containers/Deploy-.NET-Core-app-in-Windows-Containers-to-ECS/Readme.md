@@ -239,6 +239,6 @@ The container's public IP address is then listed in the *Network bindings* secti
 
 Click on the URL under the *External Link* section, and the ASP.NET Core site will load in your browser.
 
-![App](media/image5.png)
+![App](media/image5_updated.PNG)
 
 Congratulations, you have now deployed an ASP.NET Core application to Amazon Elastic Container Service!
