@@ -195,6 +195,17 @@ If your development environment is Visual Studio 2017 or 2019 on Windows, you ca
     **Hard Limit** to **500**, under *Port Mapping* update the **Host Port** to
     **8080**, leave the rest to default settings and then click **Publish**.
 
+<details>
+  <summary><i>Troubleshoot</i></summary>
+  
+  
+  - If you're having trouble publishing the ASP.NET Core application due to docker issues, you may refer to the following.
+ 
+     * https://stackoverflow.com/questions/58986352/docker-build-fails-always-with-error-hcsshimpreparelayer-failed-failed-in-wi
+     * http://codebuckets.com/2020/08/01/nuget-restore-failing-in-docker-container/
+</details> 
+<br>
+
 Publishing the ASP.NET Core application will take a couple of minutes to complete, and once it finishes the application will be almost be ready for testing.
 
 However, before testing the application you will need to update the service's task definition to use the *NAT* network mode, since Windows containers don't currently support *bridge* networking.
@@ -242,3 +253,14 @@ Click on the URL under the *External Link* section, and the ASP.NET Core site wi
 ![App](media/image5_updated.PNG)
 
 Congratulations, you have now deployed an ASP.NET Core application to Amazon Elastic Container Service!
+
+
+<details>
+  <summary>Troubleshoot</summary>
+  
+  
+  - If you're having trouble publishing the ASP.NET Core application due to docker issues, you may refer to the following.
+ 
+     * https://stackoverflow.com/questions/58986352/docker-build-fails-always-with-error-hcsshimpreparelayer-failed-failed-in-wi
+     * http://codebuckets.com/2020/08/01/nuget-restore-failing-in-docker-container/
+</details>
