@@ -32,7 +32,7 @@ By allowing applications to be packaged and deployed alongside their dependencie
 
     ✓ An IAM user with access key credentials\*\*\*\
     ✓ A Docker Account\*\*\*\*\
-    ✓ Visual Studio 2017 for Windows
+    ✓ Visual Studio 2019 for Windows
 
 \*This estimate assumes you follow the recommended configurations throughout the tutorial and terminate all resources within 24 hours.
 
@@ -53,10 +53,10 @@ In this module you'll configure your development environment for working with .N
 
 First of all, you will need to ensure the following components are installed:
 
-a. The **.NET Core SDK 2.x** for Windows:\
-   <https://www.microsoft.com/net/download/>
+a. The **.NET SDK 5.x**(recommended) or **.NET Core SDK 3.x** for Windows:\
+   <https://dot.net>
 
-b. Visual Studio 2017 or higher (we recommend Visual Studio 2019)
+b. Visual Studio 2017 or 2019 (we recommend Visual Studio 2019)
 
 c. The AWS Toolkit for Visual Studio:\
    <https://aws.amazon.com/visualstudio/>
@@ -116,46 +116,50 @@ In this module we will configure a cluster for hosting our application using Ama
 
 ## Module 3: Create an ASP.NET Core Application
 
-In this module we will create a default ASP.NET Core MVC web application using the Microsoft-supplied project template.
+In this module we will create a default ASP.NET Core Web App using the Microsoft-supplied project template.
 
 - Time to Complete---10 mins
 
 ### Step 1: Create Application in Visual Studio for Windows
 
-If your development environment is Visual Studio 2017 or 2019 on Windows, you can create an ASP.NET Core application as follows:
+If your development environment is Visual Studio 2019 on Windows, you can create an ASP.NET Core application as follows:
 
 1. Open Visual Studio and then create a new project by navigating to the *File* \> *New* \> *Project* menu item.
 
-1. In the *New Project* dialog, select *Visual C\#* \> *.NET Core* \> *ASP.NET Core Web Application* template.
+1. In the *Create a New Project* dialog, select *ASP.NET Core Web App C#* template.
 
-1. Enter *TestAspNetCoreApp* in the **Name** field, and then click **Ok**.
+1. Enter *TestAspNetCoreApp* in the **Name** field, and then click **Next**.
 
-1. Choose the **Web Application (Model-View-Controller)** template, and then ensure **Enable Docker Support** is checked, and the **OS** drop-down is set to *Windows*. Click **Ok** to complete the wizard.
+1. Select the *Framework*(.NET 5.0 or .NET Core3.1)
+
+1. Select **Enable Docker** and the **OS** drop-down is set to *Windows*.
+
+1. Click **Create** to complete the wizard.
 
 The wizard creates all the files and configuration necessary for hosting an ASP.NET Core Web application in a container, although before deploying the solution, you'll need to edit the *Dockerfile* file to ensure it targets the same version of Windows Server used by the cluster.
 
-The Cluster Creation Wizard currently uses Windows Server 2016, so you'll need to locate and open the *Dockerfile* in Visual Studio and then update all references to *nanoserver-1709* to *nanoserver-sac2016*. Your file should be similar to that shown below:
+The Cluster Creation Wizard currently uses Windows Server version 1809, so you'll need to locate and open the *Dockerfile* in Visual Studio and then update all references of */dotnet/sdk:5.0* to */dotnet/aspnet:5.0-nanoserver-1809* or */dotnet/aspnet:3.1-nanoserver-1809* depending on the .NET version your application is running on. Your file should be similar to that shown below:
 
 ```dockerfile
-FROM microsoft/aspnetcore:2.0-nanoserver-sac2016 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-nanoserver-1809 AS base
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 
-FROM microsoft/aspnetcore-build:2.0-nanoserver-sac2016 AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0-nanoserver-1809 AS build
 WORKDIR /src
-COPY TestAspNetCoreApp.sln ./
-COPY TestAspNetCoreApp/TestAspNetCoreApp.csproj TestAspNetCoreApp/
-RUN dotnet restore -nowarn:msb3202,nu1503
-COPY . .\
-WORKDIR /src/TestAspNetCoreApp
-RUN dotnet build -c Release -o /app
+COPY ["TestAspNetCoreApp.csproj", "."]
+RUN dotnet restore "./TestAspNetCoreApp.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "TestAspNetCoreApp.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish -c Release -o /app
+RUN dotnet publish "TestAspNetCoreApp.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "TestAspNetCoreApp.dll"]
 ```
 
@@ -187,9 +191,9 @@ If your development environment is Visual Studio 2017 or 2019 on Windows, you ca
 
 1. Leave the default settings on the *Application Load Balancer Configuration* dialog and click **Next**.
 
-1. On the *Task Definition* dialog, click on **Create New** and set the
+1. On the *Task Definition* dialog, click on *Task Definition:* **Create New**, *Container:* **Create New**  and set the
     **Hard Limit** to **500**, under *Port Mapping* update the **Host Port** to
-    **8080**, and then click **Publish**.
+    **8080**, leave the rest to default settings and then click **Publish**.
 
 Publishing the ASP.NET Core application will take a couple of minutes to complete, and once it finishes the application will be almost be ready for testing.
 
