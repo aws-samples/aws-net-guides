@@ -122,7 +122,7 @@ In this module we will create a default ASP.NET Core Web App using the Microsoft
 
 ### Step 1: Create Application in Visual Studio for Windows
 
-If your development environment is Visual Studio 2019 on Windows, you can create an ASP.NET Core application as follows:
+If your development environment is Visual Studio 2019 on Windows, you can create an ASP.NET Core application as follows (Visual Studio 2017 users should follow the corresponding version of the New Project wizard) - 
 
 1. Open Visual Studio and then create a new project by navigating to the *File* \> *New* \> *Project* menu item.
 
@@ -138,7 +138,7 @@ If your development environment is Visual Studio 2019 on Windows, you can create
 
 The wizard creates all the files and configuration necessary for hosting an ASP.NET Core Web application in a container, although before deploying the solution, you'll need to edit the *Dockerfile* file to ensure it targets the same version of Windows Server used by the cluster.
 
-The Cluster Creation Wizard currently uses Windows Server version 1809, so you'll need to locate and open the *Dockerfile* in Visual Studio and then update all references of */dotnet/sdk:5.0* to */dotnet/aspnet:5.0-nanoserver-1809* or */dotnet/aspnet:3.1-nanoserver-1809* depending on the .NET version your application is running on. Your file should be similar to that shown below:
+The Cluster Creation Wizard currently uses Windows Server 2019, so you'll need to locate and open the *Dockerfile* in Visual Studio and then update all references of */dotnet/sdk:5.0* to */dotnet/aspnet:5.0-nanoserver-1809* or */dotnet/aspnet:3.1-nanoserver-1809* depending on the .NET version your application is running on. Your file should be similar to that shown below:
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-nanoserver-1809 AS base
@@ -250,17 +250,6 @@ The container's public IP address is then listed in the *Network bindings* secti
 
 Click on the URL under the *External Link* section, and the ASP.NET Core site will load in your browser.
 
-![App](media/image5_updated.PNG)
+![App](media/image5.png)
 
 Congratulations, you have now deployed an ASP.NET Core application to Amazon Elastic Container Service!
-
-
-<details>
-  <summary>Troubleshoot</summary>
-  
-  
-  - If you're having trouble publishing the ASP.NET Core application due to docker issues, you may refer to the following.
- 
-     * https://stackoverflow.com/questions/58986352/docker-build-fails-always-with-error-hcsshimpreparelayer-failed-failed-in-wi
-     * http://codebuckets.com/2020/08/01/nuget-restore-failing-in-docker-container/
-</details>
