@@ -53,7 +53,7 @@ In this module we will login to Azure DevOps to create a New Project for our app
 #### Overview
 
 In this module we will use Visual Studio Community edition to create a
-ASP<span></span>.NET Core MVC 5 web application.
+ASP<span></span>.NET MVC 5 web application.
 
 #### Implementation Instructions
 
