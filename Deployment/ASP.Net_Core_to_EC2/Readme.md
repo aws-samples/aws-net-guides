@@ -264,9 +264,10 @@ choco install webdeploy -y
 
     ![Add_Tags](./media/ec26.png)
 
+1. Select an existing security group and select the default option
 1. Select Review and Launch
 
-    ![Configure_SG](./media/ec27.png)
+    ![Configure_SG](./media/def_sg.png)
 
 1. Select Launch
 
