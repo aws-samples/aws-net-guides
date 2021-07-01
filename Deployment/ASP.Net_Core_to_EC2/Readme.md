@@ -2,32 +2,30 @@
 
 ## Overview
 
-This article will take common .NET development tools like Visual Studio
-Community edition and Visual Studio Team Explorer and deploy an
-application to an AWS EC2 instance via the AWS CodeDeploy service.
+In this guide, you will configure build tasks from the [AWS Toolkit for Azure DevOps](https://aws.amazon.com/vsts/) to deploy an ASP<span></span>.NET web application from an Azure DevOps project to [Amazon EC2](https://aws.amazon.com/ec2/?ec2-whats-new.sort-by=item.additionalFields.postDateTime&ec2-whats-new.sort-order=desc) using [AWS CodeDeploy](https://aws.amazon.com/codedeploy/)
 
 ## Architecture
 
 ![architecture](./media/image1.png)
 
 ## Modules
-1.  Create a New Project in Azure DevOps
-1.  Create a ASP<span></span>.NET application
-1.  Configure ASP<span></span>.NET application for [AWS CodeDeploy](https://aws.amazon.com/codedeploy/)
+1.  Create a New Project in Azure DevOps or Azure DevOps Server, or use an existing project
+1.  Create an ASP<span></span>.NET MVC 5 web application
+1.  Configure the project to support deployment using [AWS CodeDeploy](https://aws.amazon.com/codedeploy/)
 1.  Check-in to Azure DevOps source control
-1.  Set up a Service role for EC2 instance
+1.  Create an [Amazon S3](https://aws.amazon.com/s3/) bucket to store the built application during deployment
+1.  Set up an [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) Role for your EC2 instance(s).
 1.  Create an EC2 instance
-1.  Set up a Service role for AWS CodeDeploy
-1.  Setup AWS CodeDeploy
-1.  Create an Amazon S3 bucket
-1.  Integrate Azure DevOps and AWS CodeDeploy
+1.  Set up an IAM Service Role for AWS CodeDeploy
+1.  Create an AWS CodeDeploy application and deployment group resource
+1.  Add a task in your Azure DevOps build pipeline to deploy the application using AWS CodeDeploy
 1.  Test the Deployment
 
 
-### Module 1: Create a New Project in Azure DevOps
+### Module 1: Create a New Project in Azure DevOps or Azure DevOps Server, or use an existing project
 
 #### Overview
-In this module we will login to Azure DevOps to create a New Project for our application
+In this module we will login to Azure DevOps or Azure DevOps Server to create a New Project for our application
 
 > Note: You can also use an existing project if you have one.
 #### Implementation instructions
@@ -36,88 +34,90 @@ In this module we will login to Azure DevOps to create a New Project for our app
 
     ![new_project](./media/azureproject.png)
 
-1. Click New Project
+1. Click **New Project**
 
     ![new_project](./media/create_project.png)
 
 1. The project window will open 
-1. Click on Repos > Files (This is the location where we will add our sample ASP<span></span>.NET application code later)
-1. Select Visual Studio under Initialise main branch with a ReadME or gitignore
-1. Click on Initialise
+1. Click on **Repos** > **Files** (This is the location where we will add our sample ASP<span></span>.NET application code later)
+1. Select **Visual Studio** under *Initialise main branch with a ReadME or gitignore*
+1. Click **Initialize**
 
     ![new_project](./media/repo.png)
 
 
-### Module 2: Create a ASP<span></span>.NET Application
+### Module 2: Create an ASP<span></span>.NET MVC 5 web application
 
 #### Overview
 
-In this module we will use Visual Studio Community edition to create a
+In this module we will use Visual Studio Community edition to create an
 ASP<span></span>.NET MVC 5 web application.
 
 #### Implementation Instructions
 
 1. Open Visual Studio
-1. Click View > Team Explorer
+1. Select **View** > **Team Explorer**
 
     ![team_explorer](./media/team.png)
 
-1. Select Home > Projects and My Teams > Manage Connections
+1. Select **Home** > **Projects and My Teams** > **Manage Connections**
 
     ![team_explorer](./media/team_connection.png)
 
-1. Select Connect to a Project
+1. Select **Connect to a Project**
 
     ![team_explorer](./media/connect_project.png)
 
-1. Select the project SampleWebApp created in Module 1 and click Connect
+1. Select the project SampleWebApp created in Module 1 and click **Connect**
 
     ![team_explorer](./media/connect_to_project.png)
 
-1. In the Team Explorer - Home, under Project, click on Clone Repository > Clone
+1. In the *Team Explorer - Home*, under *Project*, click **Clone Repository** > **Clone**
 
     ![team_explorer](./media/clone_target.png)
 
 
-1.  Click File \> New \> Project...
+1.  Select **File** \> **New** \> **Project...**
 
     ![new_project](./media/image2.png)
 
-1.  The project dialog window will popup. Select the "ASP<span></span>.NET Web
-    Application(.NET Framework)" template.
+1.  The project dialog window will popup. Select the *ASP<span></span>.NET Web
+    Application(.NET Framework)* template.
 
     ![new_visual_studio_project](./media/vs1.png)
 
-1. Enter the project name. Create the project in the same location where you cloned the repository
-
+1.  Enter the project name. Create the project in the same location where you cloned the repository
+1.  Click **Create**
     ![new_visual_studio_project](./media/vs2.png)
 
-1.  Select MVC.
-1. Click Create
+1.  Select **MVC**.
+1. Click **Create**
 
     ![new_visual_studio_project](./media/vs3.png)
 
-### Module 3: Configure ASP<span></span>.NET application for AWS CodeDeploy 
+### Module 3: Configure the project to support deployment using [AWS CodeDeploy](https://aws.amazon.com/codedeploy/)
 
 #### Overview
 
 Now that we have an ASP<span></span>.NET application, let's add the files needed to allow AWS CodeDeploy to understand the deployment and configuration.
 There are two files we will need to add:
 
-1.  **Appspec.yml** -- The application specification file is a YAML or
+1.  **appspec.yml** -- The application specification file is a YAML or
     JSON-formatted file used by AWS CodeDeploy to manage a deployment.
-1.  **installapp.ps1** -- A script to deploy the Web package on the EC2 instance.
+1.  **installapp.ps1** -- A script to deploy the application binaries, held in a WebDeploy package file, into IIS on the EC2 instance.
 
 Implementation Instructions
 
 1.  Create the appspec.yml file by right clicking on the project \>
-    Add \> New Item...
+    **Add** \> **New Item...**
 
     ![new_item](./media/image5.png)
 
-1.  Name the file appspec.yaml and click Add.
+1.  Name the file appspec.yml and click **Add**.
    
     ![new_item](./media/create_yml.png)
+
+    > Note: The file should be saved in UTF-8 without a BOM marker. We suggest using *Save As* and selecting the encoding shown below.
 
 1.  Copy the following code, paste into the file and save.
 
@@ -131,9 +131,7 @@ Implementation Instructions
 
     ```
 
-> Note: If you are saving this in Visual Studio on a windows machine you will need to do a "Save As..." and change the file encoding to the following:
-
-![new_item](./media/vs4.png)
+    ![new_item](./media/vs4.png)
 
 1.  Use the same process to create the installapp.ps1
 
@@ -154,11 +152,11 @@ Azure DevOps Repos through the Git window in Visual Studio.
 
 #### Implementation Instructions
 
-1.  With the ASP<span></span>.NET Core project open,  select Git from the menu bar, select Commit or Stash...
+1.  With the ASP<span></span>.NET Core project open,  select **Git** from the menu bar, select **Commit or Stash...**
 
     ![publish_git_repo](./media/git.png)
 
-1. Enter a commit message and select Commit All and Push
+1. Enter a commit message and select **Commit All and Push**
 
     ![publish_git_repo](./media/git_commit.png)
 
@@ -166,50 +164,94 @@ Azure DevOps Repos through the Git window in Visual Studio.
    
     ![push_complete](./media/git_success.png)
 
-### Module 5: Set up a Service role for EC2 instance
+### Module 5:  Create an [Amazon S3](https://aws.amazon.com/s3/) bucket to store the built application during deployment
 
 #### Overview
 
-In this step we will create a service role which will give EC2 instances the required access to Amazon s3
+In this module, we will create an Amazon S3 bucket to which the revision bundle will be uploaded. A revision in AWS CodeDeploy is a version of an application you want to deploy. Our sample application revisions will be stored in Amazon S3
+
+#### Implementation
+
+1. From the AWS Console search for S3.
+1. Click **Create bucket**
+
+    ![s3_bucket](./media/s31.png)
+
+1. Enter the *Bucket name* and select the *AWS Region* to be in the same region as the CodeDeploy resources
+
+    ![s3_bucket](./media/s32.png)
+
+1. Leave the remaining settings to default and click **Create bucket**
+
+    ![s3_bucket](./media/s33.png)
+
+### Module 6: Set up an [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) Role for your EC2 instance(s).
+
+#### Overview
+
+In this step we will create an IAMs role which will give EC2 instances the required access to Amazon S3
 
 #### Implementation Instructions
 
 1.  From the AWS Console search for IAM.
-1.  Select Roles > Create Role
+1.  Select **Roles** > **Create Role**
 
     ![New_Role](./media/new_role.png)
 
-1.  Select AWS service under Select type of trusted entity.
-1.  Select EC2 under Choose a use case.
-1.  Click on Next: Permissions
+1.  Select **AWS service** under *Select type of trusted entity*
+1.  Select **EC2** under *Choose a use case*
+1.  Click **Next: Permissions**
 
     ![New_Role](./media/role2.png)
 
-1. Select Create Policy.
+1. Click **Create Policy**
 
     ![New_Role](./media/role3.png)
 
-1. Add the following permissions to the policy as follows
+1. Add the following permission to the policy as follows
+    - *Service*: S3
+    - Select *GetObject* under *Read* *Actions*
+    - Select *Specific* for *Resources*
+1. Click **Add ARN**
 
-    ![New_Role](./media/role1.png)
+    ![New_Role](./media/bucket2.png)
 
-1.  Enter a policy Name - s3-policy
-1.  Click on Create policy
+1. Enter the *Bucket name* created in Module 5
+1. Select *Any* for *Object name*. Specifying the Amazon Resource Name(ARN) will give the specified Read permission only to the specified bucket 
+1. Click **Add**
 
-    ![New_Role](./media/policy1.png)
+    ![New_Role](./media/bucket1.png)
+
+1. Click **Next: Tags**
+
+    ![New_Role](./media/bucket5.png)
+
+1.  We will not be adding any Tags. Click **Next: Review**
+
+    ![New_Role](./media/bucket4.png)
 
 
-1. In the Create role window, select the policy created above 
-1. Click on Next: Tags
+1.  Enter *Name*: s3-policy
+1.  Click **Create policy**
+
+    ![New_Role](./media/bucket6.png)
+
+
+1.  In the Create role window, select the policy created above 
+1.  Click **Next: Tags**
 
     ![New_Role](./media/role4.png)
 
-1. Enter the Role name and Click Create role
+1.  We will not be adding any Tags. Click **Next: Review**
+
+    ![New_Role](./media/bucket3.png)
+
+1.  Enter the *Role name* and click **Create role**
 
     ![New_Role](./media/role5.png)
 
 
-### Module 6: Create an EC2 instance
+### Module 7: Create an EC2 instance
 
 #### Overview
 
@@ -218,73 +260,70 @@ Now we will create an EC2 instance where our sample application code will be dep
 #### Implementation Instructions
 
 1.  From the AWS Console search for EC2.
-1.  Click on Instances > Launch instances
+1.  Click on **Instances** > **Launch instances**
 
     ![launch_instance](./media/ec21.png)
 
-1.  Select the Free tier eligible Microsoft Windows Server 2016 Base with Containers.
+1.  **Select** the Free tier eligible *Microsoft Windows Server 2019 Base*
 
     ![instance_type](./media/ec22.png)
 
-1.  Select Type - t2.micro
-1.  Click on Next: Configure Instance Details.
+1.  Select *Type* - *t2.micro*
+1.  Click **Next: Configure Instance Details**
 
     ![instance_type](./media/ec23.png)
 
-1.  Select Network as default
-1.  Select the IAM Service role created in Module 5 
+1.  For *Network*, select default VPC
+1.  For *IAM role*, select the role you created in Module 6
 
     ![instance_type](./media/ec24.png)
 
 1. Copy the following code, paste into the User data As text.
 
-```
+    ```
+    <powershell>
+    Read-S3Object -BucketName aws-codedeploy-us-west-2 -Key latest/codedeploy-agent.msi -File c:\temp\codedeploy-agent.msi
+    c:\temp\codedeploy-agent.msi /quiet /l c:\temp\host-agent-install-log.txt
+    Install-WindowsFeature -Name Web-Server,NET-Framework-45-ASPNET,NET-Framework-45-Core,NET-Framework-45-Features
+    Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    choco install webdeploy -y
+    </powershell>
+    ```
 
-<powershell>
-Read-S3Object -BucketName aws-codedeploy-us-west-2 -Key latest/codedeploy-agent.msi -File c:\temp\codedeploy-agent.msi
-c:\temp\codedeploy-agent.msi /quiet /l c:\temp\host-agent-install-log.txt
-Install-WindowsFeature -Name Web-Server,NET-Framework-45-ASPNET,NET-Framework-45-Core,NET-Framework-45-Features
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-choco install webdeploy -y
-</powershell>
+1.  The above code downloads and installs the CodeDeploy agent, installs and configures IIS with ASP<span></span>.NET 4.8 on the EC2 instance.
+1.  Click **Next: Add Storage**
 
-```
+    ![User_Data](./media/ec211.png)
 
-1. The above code downloads and installs the CodeDeploy agent, installs and configures IIS with ASP<span></span>.NET 4.6 on the EC2 instance.
-1. Select Next: Add Storage
-
-![User_Data](./media/ec211.png)
-
-1. Select Next: Add Tags
+1.  Keep the default settings for storage
+1.  Click **Next: Add Tags**
 
     ![Add_Storage](./media/ec25.png)
 
-1. Enter Key - Name, Value - CodeDeployInstance. This tag will be used to identify the EC2 instance while configuring AWS CodeDeploy
-1. Select Next: Configure Security Group
+1.  Enter *Key* - Name, *Value* - CodeDeployInstance. This tag will be used to identify the EC2 instance(s) that CodeDeploy should deploy our application to
+1.  Click **Next: Configure Security Group**
 
     ![Add_Tags](./media/ec26.png)
 
-1. Select an existing security group and select the default option
-1. Select Review and Launch
+1.  *Select an existing security group* and select the *default* option
+1.  Click **Review and Launch**
 
     ![Configure_SG](./media/def_sg.png)
 
-1. Select Launch
+1.  Click **Launch**
 
     ![Launch](./media/ec28.png)
 
-1.  Select Create a new key pair 
-1.  Enter a Key pair name
-1.  Select Download Key Pair
-1.  Click Launch Instance
+1.  Select **Proceed without a key pair** 
+1.  Click **Launch instances**
 
     ![Key_Pair](./media/ec29.png)
 
-1. You can view the status of the EC2 instance by clicking on View Instances
+1.  You can view the status of the EC2 instance by clicking **View Instances**
 
     ![View_Instance](./media/ec210.png)
 
-### Module 7: Set up a Service role for AWS CodeDeploy
+### Module 8: Set up an IAM Service Role for AWS CodeDeploy
 
 #### Overview
 
@@ -293,37 +332,39 @@ In this step we will create a Service Role which will grant AWS CodeDeploy acces
 #### Implementation Instructions
 
 1.  From the AWS Console search for IAM.
-1.  Select Roles > Create Role
+1.  Select **Roles** > **Create Role**
 
     ![New_Role](./media/new_role.png)
 
-1.  Select AWS service under Select type of trusted entity.
-1.  Select CodeDeploy under Choose a use case
+1.  Select **AWS service** under *Select type of trusted entity*.
+1.  Select **CodeDeploy** under *Choose a use case*
 
     ![New_Role](./media/service_role.png)
 
-1.  Select Next: Permissions
+1.  Click **Next: Permissions**
 
     ![New_Role](./media/role.png)
 
-1.  A policy has already been attached. Select Next:Tags.
+1.  A policy has already been attached. Click **Next:Tags**
 
     ![New_Role](./media/create_role.png)
 
-1.  Select Next: Review 
+1.  We will not be adding any Tags. Click **Next: Review** 
 
     ![New_Role](./media/role_tag.png)
 
-1.  Enter Role name and select Create role
+1.  Enter *Role name* and click **Create role**
 
     ![New_Role](./media/role_final.png)
 
 
-### Module 8: Setup AWS CodeDeploy
+### Module 9: Create an AWS CodeDeploy application and deployment group resource
 
 #### Overview
 
-In this step we will create an application and a
+CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances, serverless Lambda functions, or Amazon ECS services.
+
+In this step we will create an application which is a name or container used by CodeDeploy to ensure that the correct revision, deployment configuration, and deployment group are referenced during a deployment. We will also create a deployment group. Each application deployment uses one of its deployment groups. The deployment group contains settings and configurations used during the deployment.
 deployment group in CodeDeploy.
 
 #### Implementation Instructions
@@ -332,61 +373,40 @@ deployment group in CodeDeploy.
 
     ![codedeploy_search](./media/codedeploy.png)
 
-1.  Go to Applications, click Create application
+1.  Go to **Applications**, click **Create application**
 
     ![get_started_now](./media/cd_app.png)
 
-1.  Enter the Application name
-1.  Select EC2/On-premises under Compute platform and select Create application
+1.  Enter the *Application name*
+1.  Select **EC2/On-premises** under *Compute platform* and click **Create application**
 
     ![sample_deployment](./media/cd_create_app.png)
 
-1.  Go to the application and select Create deployment group
+1.  Go to the application and click **Create deployment group**
 
     ![inplace_deployment](./media/cd_create_grp.png)
 
-1.  Enter the Deployment group name
-1.  Select the Service Role created in Module 7
+1.  Enter the *deployment group name*
+1.  Select the *Service Role* created in Module 8
 
     ![windows_type](./media/cd_grp1.png)
 
-1.  Choose In-place deployment.
-1.  Select Amazon EC2 instances under Environment configuration
-1.  Add a tag with Key - Name, Value - (Name of the EC2 instance created in Module 6) This will identify the EC2 instance created in Module 6
+1.  Choose **In-place deployment**
+1.  Select **Amazon EC2 instances** under *Environment configuration*
+1.  Add a tag with *Key* - Name, *Value* - (Name of the EC2 instance created in Module 7) This will identify the EC2 instance created in Module 7
 
     ![select_windows_sample](./media/cd_grp2.png)
 
-1.  Select Never under Agent configuration with AWS Systems Manager as we have already configured the EC2 instance with the CodeDeploy Agent.
-1.  Select CodeDeployDefault.AllAtOnce under Deployment Settings.
-1.  Deselect Enable load balancing.
-1.  Select Create deployment group
+1.  Select **Never** under *Agent configuration with AWS Systems Manager* as we have already configured the EC2 instance with the CodeDeploy Agent.
+1.  Select **CodeDeployDefault.AllAtOnce** under *Deployment Settings*. This option attempts to deploy an application revision to as many instances as possible at once. We will be dealing with a single instance.
+1.  Since its a single instance application we will not be needing a Load balancer. Deselect *Enable load balancing*
+1.  Click **Create deployment group**
 
     ![service_role](./media/cdgrp3.png)
 
 1.  CodeDeploy is ready to receive our application.
 
-### Module 9: Create an Amazon S3 bucket
-
-#### Overview
-
-In this module, we will create an Amazon S3 bucket to which the revision bundle will be uploaded. A revision in AWS CodeDeploy is a version of an application you want to deploy. Our sample application revisions are stored in Amazon S3
-
-#### Implementation
-
-1. From the AWS Console search for S3.
-1. Select Create bucket.
-
-    ![s3_bucket](./media/s31.png)
-
-1. Enter the Bucket name and select the AWS Region
-
-    ![s3_bucket](./media/s32.png)
-
-1. Leave the remaining settings to default and click Create bucket
-
-    ![s3_bucket](./media/s33.png)
-
-### Module 10: Integrate Azure DevOps and AWS CodeDeploy
+### Module 10: Add a task in your Azure DevOps build pipeline to deploy the application using AWS CodeDeploy
 
 #### Overview
 
@@ -395,29 +415,31 @@ application to EC2 instances via CodeDeploy.
 
 #### Implementation Instructions
 
-1.  Open our project in Azure DevOps, click on Pipelines. Click Create Pipeline.
+1.  Open our project in Azure DevOps, select **Pipelines** > **Create Pipeline**
 
     ![new_build](./media/pipeline1.png)
 
-1.  Select Other Git.
+1.  Select **Other Git**
 
     ![vsts_git](./media/pipeline2.png)
 
-1.  Choose the Azure Repos Git, select your project and Repository
-1.  Select Continue
+1.  Choose the **Azure Repos Git**, select your project and Repository
+1.  Click **Continue**
 
     ![.net_template](./media/pipeline3.png)
 
-1.  Choose the ASP<span></span>.NET template and click Apply.
+1.  Select the **ASP<span></span>.NET** template and click **Apply**
 
     ![add_task](./media/image21.png)
 
 
-1. Go to the task Build solution and append the following in MSBuild Arguments. This will set the default path where our application will be hosted
+1. Go to the task Build solution and append the following in *MSBuild Arguments*. This will set the default path where our application will be hosted
+
+        /p:DeployIisAppPath="Default Web Site/MyApp"
 
     ![add_copy_files_task](./media/def_path.png)
 
-1. Select the Tasks - Test Assemblies, Publish symbols path and Publish Artifact and select Remove selected task(s). We won't be needing these three tasks.
+1. Select the Tasks - *Test Assemblies*, *Publish symbols path* and *Publish Artifact* and select **Remove selected task(s)**. We won't be needing these three tasks.
 
     ![add_copy_files_task](./media/rem_tasks.png)
 
@@ -425,30 +447,39 @@ application to EC2 instances via CodeDeploy.
 
     ![add_task](./media/new_task.png)
 
-1.  Search for the Copy files task and click Add. The task will go to
+1.  Search for the *Copy Files* task and click **Add**. The task will go to
     the bottom of the list on the left.
 
     ![add_copy_files_task](./media/image23.png)
 
-1.  Select the Copy files task and update the parameters as shown in the image.
+1.  Select the *Copy Files* task and update the parameters as shown in the image.
+
+    - *Source Folder*: It is the folder that contains the files you want to copy. Select the project folder - SampleWebApp
+    - *Contents*: The specified files mentioned here will be copied to the specified Target folder containing other build artifacts which will be used by the CodeDeploy task when it builds the webdeploy-based application bundle for deployment. Enter *installapp.ps1* and *appspec.yml* as shown below
 
     ![update_copy_files_Task](./media/pipeline5.png)
 
+1.  We will be adding *AWS CodeDeploy Application Deployment* task in the next step . The *AWS Toolkit for Azure DevOps* adds tasks to easily enable build and release pipelines in Azure DevOps. If you are using the toolkit for the first time, you can install and configure it from the [Visual Studio Marketplace.](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)
 1.  Click the + symbol to add a new task. Search for the CodeDeploy task
-    and click Add. The Task will go to the bottom of the list on the
+    and click **Add**. The Task will go to the bottom of the list on the
     left. Update the parameters.
 
     ![add_codedeploy_task](./media/image25.png)
 
-    > Note: Your first time you will need to install the AWS VSTS toolkit from
-the Marketplace.
 
 1.  Configure the Code Deploy task.
+    - *AWS Credentials* - Specify the AWS credentials to be used by the task in the build agent environment
+    - *AWS Region* - Specify the region containing the AWS resources for this project
+    - *Application Name* - Specify the name of the AWS CodeDeploy application (Module 9)
+    - *Deployment Group Name* - Specify the name of the deployment group the revision is to be deployed to (Module 9)
+    - *Revision Bundle* - Specify the location of the application revision artifacts to deploy which is *$(build.artifactstagingdirectory)*
+    - *S3 Bucket Name* - Specify the name of the Amazon S3 bucket to which the revision bundle is uploaded or can be found (Module 5)
+    - *Existing File Behavior* - This specifies how AWS CodeDeploy should handle files that already exist in a deployment target location but weren't part of the previous successful deployment. Select *Overwrite the version already on the instance with the version in the new application revision*
 
     ![configure_task](./media/pipeline4.png)
 
 
-1.  Click Triggers and enable Continuous integration.
+1.  Select **Triggers** and enable *Continuous integration*
 
     ![enable_ci](./media/pipeline6.png)
 
@@ -458,7 +489,7 @@ the Marketplace.
 
 #### Overview
 
-In this module, we will deploy the code to the EC2 instances.
+In this module, we will deploy the code to the EC2 instance(s).
 
 #### Implementation
 
@@ -473,7 +504,8 @@ In this module, we will deploy the code to the EC2 instances.
 
     ![view_deployed_app](./media/image30.png)
 
-2.  You now have a working CI/CD pipeline that deploys an ASP<span></span>.NET
+1.  You now have a working CI/CD pipeline in Azure DevOps that deploys an ASP<span></span>.NET
     application from source control to EC2.
+
 
 
