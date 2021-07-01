@@ -10,7 +10,7 @@ In this guide, you will configure build tasks from the [AWS Toolkit for Azure De
 
 ## Modules
 1.  Create a New Project in Azure DevOps or Azure DevOps Server, or use an existing project
-1.  Create an ASP<span></span>.NET MVC 5 web application
+1.  Create an ASP<span></span>.NET MVC web application
 1.  Configure the project to support deployment using [AWS CodeDeploy](https://aws.amazon.com/codedeploy/)
 1.  Check-in to Azure DevOps source control
 1.  Create an [Amazon S3](https://aws.amazon.com/s3/) bucket to store the built application during deployment
@@ -40,18 +40,18 @@ In this module we will login to Azure DevOps or Azure DevOps Server to create a 
 
 1. The project window will open 
 1. Click on **Repos** > **Files** (This is the location where we will add our sample ASP<span></span>.NET application code later)
-1. Select **Visual Studio** under *Initialise main branch with a ReadME or gitignore*
+1. Select **Visual Studio** under *Initialize main branch with a ReadME or gitignore*
 1. Click **Initialize**
 
     ![new_project](./media/repo.png)
 
 
-### Module 2: Create an ASP<span></span>.NET MVC 5 web application
+### Module 2: Create an ASP<span></span>.NET MVC web application
 
 #### Overview
 
 In this module we will use Visual Studio Community edition to create an
-ASP<span></span>.NET MVC 5 web application.
+ASP<span></span>.NET MVC web application.
 
 #### Implementation Instructions
 
@@ -177,7 +177,7 @@ In this module, we will create an Amazon S3 bucket to which the revision bundle 
 
     ![s3_bucket](./media/s31.png)
 
-1. Enter the *Bucket name* and select the *AWS Region* to be in the same region as the CodeDeploy resources
+1. Enter the *Bucket name* and select the *AWS Region*. The *AWS Region* needs to be in the same region as the CodeDeploy resources which will be subsequently created in the tutorial.
 
     ![s3_bucket](./media/s32.png)
 
