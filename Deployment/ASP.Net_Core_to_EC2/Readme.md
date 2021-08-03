@@ -1,4 +1,4 @@
-# Deploy an ASP.NET Core Application to Amazon EC2 using AWS CodeDeploy
+# Deploy an ASP.NET MVC Application to Amazon EC2 using AWS CodeDeploy
 
 ## Overview
 
