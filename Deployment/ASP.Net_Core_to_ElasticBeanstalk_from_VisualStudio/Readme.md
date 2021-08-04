@@ -9,7 +9,7 @@
 
 The [AWS Toolkit for Visual Studio](https://aws.amazon.com/visualstudio/) provides a set of wizards and other tooling to simplify publishing your .NET or .NET Core applications and serverless functions to AWS.
 
-In this guide we will use the toolkit's *Publish to Elastic Beanstalk* wizard to deploy a simple ASP.NET Core sample application to Elastic Beanstalk. The wizard enables you to deploy your application to a single instance environment or to a fully load balanced, automatically scaled environment from within the IDE with just a few simple steps. If your application uses SQL Server in [Amazon RDS](https://aws.amazon.com/rds/), the publishing wizard can also set up the connectivity between your application environment in Elastic Beanstalk and the database instance in Amazon RDS.
+In this guide we will use the toolkit's *Publish to Elastic Beanstalk* wizard to deploy a simple ASP.NET Core 5 sample application to Elastic Beanstalk. The wizard enables you to deploy your application to a single instance environment or to a fully load balanced, automatically scaled environment from within the IDE with just a few simple steps. If your application uses SQL Server in [Amazon RDS](https://aws.amazon.com/rds/), the publishing wizard can also set up the connectivity between your application environment in Elastic Beanstalk and the database instance in Amazon RDS.
 
 The sample application used in this guide is created from the ASP.NET Core Web API sample template in Visual Studio. The same steps can be followed to also deploy projects created from the ASP.NET, or ASP.NET Core, Web Application templates to Elastic Beanstalk.
 
@@ -21,7 +21,7 @@ The sample application used in this guide is created from the ASP.NET Core Web A
 
 To complete the steps in this guide you will need:
 
-✓ .NET Core 2.0 or higher installed\
+✓ .NET 5 installed _(Note: you may also complete this guide using .NET Core 3.1, or .NET Core 2.1)_\
 ✓ An AWS Account\*\
 ✓ An IAM user with access key credentials\*\*\
 ✓ Visual Studio 2017 or Visual Studio 2019 for Windows
@@ -128,7 +128,11 @@ To add a credential profile using the AWS Explorer window:
 
 ## Module 3: Creating a Sample .NET Core Application Starter Project
 
-In this module, you will be creating the sample ASP.NET Core Web API application that will be deployed to Elastic Beanstalk. You can also elect to deploy an ASP.NET Web Application, or ASP.NET Core Web Application, if you wish instead of a web api.
+In this module, you will be creating the sample ASP.NET Core Web application that will be deployed to Elastic Beanstalk. You can also elect to deploy an ASP.NET Core Web API Application, or ASP.NET Web Application, if you wish. If you elect to create a project using .NET Core or .NET 5, the AWS deployment wizard will default to selecting an Amazon Linux instance to host your application, but you can change this to a Windows Server instance. If you create a project using .NET Framework, you can deploy only to Windows Server instances.
+
+> Note: The following instructions do not specify the version of .NET for the new project, and there are slight changes in the flow of the New Project wizard between Visual Studio 2017 and Visual Studio 2019. For the purposes of this guide you may to select either an ASP.NET Core project type that uses either .NET Core 2.1, .NET Core 3.1, or .NET 5, or a .NET Framework-based ASP.NET project template.\
+    \
+    We recommend .NET 5, and deployment to Amazon Linux. This will match the screenshots and settings used in this guide.
 
 1. In Visual Studio select *File > New > Project* from the menu.
 
@@ -167,9 +171,11 @@ In this module you will use the Elastic Beanstalk publishing wizard from the too
 
 1. Using the selected environment name the wizard will propose a URL for the deployed application in the *URL* field. You can accept this or enter your own. Click the **Check Availability** button to make sure the URL for your web application is not already in use, then click **Next**.
 
-1. On the *AWS Options* page, under *Amazon EC2 Launch Configuration*, the wizard will pre-set the *Container type* drop-down list to be the latest available but you can change this if you require. For this guide, stay with with the selected default (64bit Windows Server 2016 v2.0.2 running IIS 10.0 at time of writing).
+1. On the *AWS Options* page, under *Amazon EC2 Launch Configuration*, the wizard will pre-set the *Container type* drop-down list to be the latest available but you can change this if you require. For this guide, stay with with the selected default. For projects using .NET 5, .NET Core 3.1, or .NET Core 2.1 the default container type will be 64bit Amazon Linux 2 running .NET Core. For projects using .NET Framework the default container type will be 64bit Windows Server 2019 running IIS 10.0.
 
-1. In the *Instance type* drop-down list, specify **t2.micro** as the Amazon EC2 instance type to use. This will minimize the cost associated with running the instance.
+    > Note: project types using .NET 5, or .NET Core (2.1 or 3.1), may be deployed to either Windows Server or Linux instances.
+
+1. In the *Instance type* drop-down list, you can use the default type selected by the wizard (currently **t3a.medium**) or choose another Amazon EC2 instance type to use.
 
 1. In the **Key pair** drop-down list, if you have one choose an existing Amazon EC2 instance key pair to use to sign in to the instances using remote desktop (RDP) that will be used to host your application (if needed).
     > Note: If you don't have a key pair already you can elect to have the wizard create one or to not use one (this guide will not require you to sign in to the instance(s).
@@ -199,9 +205,15 @@ In this module you will use the Elastic Beanstalk publishing wizard from the too
 
     > Note: Because we elected to deploy a single instance environment above, Elastic Beanstalk will use the instance health to determine if your application is responsive. If you had elected to deploy a multiple instance, load balanced, application you could enter a custom health check URL path here (for example **/api/values** for our sample). Elastic Beanstalk would then use this URL to determine if your web application is still responsive.
 
-1. The toolkit will also provide a default deployment version label which is based on the current date and time which you can accept or change.
+1. The toolkit will also provide a default deployment version label which is based on the current date and time which you can accept or change. Depending on project type, you may see additional options noted below.
 
-    ![Application options](media/image6.png)
+    > The Application Options page shown below is for .NET 5 or .NET Core projects being deployed to Linux. As we are deploying a single instance, and not using a load balancer, set the _Reverse Proxy_ option to **none**.
+
+    ![Application options for Linux deployments](media/image6a.png)
+
+    > The Application Options page shown below is for .NET 5, .NET Core, or .NET Framework projects being deployed to Windows Server.
+
+    ![Application options for Windows Server deployments](media/image6.png)
 
 1. Click **Finish** to move to the wizard's *Review* page and look over your selections. When ready click **Deploy** to start the build and deployment process which will close the wizard.
 
@@ -225,9 +237,9 @@ Various settings for those resources can also be configured from within the tool
 
 ![Server resources](media/image9.png)
 
-To access the deployed application, click the URL shown at the top of the environment view page. If we had deployed a web application (with a UI) the application would now launch into a browser. In this guide we deployed a web api so to access it modify the URL in your browser to append **/api/values** to the URL. You should then see the following data returned from the sample API:
+To access the deployed application, click the URL shown at the top of the environment view page. As we deployed a web application(with a UI the application launches into a browser:
 
-![Api results](media/image10.png)
+![Running application](media/image10.png)
 
 ## Module 5: Deleting the Deployed Application
 
@@ -244,4 +256,4 @@ If you leave the resources created in this guide running, you will incur costs s
 
     ![Delete confirmation](media/image12.png)
 
-Congratulations! You have now completed this guide and deployed your first ASP.NET Core application to AWS Elastic Beanstalk.
+Congratulations! You have now completed this guide and deployed your first ASP.NET Core 5 application to AWS Elastic Beanstalk.
