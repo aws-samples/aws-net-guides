@@ -146,7 +146,7 @@ Implementation Instructions
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseKestrel(options => { options.Listen(IPAddress.Any, 80); });
+                    webBuilder.UseKestrel(options => { options.Listen(IPAddress.Any, 1025); });
                     webBuilder.UseStartup<Startup>();
                 });
     ```
