@@ -116,7 +116,6 @@ Implementation Instructions
    
     ![new_item](./media/create_yml.png)
 
-    > Note: The file should be saved in UTF-8 without a BOM marker. We suggest using *Save As* and selecting the encoding shown below.
 
 1.  Copy the following code, paste into the file and save.
 
@@ -133,15 +132,23 @@ Implementation Instructions
 
     ```
 
-    ![new_item](./media/vs4.png)
-
 1.  Use the same process to create the installapp.ps1
 
-1.  Copy the following code, paste into the installapp.sh file and
+1.  Copy the following code, paste into the installapp<span>.</span>sh file and
     save. This specifies the path to the application *.dll* file to run the application in the background
 
     ```
     dotnet /var/www/SampleWebApp.dll > /dev/null 2>&1 &
+    ```
+1. Modify the Program<span>.</span> as follows
+    ```
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseKestrel(options => { options.Listen(IPAddress.Any, 80); });
+                    webBuilder.UseStartup<Startup>();
+                });
     ```
 
 ### Module 4: Check-in to Azure DevOps source control
@@ -519,9 +526,9 @@ In this module, we will deploy the code to the EC2 instance(s).
     ![initiate_build](./media/build_success.png)
 
 1.  You can view your deployed application by getting the public DNS or
-    IP address for the EC2 instance and appending the default path added in Step 6 of Module 10 and navigate to the site in a browser.
+    IP address for the EC2 instance and appending the port added in Step 6 of Module 3 and navigate to the site in a browser.
 
-    ![view_deployed_app](./media/image30.png)
+    ![view_deployed_app](./media/aspnet.png)
 
 1.  You now have a working CI/CD pipeline in Azure DevOps that deploys an ASP<span></span>.NET
     Core application from source control to EC2.
