@@ -140,7 +140,7 @@ Implementation Instructions
     ```
     dotnet /var/www/SampleWebApp.dll > /dev/null 2>&1 &
     ```
-1. Modify the Program<span>.</span> as follows
+1. Modify the Program<span>.</span>cs to be as follows
     ```
     public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
