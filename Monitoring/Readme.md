@@ -25,6 +25,7 @@ To complete this learning path, you will need:
 ### Links to documentation
 
 - [Amazon CloudWatch Documentation Home](https://docs.aws.amazon.com/cloudwatch/)
+- [Quick Start: Enable your Amazon EC2 instances running Windows Server 2016 to send logs to CloudWatch Logs using the CloudWatch Logs agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartWindows2016.html)
 
 ## Introduction
 
