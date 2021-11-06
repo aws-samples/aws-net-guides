@@ -40,7 +40,7 @@ sudo sh -c 'echo "export PATH=$PATH:$DOTNET_ROOT" >> /etc/environment'
 ```
 
 In the near future an updated version of the preconfigured Amazon Machine Image (AMI) with [MATE Desktop Environment](https://mate-desktop.org/) that includes .NET 6 will be available. 
-Before it is released customers can create a new instance with the [current version that includes .NET 5 preinstalled](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/amazon-linux-ami-mate.html) and then install the .NET 6 SDK on that instance. 
+Before it is released customers can create a new instance with the current version that includes .NET 5 preinstalled and then install the .NET 6 SDK on that instance. 
 
 [EC2 Image Builder](https://aws.amazon.com/image-builder/) simplifies the building, testing, and deployment of virtual machines and container images for use on AWS or on-premises. 
 .NET 6 can be added to images created with Image Builder in two ways:
