@@ -145,8 +145,8 @@ AWS Secrets Manager client-side caching in .NET.
 ### AWS X-Ray
 
 [AWS X-Ray](https://aws.amazon.com/xray/) helps developers analyze and debug distributed applications, such as those built using a microservices architecture. 
-.NET applications can integrate AWS X-Ray with [AWS X-Ray SDK for .NET](https://github.com/aws/aws-xray-sdk-dotnet) and the 
-[AWS Distro for OpenTelemetry .NET](https://docs.aws.amazon.com/xray/latest/devguide//xray-dotnet-opentel-sdk.html). Compatibility testing for .NET 6 is underway. 
+.NET 6 applications can integrate AWS X-Ray with [AWS X-Ray SDK for .NET](https://github.com/aws/aws-xray-sdk-dotnet) and the 
+[AWS Distro for OpenTelemetry .NET](https://docs.aws.amazon.com/xray/latest/devguide//xray-dotnet-opentel-sdk.html). 
 
 ## DevOps
 
