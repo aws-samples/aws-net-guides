@@ -73,12 +73,12 @@ to configure AWS App Runner to start, run, scale, and load balance the applicati
 
 To get started immediately with .NET 6 on Lambda there are a few options:
 1. Container Image - Build a container image with the .NET 6 application packaged inside it. This [PowerShell script](https://github.com/aws/aws-lambda-dotnet/tree/master/LambdaRuntimeDockerfiles) will build a .NET 6 base container image. 
-2. Custom Runtime - The custom runtime bundles all necessary .NET 6 libraries in the zip file archive that is deployed to Lambda, see this [example](https://github.com/normj/LambdaNETCoreSamples/tree/master/CustomRuntimeListBucketsNET6). For an ARM64 see this [example](https://github.com/normj/LambdaNETCoreSamples/tree/master/ArmLambdaFunction#net-5-and-6-with-custom-runtimes).
+1. Custom Runtime - The custom runtime bundles all necessary .NET 6 libraries in the zip file archive that is deployed to Lambda, see this [example](https://github.com/normj/LambdaNETCoreSamples/tree/master/CustomRuntimeListBucketsNET6). For an ARM64 see this [example](https://github.com/normj/LambdaNETCoreSamples/tree/master/ArmLambdaFunction#net-5-and-6-with-custom-runtimes).
 
-In the near future Lambda will provide managed instances with .NET 6 runtime preinstalled. This will allow customers to deploy .NET 6 applications using zip file archives 
-and container images as they do today with .NET Core 3.1 applications. 
+In the near future, managed instances with .NET 6 runtime will be preinstalled, along with updated versions of the [AWS Toolkit for Visual Studio](https://aws.amazon.com/visualstudio/) 
+and [AWS Lambda for .NET Core](https://github.com/aws/aws-lambda-dotnet). These will allow customers to build and deploy .NET 6 applications using zip file archives and 
+container images as they do today with .NET Core 3.1 applications. 
 
-In the near future the [AWS Toolkit for Visual Studio](https://aws.amazon.com/visualstudio/) and [AWS Lambda for .NET Core](https://github.com/aws/aws-lambda-dotnet) will offer templates for all of the above options. 
  
 ## Tools and SDK
 
@@ -87,7 +87,7 @@ In the near future the [AWS Toolkit for Visual Studio](https://aws.amazon.com/vi
 The [AWS Toolkit for Visual Studio](https://aws.amazon.com/visualstudio/) is an extension for Microsoft Visual Studio on Windows that makes it easier for developers to develop, debug, 
 and deploy .NET applications using Amazon Web Services. Visual Studio 2022 supports .NET 6 development, and customers can download the AWS Toolkit for 
 [Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2022) from the Visual Studio Marketplace. 
-Currently the Toolkit is available as a Preview release. A GA version will be released in the near future, the current status is tracked in this [Issue](https://github.com/aws/aws-toolkit-visual-studio/issues/167). 
+Currently the Toolkit is available as a Preview release. A GA version will be released in the near future, the current status is tracked in this [issue](https://github.com/aws/aws-toolkit-visual-studio/issues/167). 
 
 ### AWS Toolkit for Rider
 
@@ -108,26 +108,26 @@ Support for deploying .NET 6 applications to Lambda will be available in the nea
 
 ### AWS Toolkit for Azure DevOps
 
-The [AWS Toolkit for Azure DevOps](https://aws.amazon.com/vsts/) is an extension for hosted and on-premises Microsoft Azure DevOps that make it easy to manage and deploy applications to AWS. 
+The [AWS Toolkit for Azure DevOps](https://aws.amazon.com/vsts/) is an extension for hosted and on-premises Microsoft Azure DevOps that makes it easy to manage and deploy applications to AWS. 
 .NET 6 applications can be used with the Toolkit.
 
 ## AWS SDK for .NET
 
 The [AWS SDK for .NET](https://github.com/aws/aws-sdk-net) allows .NET developers to integrate AWS services into their application code in a familiar and consistent manner. The library is compatible 
 with .NET 6, and is available from [NuGet](https://www.nuget.org/packages/awssdk.core/). Learn how to get started with the 
-[AWS SDK for .NET Developer Guide](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/welcome.html). 
+[AWS SDK for .NET in the Developer Guide](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/welcome.html). 
 
 ## .NET deploymnet tool
 
-The [AWS .NET deployment tool](https://aws.amazon.com/blogs/developer/reimagining-the-aws-net-deployment-experience/) Preview helps customers choose the right AWS service to host a .NET application, 
+The [AWS .NET deployment tool](https://aws.amazon.com/blogs/developer/reimagining-the-aws-net-deployment-experience/) preview helps customers choose the right AWS service to host a .NET application, 
 and guides them through the deployment process. The deployment tool supports targeting .NET 6 for deployments to AWS App Runner, AWS Fargate, and AWS Lambda. Learn more about the 
-.NET deployment tool Preview using either the [.NET CLI](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/deployment-tool.html) or the 
+.NET deployment tool preview using either the [.NET CLI](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/deployment-tool.html) or the 
 AWS Toolkit for Visual Studio [Publish to AWS](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/publish-experience.html) option.
 
 ### Porting Assistant for .NET
 
 The [Porting Assistant for .NET](https://aws.amazon.com/porting-assistant-dotnet/) is an analysis tool that scans .NET Framework applications and generates 
-a .NET Core compatibility assessment, helping port .NET Framework applications to Linux faster. The tool quickly scans .NET Framework applications to identify 
+a .NET Core compatibility assessment, making it faster and easier to port .NET Framework applications to Linux. The tool quickly scans .NET Framework applications to identify 
 incompatibilities with .NET Core, finds known replacements, and generates a detailed compatibility assessment. Both .NET Core 3.1 and .NET 5 are currently supported. 
 In the near future customers can target .NET 6. 
 
@@ -144,7 +144,7 @@ AWS Secrets Manager client-side caching in .NET.
 
 ### AWS X-Ray
 
-[AWS X-Ray](https://aws.amazon.com/xray/) helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture. 
+[AWS X-Ray](https://aws.amazon.com/xray/) helps developers analyze and debug distributed applications, such as those built using a microservices architecture. 
 .NET applications can integrate AWS X-Ray with [AWS X-Ray SDK for .NET](https://github.com/aws/aws-xray-sdk-dotnet) and the 
 [AWS Distro for OpenTelemetry .NET](https://docs.aws.amazon.com/xray/latest/devguide//xray-dotnet-opentel-sdk.html). Compatibility testing for .NET 6 is underway. 
 
@@ -165,8 +165,7 @@ The CDK supports .NET 6. Learn how to get started with these [CDK with C#](https
 
 ## Databases
 
-Build use case-driven, highly scalable, distributed applications suited to your specific needs. AWS offers 
-15+ [purpose-built engines](https://aws.amazon.com/products/databases/) to support diverse data models, including relational, key-value, document, in-memory, graph, time series, wide column, 
+AWS offers 15+ [purpose-built engines](https://aws.amazon.com/products/databases/) to support diverse data models, including relational, key-value, document, in-memory, graph, time series, wide column, 
 and ledger databases. Customers can incorporate these managed database instances into their .NET 6 applications using the AWS SDK for .NET. 
 
 ### Amazon DynamoDB
