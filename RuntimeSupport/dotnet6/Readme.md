@@ -10,8 +10,8 @@ Related Content:
 
 ## Introduction
 
-Customers and AWS teams are excited about the release of .NET 6. Many organizations will want to target .NET 6 because it is a Long Term Support (LTS) release. .
-NET 6 applications can already use many AWS services without additional work. For example, it is possible to deploy a new virtual machine instance ([Amazon EC2](https://aws.amazon.com/ec2/)) and by 
+Customers and AWS teams are excited about the release of .NET 6. Many organizations will want to target .NET 6 because it is a Long Term Support (LTS) release. 
+.NET 6 applications can already use many AWS services without additional work. For example, it is possible to deploy a new virtual machine instance ([Amazon EC2](https://aws.amazon.com/ec2/)) and by 
 adding a command to install the .NET 6 runtime as part of the deployment, the instance will support .NET 6 applications. 
 
 This guide is focused on AWS services and tools that have either been updated, or are being updated, to provide .NET 6 support. While we work to test and validate support for the GA release of .NET 6 to all services and tools, 
@@ -29,11 +29,11 @@ Customers can install .NET 6 on over 400 [Amazon EC2 instances types](https://aw
 The following EC2 [User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-console) example installs .NET 6 RC2 targeting ARM64 (AWS Graviton2):
 ```
 #!/bin/bash
-# Install .NET 6-RC2 SDK for ARM64
+# Install .NET 6 SDK for ARM64
 sudo apt-get update -y
-curl -O https://download.visualstudio.microsoft.com/download/pr/1e7a9f1f-6128-4581-9d72-edfe196320d3/ad3b26879ddaca8b76e16ddddd091d5d/dotnet-sdk-6.0.100-rc.2.21505.57-linux-arm64.tar.gz
+curl -O https://download.visualstudio.microsoft.com/download/pr/adcd9310-5072-4179-9b8b-16563b897995/15a7595966f488c74909e4a9273c0e24/dotnet-sdk-6.0.100-linux-arm64.tar.gz
 mkdir /usr/bin/dotnet
-sudo tar -zxvf dotnet-sdk-6.0.100-rc.2.21505.57-linux-arm64.tar.gz -C /usr/bin/dotnet
+sudo tar -zxvfdotnet-sdk-6.0.100-linux-arm64.tar.gz -C /usr/bin/dotnet
 sudo ln -s /usr/bin/dotnet/dotnet /usr/bin/dotnet
 sudo sh -c 'echo "export DOTNET_ROOT=/usr/bin/dotnet" >> /etc/environment'
 sudo sh -c 'echo "export PATH=$PATH:$DOTNET_ROOT" >> /etc/environment'
