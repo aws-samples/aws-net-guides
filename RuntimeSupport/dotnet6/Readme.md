@@ -26,7 +26,7 @@ Please open an [Issue on this repository](https://github.com/aws-samples/aws-net
 
 Customers can install .NET 6 on over 400 [Amazon EC2 instances types](https://aws.amazon.com/ec2/instance-types/). 
 
-The following EC2 [User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-console) example installs .NET 6 RC2 targeting ARM64 (AWS Graviton2):
+The following EC2 [User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-console) example installs .NET 6 targeting ARM64 ([AWS Graviton2](https://aws.amazon.com/ec2/graviton/) processors):
 ```
 #!/bin/bash
 # Install .NET 6 SDK for ARM64
