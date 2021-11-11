@@ -93,7 +93,7 @@ Currently the Toolkit is available as a Preview release. A GA version will be re
 
 The [AWS Toolkit for Rider](https://aws.amazon.com/rider/) is an open source plug-in for the [JetBrains Rider](https://www.jetbrains.com/rider/) IDE that makes it easier to create, 
 debug, and deploy .NET applications on Amazon Web Services. The Toolkit supports creating a new AWS App Runner service to manage containers, which can host .NET 6 applications. 
-Follow the [documentation](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/creating-service-apprunner.html) to setup. Note, select the �ECR/ECR public� option (image source) for .NET applications. 
+Follow the [documentation](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/creating-service-apprunner.html) to setup. Note, select the "ECR/ECR public" option (image source) for .NET applications. 
 
 The Toolkit also provides an option to create a new .NET application that runs on AWS Lambda, including creation of the [AWS Serverless Application Model](https://aws.amazon.com/serverless/sam/) (SAM) template 
 used to deploy to Lambda. The Toolkit also provides the ability to deploy a .NET application to Lambda using a SAM template. Matt Ellis details these steps in 
@@ -194,7 +194,7 @@ offers several programming models to access DynamoDB. Follow these [examples](ht
 .NET 6 applications are supported. 
 
 [Amazon DynamoDB Accelerator](https://aws.amazon.com/dynamodb/dax/) (DAX) is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10 times 
-performance improvement�from milliseconds to microseconds�even at millions of requests per second. Compatibility testing for .NET 6 is 
+performance improvement-from milliseconds to microseconds-even at millions of requests per second. Compatibility testing for .NET 6 is 
 underway for the [DAX .NET Client](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.client.run-application-dotnet.html). 
 
 ### Amazon Quantum Ledger Database (QLDB)
