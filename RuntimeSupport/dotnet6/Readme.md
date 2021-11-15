@@ -53,8 +53,10 @@ Before it is released customers can create a new instance with the current versi
 ### AWS Elastic Beanstalk
 
 [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is an easy-to-use service for deploying and scaling web applications and services developed with .NET and other languages. 
-Customers can target both Windows and Amazon Linux 2 platforms to deploy their applications. Use the [self-contained](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-self-contained) 
+Customers can target both Windows and Amazon Linux 2 platforms to deploy their applications. Use the ["Build self contained deployment bundle"](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-self-contained) 
 publish option to deploy .NET 6 applications to Elastic Beanstalk. In the near future Elastic Beanstalk will provide managed images that have .NET 6 preinstalled.
+
+![Build self contained deployment bundle](media/image1.png)
 
 ### Containers
 
@@ -105,6 +107,10 @@ The [AWS Toolkit for Visual Studio Code](https://aws.amazon.com/visualstudiocode
 debug, and deploy applications on Amazon Web Services. The Toolkit supports creating a new AWS App Runner service to manage containers, which can host .NET 6 applications. 
 The Toolkit supports building and debugging [AWS Serverless Application Model](https://aws.amazon.com/serverless/sam/) (SAM) templates used to deploy applications to AWS Lambda. 
 Support for deploying .NET 6 applications to Lambda will be available in the near future. 
+
+When deploying .NET 6 applications to Elastic Beanstalk, make sure the "Build self contained deployment bundle" is selected. 
+
+![Build self contained deployment bundle](media/image1.png)
 
 ### AWS Toolkit for Azure DevOps
 
