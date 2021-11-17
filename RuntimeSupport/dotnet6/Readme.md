@@ -53,8 +53,10 @@ Before it is released customers can create a new instance with the current versi
 ### AWS Elastic Beanstalk
 
 [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is an easy-to-use service for deploying and scaling web applications and services developed with .NET and other languages. 
-Customers can target both Windows and Amazon Linux 2 platforms to deploy their applications. Use the [self-contained](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-self-contained) 
-publish option to deploy .NET 6 applications to Elastic Beanstalk. In the near future Elastic Beanstalk will provide managed images that have .NET 6 preinstalled.
+Customers can target both Windows and Amazon Linux 2 platforms to deploy their applications. Use the ["Build self contained deployment bundle"](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-self-contained) 
+publish option to deploy .NET 6 applications to Elastic Beanstalk, [see below](#aws-toolkit-for-visual-studio). In the near future Elastic Beanstalk will provide managed images that have .NET 6 preinstalled.
+
+
 
 ### Containers
 
@@ -88,6 +90,10 @@ The [AWS Toolkit for Visual Studio](https://aws.amazon.com/visualstudio/) is an 
 and deploy .NET applications using Amazon Web Services. Visual Studio 2022 supports .NET 6 development, and customers can download the AWS Toolkit for 
 [Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2022) from the Visual Studio Marketplace. 
 Currently the Toolkit is available as a Preview release. A GA version will be released in the near future, the current status is tracked in this [issue](https://github.com/aws/aws-toolkit-visual-studio/issues/167). 
+
+When deploying .NET 6 applications to Elastic Beanstalk, make sure the "Build self contained deployment bundle" is selected. 
+
+![Build self contained deployment bundle](media/image1.png)
 
 ### AWS Toolkit for Rider
 
