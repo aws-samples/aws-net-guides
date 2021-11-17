@@ -54,9 +54,9 @@ Before it is released customers can create a new instance with the current versi
 
 [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is an easy-to-use service for deploying and scaling web applications and services developed with .NET and other languages. 
 Customers can target both Windows and Amazon Linux 2 platforms to deploy their applications. Use the ["Build self contained deployment bundle"](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-self-contained) 
-publish option to deploy .NET 6 applications to Elastic Beanstalk. In the near future Elastic Beanstalk will provide managed images that have .NET 6 preinstalled.
+publish option to deploy .NET 6 applications to Elastic Beanstalk, [see below](#aws-toolkit-for-visual-studio). In the near future Elastic Beanstalk will provide managed images that have .NET 6 preinstalled.
 
-![Build self contained deployment bundle](media/image1.png)
+
 
 ### Containers
 
@@ -91,6 +91,10 @@ and deploy .NET applications using Amazon Web Services. Visual Studio 2022 suppo
 [Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2022) from the Visual Studio Marketplace. 
 Currently the Toolkit is available as a Preview release. A GA version will be released in the near future, the current status is tracked in this [issue](https://github.com/aws/aws-toolkit-visual-studio/issues/167). 
 
+When deploying .NET 6 applications to Elastic Beanstalk, make sure the "Build self contained deployment bundle" is selected. 
+
+![Build self contained deployment bundle](media/image1.png)
+
 ### AWS Toolkit for Rider
 
 The [AWS Toolkit for Rider](https://aws.amazon.com/rider/) is an open source plug-in for the [JetBrains Rider](https://www.jetbrains.com/rider/) IDE that makes it easier to create, 
@@ -107,10 +111,6 @@ The [AWS Toolkit for Visual Studio Code](https://aws.amazon.com/visualstudiocode
 debug, and deploy applications on Amazon Web Services. The Toolkit supports creating a new AWS App Runner service to manage containers, which can host .NET 6 applications. 
 The Toolkit supports building and debugging [AWS Serverless Application Model](https://aws.amazon.com/serverless/sam/) (SAM) templates used to deploy applications to AWS Lambda. 
 Support for deploying .NET 6 applications to Lambda will be available in the near future. 
-
-When deploying .NET 6 applications to Elastic Beanstalk, make sure the "Build self contained deployment bundle" is selected. 
-
-![Build self contained deployment bundle](media/image1.png)
 
 ### AWS Toolkit for Azure DevOps
 
