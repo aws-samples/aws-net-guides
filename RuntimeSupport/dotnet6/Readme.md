@@ -46,8 +46,10 @@ Before it is released customers can create a new instance with the current versi
 .NET 6 can be added to images created with Image Builder in two ways:
 
 1. [AWS CloudFormation Template](https://aws.amazon.com/cloudformation/resources/templates/) - A sample Image Builder CloudFormation Template can be used to build an [Ubuntu Server 20 Image with .NET 6](https://github.com/aws-samples/amazon-ec2-image-builder-samples/tree/master/CloudFormation/Linux/ubuntu-with-net6). Currently the template targets .NET 6 Preview but will be updated to .NET 6 GA in the near future. 
-1. Image Builder Components - Image Builder will offer Amazon-managed .NET 6 components (runtime and SDK) supporting Windows and Linux distributions in the near future. 
+1. Image Builder Components - Image Builder offers Amazon-managed .NET 6 components (runtime and SDK) supporting Windows and Linux distributions in the near future. Additionally a component that provides the ASP.NET Core Hosting Bundle for .NET 6 is available for Windows. 
 
+<img src="media/image-builder-dotnet6-windows.png" alt="EC2 Image Builder .NET 6 Windows components" width="600"/>
+<img src="media/image-builder-dotnet6-linux.png" alt="EC2 Image Builder .NET 6 Linux components" width="600"/>
 
 
 ### AWS Elastic Beanstalk
@@ -93,7 +95,7 @@ Currently the Toolkit is available as a Preview release. A GA version will be re
 
 When deploying .NET 6 applications to Elastic Beanstalk, make sure the "Build self contained deployment bundle" is selected. 
 
-![Build self contained deployment bundle](media/image1.png)
+![Build self contained deployment bundle](media/vstoolkit-self-contained-deployment-bundle.png)
 
 ### AWS Toolkit for Rider
 
@@ -154,6 +156,9 @@ The [Porting Assistant for .NET](https://aws.amazon.com/porting-assistant-dotnet
 a .NET Core compatibility assessment, making it faster and easier to port .NET Framework applications to Linux. The tool quickly scans .NET Framework applications to identify 
 incompatibilities with .NET Core, finds known replacements, and generates a detailed compatibility assessment. Both .NET Core 3.1 and .NET 5 are currently supported. 
 In the near future customers can target .NET 6. 
+
+### AWS App2Container
+[AWS App2Container (A2C)](https://aws.amazon.com/app2container/) is a command-line tool for modernizing .NET and Java applications into containerized applications. A2C analyzes and builds an inventory of all applications running in virtual machines, on-premises or in the cloud. Applications are selected to be containerized, and A2C packages the application artifact and identified dependencies into container images, configures the network ports, and generates the ECS task and Kubernetes pod definitions. A2C provisions, through CloudFormation, the cloud infrastructure and CI/CD pipelines required to deploy the containerized .NET or Java application into production. In the near future customers support will be able to containerize .NET 6 applications. 
 
 ## Security and Diagnostics
 
