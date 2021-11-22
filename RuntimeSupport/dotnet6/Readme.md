@@ -39,8 +39,10 @@ sudo sh -c 'echo "export DOTNET_ROOT=/usr/bin/dotnet" >> /etc/environment'
 sudo sh -c 'echo "export PATH=$PATH:$DOTNET_ROOT" >> /etc/environment'
 ```
 
-In the near future an updated version of the preconfigured Amazon Machine Image (AMI) with [MATE Desktop Environment](https://mate-desktop.org/) that includes .NET 6 will be available. 
-Before it is released customers can create a new instance with the current version that includes .NET 5 preinstalled and then install the .NET 6 SDK on that instance. 
+An updated version of the preconfigured Amazon Machine Image (AMI) with [MATE Desktop Environment](https://mate-desktop.org/) that includes .NET 6 is available. Search for amzn2-x86_64-MATEDE_DOTNET-2021.11.17 AMI and select the result under the Community AMI section:
+
+<img src="media/ami-mate-dotnet6.png" alt="MATE DE with .NET 6" width="700"/> 
+ 
 
 [EC2 Image Builder](https://aws.amazon.com/image-builder/) simplifies the building, testing, and deployment of virtual machines and container images for use on AWS or on-premises. 
 .NET 6 can be added to images created with Image Builder in two ways:
@@ -184,8 +186,19 @@ AWS Secrets Manager client-side caching in .NET.
 [AWS CodeBuild](https://aws.amazon.com/codebuild/) is a fully managed continuous integration service that compiles source code, runs tests, and produces 
 software packages that are ready to deploy. Currently .NET Core 3.1 and .NET 5 are supported on Linux and Windows. 
 [Available runtimes](https://docs.aws.amazon.com/codebuild/latest/userguide/available-runtimes.html) are documented with a detailed list of runtime versions and Operating Systems 
-supported by CodeBuild. Support for .NET 6 will be added in the near future. To use CodeBuild before .NET 6 support is added, 
-create a [custom image](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker-custom-image.html) that can be run in CodeBuild. 
+supported by CodeBuild. Support for .NET 6 will be added in the near future. To use CodeBuild before .NET 6 support is added, use of the following options: 
+1. Create a [custom image](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker-custom-image.html) that can be run in CodeBuild. 
+1. Add a command to install the .NET runtime or SDK in the [buildspec.yml](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) file. Note, the following example uses $DOTNET_SDK_URL to store value of the path the .NET 6 SDK:
+```
+version: 0.2
+phases:
+  install:
+    commands:
+      - curl $DOTNET_SDK_URL -o dotnet-sdk-6.tar.gz
+      - mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-6.tar.gz -C $HOME/dotnet
+      - export DOTNET_ROOT=$HOME/dotnet
+      - export PATH=$HOME/dotnet:$PATH
+```
 
 ### AWS Cloud Development Kit (CDK)
 
