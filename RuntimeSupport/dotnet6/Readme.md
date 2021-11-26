@@ -218,8 +218,7 @@ offers several programming models to access DynamoDB. Follow these [examples](ht
 .NET 6 applications are supported. 
 
 [Amazon DynamoDB Accelerator](https://aws.amazon.com/dynamodb/dax/) (DAX) is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10 times 
-performance improvement-from milliseconds to microseconds-even at millions of requests per second. Compatibility testing for .NET 6 is 
-underway for the [DAX .NET Client](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.client.run-application-dotnet.html). 
+performance improvement-from milliseconds to microseconds-even at millions of requests per second. The DAX .NET Client is compatible with .NET 6. 
 
 ### Amazon Quantum Ledger Database (QLDB)
 
