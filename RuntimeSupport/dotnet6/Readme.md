@@ -47,7 +47,7 @@ An updated version of the preconfigured Amazon Machine Image (AMI) with [MATE De
 [EC2 Image Builder](https://aws.amazon.com/image-builder/) simplifies the building, testing, and deployment of virtual machines and container images for use on AWS or on-premises. 
 .NET 6 can be added to images created with Image Builder in two ways:
 
-1. [AWS CloudFormation Template](https://aws.amazon.com/cloudformation/resources/templates/) - A sample Image Builder CloudFormation Template can be used to build an [Ubuntu Server 20 Image with .NET 6](https://github.com/aws-samples/amazon-ec2-image-builder-samples/tree/master/CloudFormation/Linux/ubuntu-with-net6). Currently the template targets .NET 6 Preview but will be updated to .NET 6 GA in the near future. 
+1. [AWS CloudFormation Template](https://aws.amazon.com/cloudformation/resources/templates/) - A sample Image Builder CloudFormation Template can be used to build an [Ubuntu Server 20 Image with .NET 6](https://github.com/aws-samples/amazon-ec2-image-builder-samples/tree/master/CloudFormation/Linux/ubuntu-with-net6). 
 1. Image Builder Components - Image Builder offers Amazon-managed .NET 6 components (runtime and SDK) supporting Windows and Linux distributions. Additionally, a component that provides the ASP.NET Core Hosting Bundle for .NET 6 is available for Windows. 
 
 <img src="media/image-builder-dotnet6-windows.png" alt="EC2 Image Builder .NET 6 Windows components" width="700"/>
