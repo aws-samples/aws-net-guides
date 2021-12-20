@@ -77,13 +77,13 @@ to configure AWS App Runner to start, run, scale, and load balance the applicati
 
 [AWS Lambda](https://aws.amazon.com/lambda/) is a serverless, event-driven compute service that can run virtually any type of application or backend service without provisioning or managing servers. 
 
-To get started immediately with .NET 6 on Lambda there are a few options:
-1. Container Image - Build a container image with the .NET 6 application packaged inside it. This [PowerShell script](https://github.com/aws/aws-lambda-dotnet/tree/master/LambdaRuntimeDockerfiles) will build a .NET 6 base container image. 
-1. Custom Runtime - The custom runtime bundles all necessary .NET 6 libraries in the zip file archive that is deployed to Lambda, see this [example](https://github.com/normj/LambdaNETCoreSamples/tree/master/CustomRuntimeListBucketsNET6). For an ARM64 see this [example](https://github.com/normj/LambdaNETCoreSamples/tree/master/ArmLambdaFunction#net-5-and-6-with-custom-runtimes).
+To get started immediately with .NET 6 on Lambda there are some options:
+1. Managed base container image - Pull from the [ECR Public Gallery](https://gallery.ecr.aws/lambda/dotnet) or use .NET 6 container image Blueprint in the AWS Toolkit for Visual Studio. 
+1. Custom container image - Build a container image with the .NET 6 application packaged inside it. This [PowerShell script](https://github.com/aws/aws-lambda-dotnet/tree/master/LambdaRuntimeDockerfiles) will build a .NET 6 base container image. 
+1. Custom runtime - The custom runtime bundles all necessary .NET 6 libraries in the zip file archive that is deployed to Lambda, see this [example](https://github.com/normj/LambdaNETCoreSamples/tree/master/CustomRuntimeListBucketsNET6). For an ARM64 see this [example](https://github.com/normj/LambdaNETCoreSamples/tree/master/ArmLambdaFunction#net-5-and-6-with-custom-runtimes).
 
 In the near future, managed instances with .NET 6 runtime will be preinstalled, along with updated versions of the [AWS Toolkit for Visual Studio](https://aws.amazon.com/visualstudio/) 
-and [AWS Lambda for .NET Core](https://github.com/aws/aws-lambda-dotnet). These will allow customers to build and deploy .NET 6 applications using zip file archives and 
-container images as they do today with .NET Core 3.1 applications. 
+and [AWS Lambda for .NET Core](https://github.com/aws/aws-lambda-dotnet). These updates will allow customers to build and deploy .NET 6 applications using zip file archives as they do today with .NET Core 3.1 applications. 
 
  
 ## Tools, Libraries, and SDK
