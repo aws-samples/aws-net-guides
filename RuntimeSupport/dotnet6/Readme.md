@@ -77,13 +77,13 @@ to configure AWS App Runner to start, run, scale, and load balance the applicati
 
 [AWS Lambda](https://aws.amazon.com/lambda/) is a serverless, event-driven compute service that can run virtually any type of application or backend service without provisioning or managing servers. 
 
-To get started immediately with .NET 6 on Lambda there are some options:
+You can run .NET 6 applications, targeting x86_64 or ARM64 (AWS Graviton2), on AWS Lambda using any of the following options:
+1. [Managed Runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) - This option uses a .zip file archive for the deployment package. This [blog post](https://aws.amazon.com/blogs/compute/introducing-the-net-6-runtime-for-aws-lambda/) provides more details.
 1. Managed [base container image](https://docs.aws.amazon.com/lambda/latest/dg/csharp-image.html) - Pull from the [ECR Public Gallery](https://gallery.ecr.aws/lambda/dotnet) or use .NET 6 container image Blueprint in the AWS Toolkit for Visual Studio. 
 1. Custom container image - Build a container image with the .NET 6 application packaged inside it. This [PowerShell script](https://github.com/aws/aws-lambda-dotnet/tree/master/LambdaRuntimeDockerfiles) will build a .NET 6 base container image. 
 1. Custom runtime - The custom runtime bundles all necessary .NET 6 libraries in the zip file archive that is deployed to Lambda, see this [example](https://github.com/normj/LambdaNETCoreSamples/tree/master/CustomRuntimeListBucketsNET6). For an ARM64 see this [example](https://github.com/normj/LambdaNETCoreSamples/tree/master/ArmLambdaFunction#net-5-and-6-with-custom-runtimes).
 
-In the near future, managed instances with .NET 6 runtime will be preinstalled, along with updated versions of the [AWS Toolkit for Visual Studio](https://aws.amazon.com/visualstudio/) 
-and [AWS Lambda for .NET Core](https://github.com/aws/aws-lambda-dotnet). These updates will allow customers to build and deploy .NET 6 applications using zip file archives as they do today with .NET Core 3.1 applications. 
+The [AWS Toolkit for Visual Studio](https://aws.amazon.com/visualstudio/) allows customers to build and deploy .NET 6 applications that run on AWS Lambda. 
 
  
 ## Tools, Libraries, and SDK
@@ -93,7 +93,6 @@ and [AWS Lambda for .NET Core](https://github.com/aws/aws-lambda-dotnet). These 
 The [AWS Toolkit for Visual Studio](https://aws.amazon.com/visualstudio/) is an extension for Microsoft Visual Studio on Windows that makes it easier for developers to develop, debug, 
 and deploy .NET applications using Amazon Web Services. Visual Studio 2022 supports .NET 6 development, and customers can download the AWS Toolkit for 
 [Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2022) from the Visual Studio Marketplace. 
-Currently the Toolkit is available as a Preview release. A GA version will be released in the near future, the current status is tracked in this [issue](https://github.com/aws/aws-toolkit-visual-studio/issues/167). 
 
 When deploying .NET 6 applications to Elastic Beanstalk, make sure the "Build self contained deployment bundle" is selected. 
 
@@ -101,30 +100,25 @@ When deploying .NET 6 applications to Elastic Beanstalk, make sure the "Build se
 
 ### AWS Toolkit for Rider
 
-The [AWS Toolkit for Rider](https://aws.amazon.com/rider/) is an open source plug-in for the [JetBrains Rider](https://www.jetbrains.com/rider/) IDE that makes it easier to create, 
-debug, and deploy .NET applications on Amazon Web Services. The Toolkit supports creating a new AWS App Runner service to manage containers, which can host .NET 6 applications. 
-Follow the [documentation](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/creating-service-apprunner.html) to setup. Note, select the "ECR/ECR public" option (image source) for .NET applications. 
+The [AWS Toolkit for Rider](https://aws.amazon.com/rider/) is an open source plug-in for the [JetBrains Rider](https://www.jetbrains.com/rider/) IDE that makes it easier to create, debug, and deploy .NET applications on Amazon Web Services. The Toolkit supports creating a new AWS App Runner service to manage containers, which can host .NET 6 applications. Follow the [documentation](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/creating-service-apprunner.html) to setup. Note, select the "ECR/ECR public" option (image source) for .NET applications. 
 
-The Toolkit also provides an option to create a new .NET application that runs on AWS Lambda, including creation of the [AWS Serverless Application Model](https://aws.amazon.com/serverless/sam/) (SAM) template 
-used to deploy to Lambda. The Toolkit also provides the ability to deploy a .NET application to Lambda using a SAM template. Matt Ellis details these steps in 
-his [blog post](https://blog.jetbrains.com/dotnet/2019/12/09/working-aws-lambda-rider/). Support for deploying .NET 6 applications to Lambda will be available in the near future. 
+The Toolkit also provides an option to create a new .NET application that runs on AWS Lambda, including creation of the [AWS Serverless Application Model](https://aws.amazon.com/serverless/sam/) (SAM) template used to deploy to Lambda. The Toolkit also provides the ability to deploy a .NET application to Lambda using a SAM template. Matt Ellis details these steps in his [blog post](https://blog.jetbrains.com/dotnet/2019/12/09/working-aws-lambda-rider/). Support for deploying .NET 6 applications to Lambda will be available in the near future. 
 
 ### AWS Toolkit for Visual Studio Code
 
 The [AWS Toolkit for Visual Studio Code](https://aws.amazon.com/visualstudiocode/) is an open source plug-in for the Visual Studio Code editor that makes it easier to create, 
 debug, and deploy applications on Amazon Web Services. The Toolkit supports creating a new AWS App Runner service to manage containers, which can host .NET 6 applications. 
 The Toolkit supports building and debugging [AWS Serverless Application Model](https://aws.amazon.com/serverless/sam/) (SAM) templates used to deploy applications to AWS Lambda. 
+
 Support for deploying .NET 6 applications to Lambda will be available in the near future. 
 
 ### AWS Toolkit for Azure DevOps
 
-The [AWS Toolkit for Azure DevOps](https://aws.amazon.com/vsts/) is an extension for hosted and on-premises Microsoft Azure DevOps that makes it easy to manage and deploy applications to AWS. 
-.NET 6 applications can be used with the Toolkit.
+The [AWS Toolkit for Azure DevOps](https://aws.amazon.com/vsts/) is an extension for hosted and on-premises Microsoft Azure DevOps that makes it easy to manage and deploy applications to AWS. .NET 6 applications can be used with the Toolkit.
 
 ## AWS SDK for .NET
 
-The [AWS SDK for .NET](https://github.com/aws/aws-sdk-net) allows .NET developers to integrate AWS services into their application code in a familiar and consistent manner. The library is compatible 
-with .NET 6, and is available from [NuGet](https://www.nuget.org/packages/awssdk.core/). Learn how to get started with the 
+The [AWS SDK for .NET](https://github.com/aws/aws-sdk-net) allows .NET developers to integrate AWS services into their application code in a familiar and consistent manner. The library is compatible with .NET 6, and is available from [NuGet](https://www.nuget.org/packages/awssdk.core/). Learn how to get started with the 
 [AWS SDK for .NET in the Developer Guide](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/welcome.html). 
 
 ## .NET High Level Libraries
