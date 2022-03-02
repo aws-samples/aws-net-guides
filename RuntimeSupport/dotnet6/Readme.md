@@ -116,6 +116,11 @@ Support for deploying .NET 6 applications to Lambda will be available in the nea
 
 The [AWS Toolkit for Azure DevOps](https://aws.amazon.com/vsts/) is an extension for hosted and on-premises Microsoft Azure DevOps that makes it easy to manage and deploy applications to AWS. .NET 6 applications can be used with the Toolkit.
 
+### AWS SAM CLI
+
+The [AWS Serverless Application Model (SAM)](https://aws.amazon.com/serverless/sam/) is an open-source framework for building serverless applications. It provides shorthand syntax to express functions, APIs, databases, and event source mappings. The [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-reference.html#serverless-sam-cli) provides a Lambda-like execution environment that lets you locally build, test, and debug applications defined by SAM templates or through the AWS Cloud Development Kit (CDK). The SAM CLI provides support for targeting .NET 6. 
+
+
 ## AWS SDK for .NET
 
 The [AWS SDK for .NET](https://github.com/aws/aws-sdk-net) allows .NET developers to integrate AWS services into their application code in a familiar and consistent manner. The library is compatible with .NET 6, and is available from [NuGet](https://www.nuget.org/packages/awssdk.core/). Learn how to get started with the 
