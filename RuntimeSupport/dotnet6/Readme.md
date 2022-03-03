@@ -108,9 +108,7 @@ The Toolkit also provides an option to create a new .NET application that runs o
 
 The [AWS Toolkit for Visual Studio Code](https://aws.amazon.com/visualstudiocode/) is an open source plug-in for the Visual Studio Code editor that makes it easier to create, 
 debug, and deploy applications on Amazon Web Services. The Toolkit supports creating a new AWS App Runner service to manage containers, which can host .NET 6 applications. 
-The Toolkit supports building and debugging [AWS Serverless Application Model](https://aws.amazon.com/serverless/sam/) (SAM) templates used to deploy applications to AWS Lambda. 
-
-Support for deploying .NET 6 applications to Lambda will be available in the near future. 
+The Toolkit supports building and debugging [AWS Serverless Application Model](https://aws.amazon.com/serverless/sam/) (SAM) templates used to deploy applications to AWS Lambda targeting .NET 6 applications. 
 
 ### AWS Toolkit for Azure DevOps
 
