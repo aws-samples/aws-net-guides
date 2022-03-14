@@ -1,0 +1,117 @@
+{
+    "Resource": "/",
+    "Path": "/",
+    "HttpMethod": "POST",
+    "Headers": {
+        "Accept": "application/json",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "US",
+        "Host": "xxxxxxxx.execute-api.us-east-1.amazonaws.com",
+        "User-Agent": "Fiddler",
+        "Via": "1.1 xxxxxxxxxxxxxx.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "xxxxxx",
+        "X-Amzn-Trace-Id": "Root=xxxxxxxxx",
+        "X-Forwarded-For": "xxx.xxx.xxx.xxx, xxx.xxx.xxx.xxx",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "MultiValueHeaders": {
+        "Accept": [
+            "application/json"
+        ],
+        "CloudFront-Forwarded-Proto": [
+            "https"
+        ],
+        "CloudFront-Is-Desktop-Viewer": [
+            "true"
+        ],
+        "CloudFront-Is-Mobile-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-SmartTV-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-Tablet-Viewer": [
+            "false"
+        ],
+        "CloudFront-Viewer-Country": [
+            "US"
+        ],
+        "Host": [
+            "xxxxxxxx.execute-api.us-east-1.amazonaws.com"
+        ],
+        "User-Agent": [
+            "Fiddler"
+        ],
+        "Via": [
+            "1.1 xxxxxxxxxxxxx.cloudfront.net (CloudFront)"
+        ],
+        "X-Amz-Cf-Id": [
+            "xxxxxxxxxxxx"
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=xxxxxxxxx"
+        ],
+        "X-Forwarded-For": [
+            "xxx.xxx.xxx.xxx, xxx.xxx.xxx.xxx"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ]
+    },
+    "QueryStringParameters": null,
+    "MultiValueQueryStringParameters": null,
+    "PathParameters": null,
+    "StageVariables": null,
+    "RequestContext": {
+        "Path": "/Prod/",
+        "AccountId": "xxxxxxxxxx",
+        "ResourceId": "xxxxxxxxxx",
+        "Stage": "Prod",
+        "RequestId": "xxxxxxxxxx",
+        "Identity": {
+            "CognitoIdentityPoolId": null,
+            "AccountId": null,
+            "CognitoIdentityId": null,
+            "Caller": null,
+            "ApiKey": null,
+            "ApiKeyId": null,
+            "AccessKey": null,
+            "SourceIp": "108.26.161.28",
+            "CognitoAuthenticationType": null,
+            "CognitoAuthenticationProvider": null,
+            "UserArn": null,
+            "UserAgent": "Fiddler",
+            "User": null,
+            "ClientCert": null
+        },
+        "ResourcePath": "/",
+        "HttpMethod": "POST",
+        "ApiId": "xxxxxxxxx",
+        "ExtendedRequestId": "xxxxxxxx",
+        "ConnectionId": null,
+        "ConnectionAt": 0,
+        "DomainName": "xxxxxxxx.execute-api.us-east-1.amazonaws.com",
+        "DomainPrefix": "xxxxxxxxx",
+        "EventType": null,
+        "MessageId": null,
+        "RouteKey": null,
+        "Authorizer": null,
+        "OperationName": null,
+        "Error": null,
+        "IntegrationLatency": null,
+        "MessageDirection": null,
+        "RequestTime": "28/Feb/2022:15:07:06 \u002B0000",
+        "RequestTimeEpoch": 1646060826075,
+        "Status": null
+    },
+    "Body": "{ \r\n \u0022FirstName\u0022 : \u0022Alan\u0022,\r\n  \u0022LastName\u0022: \u0022Admas\u0022\r\n}",
+    "IsBase64Encoded": false
+}

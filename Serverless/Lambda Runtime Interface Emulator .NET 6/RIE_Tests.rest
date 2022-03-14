@@ -1,0 +1,19 @@
+
+### This is for the get method
+POST http://localhost:9000/2015-03-31/functions/function/invocations HTTP/1.1
+content-type: application/json
+
+{
+    "PathParameters": {
+        "Id": "999"
+    }
+}
+
+
+### This is for the post method
+POST http://localhost:9000/2015-03-31/functions/function/invocations HTTP/1.1
+content-type: application/json
+
+{
+    "Body": "{ \"FirstName\": \"Alan\", \"LastName\": \"Adams\"  }"
+}
