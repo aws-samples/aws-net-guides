@@ -56,10 +56,7 @@ An updated version of the preconfigured Amazon Machine Image (AMI) with [MATE De
 
 ### AWS Elastic Beanstalk
 
-[AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is an easy-to-use service for deploying and scaling web applications and services developed with .NET and other languages. 
-Customers can target both Windows and Amazon Linux 2 platforms to deploy their applications. Use the ["Build self contained deployment bundle"](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-self-contained) 
-publish option to deploy .NET 6 applications to Elastic Beanstalk, [see below](#aws-toolkit-for-visual-studio). In the near future Elastic Beanstalk will provide managed images that have .NET 6 preinstalled.
-
+[AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is an easy-to-use service for deploying and scaling web applications and services developed with .NET and other languages. Customers can target both Windows Server and Amazon Linux 2 platforms to deploy their applications. Amazon Linux 2 managed images come with .NET 6 preinstalled. For Windows managed images, please use the ["Build self contained deployment bundle"](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-self-contained) publish option to deploy .NET 6 applications to Elastic Beanstalk, [see below](#aws-toolkit-for-visual-studio). In the near future Elastic Beanstalk will provide Windows Server managed images that have .NET 6 preinstalled.
 
 
 ### Containers
