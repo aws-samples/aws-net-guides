@@ -56,7 +56,7 @@ An updated version of the preconfigured Amazon Machine Image (AMI) with [MATE De
 
 ### AWS Elastic Beanstalk
 
-[AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is an easy-to-use service for deploying and scaling web applications and services developed with .NET and other languages. Customers can target both Windows Server and Amazon Linux 2 platforms to deploy their applications. 
+[AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is an easy-to-use service for deploying and scaling web applications and services developed with .NET and other languages. Customers can target both Windows Server and Amazon Linux 2 platforms to deploy their applications. Both operating systems come with .NET 6 preinstalled. 
 
 
 ### Containers
