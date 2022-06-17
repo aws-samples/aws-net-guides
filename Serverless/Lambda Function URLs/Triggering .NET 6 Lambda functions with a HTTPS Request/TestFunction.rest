@@ -1,0 +1,8 @@
+POST https://xxxxxxxxxxxxxxx.lambda-url.us-east-1.on.aws/ HTTP/1.1
+content-type: application/json
+
+{
+    "firstname": "Alan",
+    "lastname": "Adams",
+    "age": "25"
+}
