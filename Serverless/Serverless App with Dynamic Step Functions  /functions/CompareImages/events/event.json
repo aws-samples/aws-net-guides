@@ -1,0 +1,7 @@
+{
+    "batchId": "0fa08d3f-de65-4e9a-a51f-b7007cd42359",
+    "targetImage": "PXL_20220618_185849265.PORTRAIT.jpg",
+    "targetBucketName": "photos-target-images",
+    "sourceImage": "PXL_20220531_131829626.PORTRAIT.jpg",
+    "sourceBucketName": "photos-source-images"
+  }
