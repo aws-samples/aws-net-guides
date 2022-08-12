@@ -1,0 +1,20 @@
+
+{
+    "region" : "us-east-2",
+    "configuration" : "Debug",
+    "framework"     : "net6.0",
+    "self-contained" : false,
+    "application"    : "MLIntegration",
+    "environment"    : "MLIntegration-dev",
+    "enable-xray"    : true,
+    "enhanced-health-type" : "basic",
+    "additional-options"   : "",
+    "solution-stack"       : "64bit Amazon Linux 2 v2.3.3 running .NET Core",
+    "environment-type"     : "SingleInstance",
+    "cname"                : "mlintegration-dev",
+    "instance-type"        : "t3a.medium",
+    "key-pair"             : "",
+    "instance-profile"     : "Media-Catalog-Stack-beanstalkroleE93800ED-PDAW3Z4QJZZ5",
+    "service-role"         : "aws-elasticbeanstalk-service-role",
+    "proxy-server"         : "nginx"
+}

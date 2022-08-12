@@ -1,0 +1,59 @@
+﻿@model MediaLibrary.Models.ImageProcessingModel
+
+@{
+    ViewData["Title"] = "Process";
+    var Title = Model.OriginalName;
+    var ImagePath = Model.ImageUri;
+}
+
+<h1>Process</h1>
+
+<h4>@Title</h4>
+<hr />
+
+
+        <form asp-action="Process">
+             <div class="row">
+                  <div class="column">
+                      <img class="RekognitionImage" src="@ImagePath" />
+                  </div>
+                  <div class="column" style="align-content:normal">
+                        <div style="text-align:left;margin:20px">
+                            @foreach(string label in Model.Labels)
+                            {
+                                 <dd class = "col-sm-10">
+                                      <input name="@label", type="checkbox" value="@label">@label<br/>
+                                 </dd> 
+                            }
+                        </div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group" hidden="hidden">
+                            <label asp-for="ImageUri" class="control-label"></label>
+                            <input asp-for="ImageUri" class="form-control" readonly="readonly"/>
+                            <span asp-validation-for="ImageUri" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" hidden="hidden">
+                            <label asp-for="OriginalName" class="control-label"></label>
+                            <input asp-for="OriginalName" class="form-control" readonly="readonly" />
+                            <span asp-validation-for="OriginalName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" hidden="hidden">
+                            <label asp-for="ImageName" class="control-label"></label>
+                            <input asp-for="ImageName" class="form-control" readonly="readonly" />
+                            <span asp-validation-for="ImageName" class="text-danger"></span>
+                        </div>
+                  </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+
+
+
+<div>
+    @Html.ActionLink("Back To List", "Index", "FileManagement");
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
