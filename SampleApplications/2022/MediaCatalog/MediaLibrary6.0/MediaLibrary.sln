@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLIntegration.Tests", "MLIntegration.Tests\MLIntegration.Tests.csproj", "{C3AF5C6F-BFFB-43ED-B699-193C36A218B3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cdk", "CDK\src\Cdk\Cdk.csproj", "{7E9F1760-51CC-4F9A-8DEC-FB9BD5DC4F00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{29FA6B57-FF88-4EF5-A035-976F598571BF}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleImages", "SampleImages", "{0B015A5D-541E-413B-A577-7A2081CA9FE4}"
+	ProjectSection(SolutionItems) = preProject
+		SampleImages\ACM-acmobj-200400070001-r11.jpg = SampleImages\ACM-acmobj-200400070001-r11.jpg
+		SampleImages\deliveryService.jpg = SampleImages\deliveryService.jpg
+		SampleImages\NASM-A19280021000-NASM2016-02739.jpg = SampleImages\NASM-A19280021000-NASM2016-02739.jpg
+		SampleImages\NMAAHC-2017_30_47_001.jpg = SampleImages\NMAAHC-2017_30_47_001.jpg
+		SampleImages\NMAH-JN2016-01951-000001.jpg = SampleImages\NMAH-JN2016-01951-000001.jpg
+		SampleImages\NPG-NPG_2001_13.jpg = SampleImages\NPG-NPG_2001_13.jpg
+		SampleImages\NPG-NPG_74_75Douglass_d1.jpg = SampleImages\NPG-NPG_74_75Douglass_d1.jpg
+		SampleImages\NPG-NPG_87_43.jpg = SampleImages\NPG-NPG_87_43.jpg
+		SampleImages\NZP-20050824-264JC.jpg = SampleImages\NZP-20050824-264JC.jpg
+		SampleImages\NZP-20060824-130JC.jpg = SampleImages\NZP-20060824-130JC.jpg
+		SampleImages\NZP-20071011-262JC.jpg = SampleImages\NZP-20071011-262JC.jpg
+		SampleImages\NZP-20090127-0422MM-000002.jpg = SampleImages\NZP-20090127-0422MM-000002.jpg
+		SampleImages\NZP-20100819-301MM.jpg = SampleImages\NZP-20100819-301MM.jpg
+		SampleImages\NZP-20140817-6602RG-000003.jpg = SampleImages\NZP-20140817-6602RG-000003.jpg
+		SampleImages\NZP-20160226-311CTW.jpg = SampleImages\NZP-20160226-311CTW.jpg
+		SampleImages\README.MD = SampleImages\README.MD
+		SampleImages\SAAM-1986.65.358_5.jpg = SampleImages\SAAM-1986.65.358_5.jpg
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaLibrary", "MediaLibrary\MediaLibrary.csproj", "{2A19FB8B-8B9D-4BFF-A844-699E4DE7F759}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3AF5C6F-BFFB-43ED-B699-193C36A218B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3AF5C6F-BFFB-43ED-B699-193C36A218B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3AF5C6F-BFFB-43ED-B699-193C36A218B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3AF5C6F-BFFB-43ED-B699-193C36A218B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E9F1760-51CC-4F9A-8DEC-FB9BD5DC4F00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E9F1760-51CC-4F9A-8DEC-FB9BD5DC4F00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E9F1760-51CC-4F9A-8DEC-FB9BD5DC4F00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E9F1760-51CC-4F9A-8DEC-FB9BD5DC4F00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A19FB8B-8B9D-4BFF-A844-699E4DE7F759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A19FB8B-8B9D-4BFF-A844-699E4DE7F759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A19FB8B-8B9D-4BFF-A844-699E4DE7F759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A19FB8B-8B9D-4BFF-A844-699E4DE7F759}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0B015A5D-541E-413B-A577-7A2081CA9FE4} = {29FA6B57-FF88-4EF5-A035-976F598571BF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {696E7355-95E5-4801-8B14-780D7A40CD45}
+	EndGlobalSection
+EndGlobal

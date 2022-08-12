@@ -1,0 +1,39 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.column {
+    float: left;
+    width: 33%;
+    text-align: center;
+    border: thin;
+    border-color: black;
+    background-color: lightgray;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.RekognitionImage {
+    width: 400px;
+    height: auto;
+}

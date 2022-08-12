@@ -1,0 +1,190 @@
+==========
+References
+==========
+MLIntegration
+Amazon.SimpleSystemsManagement
+System.Threading.Tasks
+Amazon.SimpleSystemsManagement.Model
+System
+MLIntegration.Controllers
+Microsoft.AspNetCore.Mvc
+MLIntegration.Services
+Microsoft.Extensions.Logging
+System.Collections.Generic
+Microsoft.AspNetCore.Http
+System.Net
+MLIntegration.Models
+System.IO
+System.Diagnostics
+Amazon.XRay.Recorder.Core
+Amazon.Rekognition
+Amazon.Rekognition.Model
+System.Linq
+Amazon.DynamoDBv2.DataModel
+Amazon.DynamoDBv2
+Amazon.DynamoDBv2.DocumentModel
+Amazon.S3
+Amazon
+Amazon.S3.Transfer
+Amazon.Runtime.SharedInterfaces
+Microsoft.Extensions.Options
+Amazon.XRay.Recorder.Handlers.AwsSdk
+AWS.Logger.AspNetCore
+Microsoft.Extensions.DependencyInjection
+Microsoft.Extensions.Configuration.Json
+global::Microsoft.AspNetCore.Builder
+global::Microsoft.AspNetCore.Hosting
+global::Microsoft.AspNetCore.Http
+global::Microsoft.AspNetCore.Routing
+global::Microsoft.Extensions.Configuration
+global::Microsoft.Extensions.DependencyInjection
+global::Microsoft.Extensions.Hosting
+global::Microsoft.Extensions.Logging
+global::System
+global::System.Collections.Generic
+global::System.IO
+global::System.Linq
+global::System.Net.Http
+global::System.Net.Http.Json
+global::System.Threading
+global::System.Threading.Tasks
+System.Reflection
+project.all
+MLIntegration.Tests.Services
+Microsoft.VisualStudio.TestTools.UnitTesting
+MLIntegration.Tests
+<global namespace>
+Microsoft.VisualStudio.TestPlatform
+System.Text
+Cdk
+Amazon.CDK
+Constructs
+Amazon.CDK.AWS.S3
+Amazon.CDK.AWS.CloudFront
+Amazon.CDK.AWS.DynamoDB
+Amazon.CDK.AWS.IAM
+Amazon.CDK.AWS.SSM
+Amazon.CDK.AWS.CloudFront.Origins
+
+===============
+DownloadedFiles
+===============
+project.all.json
+
+==============
+ProjectResults
+==============
+----------------------
+Showing results for: C:\Users\mooretom\source\repos\GitHub\net6-mlintegration\MLIntegration\MLIntegration\MLIntegration.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+
+----------------------
+Showing results for: C:\Users\mooretom\source\repos\GitHub\net6-mlintegration\MLIntegration\MLIntegration.Tests\MLIntegration.Tests.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+
+----------------------
+Showing results for: C:\Users\mooretom\source\repos\GitHub\net6-mlintegration\MLIntegration\CDK\src\Cdk\Cdk.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+
+----------------------
+Showing results for: C:\Users\mooretom\source\repos\GitHub\net6-mlintegration\MLIntegration\MLIntegration\MLIntegration.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+
+----------------------
+Showing results for: C:\Users\mooretom\source\repos\GitHub\net6-mlintegration\MLIntegration\CDK\src\Cdk\Cdk.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+
+----------------------
+Showing results for: C:\Users\mooretom\source\repos\GitHub\net6-mlintegration\MLIntegration\MLIntegration.Tests\MLIntegration.Tests.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+
+
+===========
+BuildErrors
+===========
+
+

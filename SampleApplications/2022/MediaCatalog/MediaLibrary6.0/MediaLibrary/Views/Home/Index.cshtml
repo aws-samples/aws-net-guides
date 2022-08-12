@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Media Catalog";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Media Catalog</h1>
+    <p>Welcome to your personal Media Catalog</p>
+</div>
+
+ <div class="row">
+  <div class="column">
+      <h2>Upload</h2>
+      @Html.ActionLink("Upload", "Upload", "FileManagement")
+      </p>
+      Upload your images to the media catalog application.
+      
+  </div>
+  <div class="column">
+      <h2>Process</h2>
+      @Html.ActionLink("List", "Index", "FileManagement")
+      </p>
+      List your currently uploaded files
+  </div>
+  <div class="column">
+      <h2>Browse</h2>
+      @Html.ActionLink("Search", "Search", "Rekognition")
+      </p>
+      List your currently uploaded files
+  </div>
+</div> 

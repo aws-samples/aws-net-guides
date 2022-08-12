@@ -1,0 +1,42 @@
+﻿@model MediaLibrary.Models.DeleteImageViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+    var ImagePath = Model.ImageUrl;
+}
+
+<h1>Delete</h1>
+
+<h4>DeleteImageViewModel</h4>
+<hr />
+
+
+        <form asp-action="Delete">
+        <div class="row">
+            <div class="column">
+                <img class="RekognitionImage" src="@ImagePath" />
+            </div>
+                  <div class="column" style="align-content:normal">
+                        <div style="text-align:left;margin:20px">
+                            @Html.RadioButtonFor(m => m.DeleteType,"Image") Delete Image. <p />
+                            @Html.RadioButtonFor(m => m.DeleteType,"Data") Delete Data Only.
+                            <input asp-for="KeyName" class="form-control" hidden="hidden" />
+                        </div>
+                  </div>
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-primary" />
+            </div>
+        </form>
+
+
+
+<div>
+    <a asp-action="Index">Cancel: Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

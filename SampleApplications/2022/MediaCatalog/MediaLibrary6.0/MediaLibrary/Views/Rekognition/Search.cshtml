@@ -1,0 +1,40 @@
+﻿@model MediaLibrary.Models.SearchViewModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search for images based on tag.</h1>
+
+
+Select a Label: <select id = "myList" onchange = "getFilteredList()" >  
+<option>@Model.CurrentValue</option>  
+    @foreach (var label in Model.Labels)
+    {
+        <option>@label</option>
+    }
+</select>  
+
+<table class="table">
+    <tbody>
+@foreach (var item in Model.Items) {
+        <tr>
+            <td>
+                @item.KeyName
+            </td>
+            <td>
+                <img class="RekognitionImage" src="@item.ImageURL" />
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    function getFilteredList() {
+        var select = document.getElementById('myList');
+        var value = select.options[select.selectedIndex].value;
+
+        window.location.href = '@Url.Action("Search", "Rekognition")' + "?filter=" + value;
+    }
+</script>
