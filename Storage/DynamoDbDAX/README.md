@@ -2,7 +2,7 @@
 
 ## Summary
 
-Sample Web API use DynamoDB as backend and leverage DynamoDB Accelerator for the Read.
+Sample Web API uses DynamoDB as backend Database and leverage DynamoDB Accelerator for the Read.
 
 
 ## Architecture
