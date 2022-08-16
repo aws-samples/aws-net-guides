@@ -134,7 +134,7 @@ Sample Web API use DynamoDB as backend and leverage DynamoDB Accelerator for the
 
 7. Update the DAX endpoint in the AppConfig file.
 
-## Additional Info
+## Additional Requirement for validation
 
-- Security group allow connectivity from EC2/App Subnet to the DAX Subnet 
-- IAM role has the permission
+- Make sure Security Group allow connectivity from EC2/App Subnet to the DAX Subnet 
+- IAM role has the necessary permissions
