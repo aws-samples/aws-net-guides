@@ -7,7 +7,7 @@ Sample Web API uses DynamoDB as backend Database and leverage DynamoDB Accelerat
 
 ## Architecture
 
-![Architecture](images\architecture.jpg)
+![Architecture](images/architecture.jpg)
 
 ## Prerequisites
 
@@ -133,6 +133,14 @@ Sample Web API uses DynamoDB as backend Database and leverage DynamoDB Accelerat
     ```
 
 7. Update the DAX endpoint in the AppConfig file.
+
+Get the DynamoDB DAX Endpoint from the [DynamoDB Console](https://console.aws.amazon.com/dynamodbv2/) >> Cluster >> Selected the Cluter
+
+![Architecture](images/ConnectionString.png)
+
+The following is an example of a cluster endpoint in the us-east-1 region that is not configured to use encryption in transit.
+
+dax://my-cluster.l6fzcv.dax-clusters.us-east-1.amazonaws.co
 
 ## Additional Requirement for validation
 
