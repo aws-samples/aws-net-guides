@@ -2,7 +2,7 @@
 
 [function_build_definitions]
 [function_build_definitions.f590c8c8-6b6e-4921-8b02-4fe4203d3d6c]
-codeuri = "/Users/rezvanf/Projects/aws-net-guides/Serverless/Serverless App with Dynamic Step Functions  /functions/GetTargetImages"
+codeuri = "./aws-net-guides/Serverless/Serverless App with Dynamic Step Functions  /functions/GetTargetImages"
 runtime = "dotnet6"
 architecture = "x86_64"
 handler = "GetTargetImages::GetTargetImages.Function::FunctionHandler"
@@ -11,7 +11,7 @@ packagetype = "Zip"
 functions = ["GetTargetImagesFunction"]
 
 [function_build_definitions.91f127da-62b7-4cb4-a0b4-839324a46158]
-codeuri = "/Users/rezvanf/Projects/aws-net-guides/Serverless/Serverless App with Dynamic Step Functions  /functions/CompareImages"
+codeuri = "./aws-net-guides/Serverless/Serverless App with Dynamic Step Functions  /functions/CompareImages"
 runtime = "dotnet6"
 architecture = "x86_64"
 handler = "CompareImages::CompareImages.Function::FunctionHandler"
