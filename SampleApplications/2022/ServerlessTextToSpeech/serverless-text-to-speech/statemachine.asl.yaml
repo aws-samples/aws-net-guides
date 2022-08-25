@@ -1,0 +1,110 @@
+Comment: State Machine used for text to speech workflow
+Version: '1.0'
+StartAt: MapInput
+States:
+  MapInput:
+    Type: Pass
+    Next: SendToTextract
+    Parameters:
+      id.$: $.id
+      bucket.$: $.detail.bucket.name
+      key.$: $.detail.object.key
+      time.$: $.time
+      region.$: $.region
+    ResultPath: $
+  SendToTextract:
+    Type: Task
+    Resource: 'arn:aws:states:::lambda:invoke.waitForTaskToken'
+    OutputPath: $.Payload
+    Parameters:
+      Payload:
+        id.$: $.id
+        bucket.$: $.bucket
+        key.$: $.key
+        time.$: $.time
+        region.$: $.region
+        tasktokenid.$: $$.Task.Token
+      FunctionName: '${SendToTextractFunction}'
+    Retry:
+      - ErrorEquals:
+          - Lambda.ServiceException
+          - Lambda.AWSLambdaException
+          - Lambda.SdkClientException
+        IntervalSeconds: 2
+        MaxAttempts: 6
+        BackoffRate: 2
+    Next: ProcessTextAndSendToPolly
+    Catch:
+      - ErrorEquals:
+          - States.ALL
+        Comment: Catch Step Failure
+        Next: PublishFail
+  PublishFail:
+    Type: Task
+    Resource: 'arn:aws:states:::sns:publish'
+    Parameters:
+      Message.$: $
+      TopicArn: '${FailureTopic}'
+    Next: Fail
+  Fail:
+    Type: Fail
+  ProcessTextAndSendToPolly:
+    Type: Task
+    Resource: 'arn:aws:states:::lambda:invoke.waitForTaskToken'
+    OutputPath: $.Payload
+    Parameters:
+      Payload:
+        id.$: $.id
+        pollytasktokenid.$: $$.Task.Token
+      FunctionName: '${ProcessTextAndSendToPollyFunction}'
+    Retry:
+      - ErrorEquals:
+          - Lambda.ServiceException
+          - Lambda.AWSLambdaException
+          - Lambda.SdkClientException
+        IntervalSeconds: 2
+        MaxAttempts: 6
+        BackoffRate: 2
+    Next: PublishResults
+    Catch:
+      - ErrorEquals:
+          - States.ALL
+        Next: PublishFail
+  PublishResults:
+    Type: Task
+    Resource: 'arn:aws:states:::lambda:invoke'
+    OutputPath: $.Payload
+    Parameters:
+      Payload.$: $
+      FunctionName: '${PublishResultsFunction}'
+    Retry:
+      - ErrorEquals:
+          - Lambda.ServiceException
+          - Lambda.AWSLambdaException
+          - Lambda.SdkClientException
+        IntervalSeconds: 2
+        MaxAttempts: 6
+        BackoffRate: 2
+    Next: PublishSuccess
+    Catch:
+      - ErrorEquals:
+          - States.ALL
+        Next: PublishFail
+  PublishSuccess:
+    Type: Task
+    Resource: 'arn:aws:states:::sns:publish'
+    Parameters:
+      Message:
+        id.$: $.id
+        bucket.$: $.bucket
+        key.$: $.key
+        pollyoutputuri.$: $.pollyoutputuri
+        soundfileurl.$: "States.Format('{}{}', '${FunctionUrl}', $.id)"
+      TopicArn: '${SuccessTopic}'
+    Next: Success
+    Catch:
+      - ErrorEquals:
+          - States.ALL
+        Next: PublishFail
+  Success:
+    Type: Succeed
