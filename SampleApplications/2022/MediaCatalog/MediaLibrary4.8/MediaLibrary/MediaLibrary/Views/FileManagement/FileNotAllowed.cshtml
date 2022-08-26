@@ -1,0 +1,21 @@
+﻿@model MediaLibrary.Models.ModerationResultsViewModel
+
+@{
+    ViewData["Title"] = "File Not Allowed";
+    var moderationFlags = Model.ModerationFlags;
+}
+
+<div>
+    <h4>Upload Rejected</h4>
+    The file you attempted to upload has been reject from our system due to the following reasons:
+    <hr />
+    @foreach (var label in moderationFlags)
+    {
+        <dl class="row">
+            @label
+        </dl>
+    }
+</div>
+<div>
+    <a asp-action="Index" asp-controller="Home">Back Home</a>
+</div>
