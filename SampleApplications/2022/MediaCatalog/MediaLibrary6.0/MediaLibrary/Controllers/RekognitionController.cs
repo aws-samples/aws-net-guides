@@ -81,7 +81,7 @@ namespace MediaLibrary.Controllers
                 var detectLabelsRequest = new Amazon.Rekognition.Model.DetectLabelsRequest()
                 {
                     MaxLabels = 100,
-                    MinConfidence = 75F,
+                    //MinConfidence = 75F,
                     Image = new Amazon.Rekognition.Model.Image()
                     {
                         S3Object = new Amazon.Rekognition.Model.S3Object()

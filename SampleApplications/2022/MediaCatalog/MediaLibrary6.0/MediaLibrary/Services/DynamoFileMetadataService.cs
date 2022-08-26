@@ -29,6 +29,8 @@ namespace MediaLibrary.Services
                 DynamoDBContext context = new DynamoDBContext(_dynamoDBclient);
                 var conditions = new List<ScanCondition>();
                 // you can add scan conditions, or leave empty
+
+
                 var queryResult = await context.ScanAsync<FileMetadataDataModel>(conditions).GetRemainingAsync();
 
                 return queryResult;
