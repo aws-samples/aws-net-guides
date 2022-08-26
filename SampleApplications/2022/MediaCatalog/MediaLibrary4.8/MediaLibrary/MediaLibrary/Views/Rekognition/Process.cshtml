@@ -11,6 +11,7 @@
         <img class="RekognitionImage" src="@Model.ImageUri" width="200px" />
     </div>
 
+
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.ImageUri, htmlAttributes: new { @class = "control-label col-md-2" })
