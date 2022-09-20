@@ -72,16 +72,9 @@ to configure AWS App Runner to start, run, scale, and load balance the applicati
 
 ### AWS Lambda
 
-[AWS Lambda](https://aws.amazon.com/lambda/) is a serverless, event-driven compute service that can run virtually any type of application or backend service without provisioning or managing servers. 
-
-You can run .NET 6 applications, targeting x86_64 or ARM64 (AWS Graviton2), on AWS Lambda using any of the following options:
-1. [Managed Runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) - This option uses a .zip file archive for the deployment package. This [blog post](https://aws.amazon.com/blogs/compute/introducing-the-net-6-runtime-for-aws-lambda/) provides more details.
-1. Managed [base container image](https://docs.aws.amazon.com/lambda/latest/dg/csharp-image.html) - Pull from the [ECR Public Gallery](https://gallery.ecr.aws/lambda/dotnet) or use .NET 6 container image Blueprint in the AWS Toolkit for Visual Studio. 
-1. Custom container image - Build a container image with the .NET 6 application packaged inside it. This [PowerShell script](https://github.com/aws/aws-lambda-dotnet/tree/master/LambdaRuntimeDockerfiles) will build a .NET 6 base container image. 
-1. Custom runtime - The custom runtime bundles all necessary .NET 6 libraries in the zip file archive that is deployed to Lambda, see this [example](https://github.com/normj/LambdaNETCoreSamples/tree/master/CustomRuntimeListBucketsNET6). For an ARM64 see this [example](https://github.com/normj/LambdaNETCoreSamples/tree/master/ArmLambdaFunction#net-5-and-6-with-custom-runtimes).
+[AWS Lambda](https://aws.amazon.com/lambda/) is a serverless, event-driven compute service that can run virtually any type of application or backend service without provisioning or managing servers. You can run .NET 6 applications, targeting x86_64 or ARM64 (AWS Graviton2), on AWS Lambda. Lambda includes a managed runtime for .NET 6.
 
 The [AWS Toolkit for Visual Studio](https://aws.amazon.com/visualstudio/) allows customers to build and deploy .NET 6 applications that run on AWS Lambda. 
-
  
 ## Tools, Libraries, and SDK
 
@@ -177,21 +170,8 @@ AWS Secrets Manager client-side caching in .NET.
 ### AWS CodeBuild
 
 [AWS CodeBuild](https://aws.amazon.com/codebuild/) is a fully managed continuous integration service that compiles source code, runs tests, and produces 
-software packages that are ready to deploy. Currently .NET Core 3.1 and .NET 5 are supported on Linux and Windows. 
-[Available runtimes](https://docs.aws.amazon.com/codebuild/latest/userguide/available-runtimes.html) are documented with a detailed list of runtime versions and Operating Systems 
-supported by CodeBuild. Support for .NET 6 will be added in the near future. To use CodeBuild before .NET 6 support is added, use of the following options: 
-1. Create a [custom image](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker-custom-image.html) that can be run in CodeBuild. 
-1. Add a command to install the .NET runtime or SDK in the [buildspec.yml](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) file. Note, the following example uses $DOTNET_SDK_URL to store value of the path the .NET 6 SDK:
-```
-version: 0.2
-phases:
-  install:
-    commands:
-      - curl $DOTNET_SDK_URL -o dotnet-sdk-6.tar.gz
-      - mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-6.tar.gz -C $HOME/dotnet
-      - export DOTNET_ROOT=$HOME/dotnet
-      - export PATH=$HOME/dotnet:$PATH
-```
+software packages that are ready to deploy.  .NET 6 is supported in the standard build image.
+
 
 ### AWS Cloud Development Kit (CDK)
 
