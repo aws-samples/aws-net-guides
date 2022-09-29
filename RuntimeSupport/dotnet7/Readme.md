@@ -77,7 +77,7 @@ and deploy .NET applications using Amazon Web Services. Visual Studio 2022 suppo
 
 ### AWS Toolkit for Rider
 
-The [AWS Toolkit for Rider](https://aws.amazon.com/rider/) is an open source plug-in for the [JetBrains Rider](https://www.jetbrains.com/rider/) IDE that makes it easier to create, debug, and deploy .NET applications on Amazon Web Services. The Toolkit supports creating a new AWS App Runner service to manage containers, which can host .NET 6 applications. Follow the [documentation](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/creating-service-apprunner.html) to setup. Note, select the "ECR/ECR public" option (image source) for .NET applications. 
+The [AWS Toolkit for Rider](https://aws.amazon.com/rider/) is an open source plug-in for the [JetBrains Rider](https://www.jetbrains.com/rider/) IDE that makes it easier to create, debug, and deploy .NET applications on Amazon Web Services. The Toolkit supports creating a new AWS App Runner service to manage containers, which can host .NET 6 applications. Follow the documentation [here](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/creating-service-apprunner.html) to setup. Note, select the "ECR/ECR public" option (image source) for .NET applications. 
 
 ### AWS Toolkit for Visual Studio Code
 
@@ -86,7 +86,7 @@ debug, and deploy applications on Amazon Web Services. The Toolkit supports crea
 
 ### AWS Toolkit for Azure DevOps
 
-The [AWS Toolkit for Azure DevOps](https://aws.amazon.com/vsts/) is an extension for hosted and on-premises Microsoft Azure DevOps that makes it easy to manage and deploy applications to AWS. .NET 6 applications can be used with the Toolkit.
+The [AWS Toolkit for Azure DevOps](https://aws.amazon.com/vsts/) is an extension for hosted and on-premises Microsoft Azure DevOps that makes it easy to manage and deploy applications to AWS. .NET 7 applications can be used with the Toolkit.
 
 ## AWS SDK for .NET
 
@@ -103,7 +103,7 @@ The [AWS SDK for .NET](https://github.com/aws/aws-sdk-net) allows .NET developer
 [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) helps you protect secrets needed to access your applications, services, and IT resources. 
 The service enables you to easily rotate, manage, and retrieve database credentials, API keys, and other secrets throughout their lifecycle. 
 
-The [AWS Secrets Manager Caching Client for .NET](https://github.com/aws/aws-secretsmanager-caching-net) enables in-process caching of secrets and is compatible with .NET 6. 
+The [AWS Secrets Manager Caching Client for .NET](https://github.com/aws/aws-secretsmanager-caching-net) enables in-process caching of secrets and is compatible with .NET 7. 
 Please refer to this [blog post](https://aws.amazon.com/blogs/security/how-to-use-aws-secrets-manager-client-side-caching-in-dotnet/) to learn more about how to use 
 AWS Secrets Manager client-side caching in .NET.
 
