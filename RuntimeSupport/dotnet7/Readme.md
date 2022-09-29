@@ -31,7 +31,7 @@ Customers can install .NET 7 on over 400 [Amazon EC2 instances types](https://aw
 The following EC2 [User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-console) example installs .NET 7 on a linux server.
 ```
 #!/bin/bash
-# Install .NET 7 SDK for ARM64
+# Install .NET 7 SDK for Linux
 sudo apt-get update -y
 curl -O https://download.visualstudio.microsoft.com/download/pr/bf594dbb-5ec8-486b-8395-95058e719e1c/42e8bc351654ed4c3ccaed58ea9180a1/dotnet-sdk-7.0.100-rc.1.22431.12-linux-x64.tar.gz
 mkdir /usr/bin/dotnet
@@ -41,17 +41,31 @@ sudo sh -c 'echo "export DOTNET_ROOT=/usr/bin/dotnet" >> /etc/environment'
 sudo sh -c 'echo "export PATH=$PATH:$DOTNET_ROOT" >> /etc/environment'
 ```
 
+Install scripts for .NET can be found here:
+https://dotnet.microsoft.com/en-us/download/dotnet/scripts
+
+Customers can use automation facilities in the [AWS Systems Manager Service](https://aws.amazon.com/systems-manager) to automatically install .NET runtimes using 
+automation documents, and use the [EC2 Image Builder](https://aws.amazon.com/image-builder/) service to precreate EC2 Images with the .NET Runtime pre-installed. 
+
+### AWS Lambda
+[AWS Lambda](https://aws.amazon.com/lambda/) supports the ability to create your own 
+[custom runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html). Users who want to run .NET 7 applications can create their own custom runtime 
+and include .NET 7.
+
 
 ### Containers
 
 AWS customers can deploy .NET applications running on either Windows or Linux containers using [Amazon Elastic Container Software](https://aws.amazon.com/ecs/) (ECS) and 
 [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks/) (EKS). [AWS Fargate](https://aws.amazon.com/fargate/) is a service that you can use to run and manage the 
-lifecycle of ECS and EKS containers without the need to manage the container infrastructure yourself
+lifecycle of ECS and EKS containers without the need to manage the container infrastructure yourself. 
 
 [AWS App Runner](https://aws.amazon.com/apprunner/) is a fully managed service that makes it easy to quickly deploy containerized web applications and APIs, 
 scaling up or down automatically to meet application traffic needs. To use with .NET 7 applications, upload an image with the .NET 7 application to 
 [Amazon Elastic Container Registry](https://aws.amazon.com/ecr/) (ECR) and use the [source image](https://docs.aws.amazon.com/apprunner/latest/dg/service-source-image.html) support 
 to configure AWS App Runner to start, run, scale, and load balance the application. 
+
+[AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) allows customers to package up their applications and deploy to elastic beanstalk as a container image. 
+By using containers, customer can deplooy .NET 7 applications on Elastic Beanstalk. 
 
 ## Tools, Libraries, and SDK
 
@@ -96,12 +110,14 @@ AWS Secrets Manager client-side caching in .NET.
 ### AWS X-Ray
 
 [AWS X-Ray](https://aws.amazon.com/xray/) helps developers analyze and debug distributed applications, such as those built using a microservices architecture. 
-.NET 6 applications can integrate AWS X-Ray with [AWS X-Ray SDK for .NET](https://github.com/aws/aws-xray-sdk-dotnet) and the 
-[AWS Distro for OpenTelemetry .NET](https://docs.aws.amazon.com/xray/latest/devguide//xray-dotnet-opentel-sdk.html). 
+.NET 7 applications can integrate AWS X-Ray with [AWS X-Ray SDK for .NET](https://github.com/aws/aws-xray-sdk-dotnet) and the 
+[AWS Distro for OpenTelemetry .NET](https://docs.aws.amazon.com/xray/latest/devguide/xray-dotnet-opentel-sdk.html). 
 
 ## DevOps
 
 ### AWS CodeBuild
 
 [AWS CodeBuild](https://aws.amazon.com/codebuild/) is a fully managed continuous integration service that compiles source code, runs tests, and produces 
-software packages that are ready to deploy.  .NET 6 is supported in the standard build image.
+software packages that are ready to deploy. You can provide Code Build with a 
+[Custom Build Environment](https://aws.amazon.com/blogs/devops/extending-aws-codebuild-with-custom-build-environments/) in order to support compilation of 
+.NET 7 applications today. 
