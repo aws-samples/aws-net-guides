@@ -1,0 +1,124 @@
+==========
+References
+==========
+MediaLibrary
+System.Web.Optimization
+System.Web.Mvc
+System.Web.Routing
+Amazon.SimpleSystemsManagement
+System.Threading.Tasks
+Amazon.SimpleSystemsManagement.Model
+System
+MediaLibrary.Controllers
+MediaLibrary.Services
+System.Collections.Generic
+System.Web
+MediaLibrary.Models
+System.IO
+Amazon.Rekognition
+Amazon.Rekognition.Model
+System.Linq
+Amazon.DynamoDBv2.DataModel
+Amazon.DynamoDBv2
+Amazon.DynamoDBv2.DocumentModel
+Amazon.S3
+Amazon
+Amazon.S3.Transfer
+Amazon.Runtime.SharedInterfaces
+System.Reflection
+System.Runtime.CompilerServices
+System.Runtime.InteropServices
+Amazon.XRay.Recorder.Core
+project.all
+MediaLibrary.Tests.Controllers
+Microsoft.VisualStudio.TestTools.UnitTesting
+System.Text
+
+===============
+DownloadedFiles
+===============
+project.all.json
+system.web.json
+system.web.mvc.json
+
+==============
+ProjectResults
+==============
+----------------------
+Showing results for: C:\source\aws-net-guides\SampleApplications\2022\MediaCatalog\MediaLibrary4.8\MediaLibrary\MediaLibrary\MediaLibrary.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+
+----------------------
+Showing results for: C:\source\aws-net-guides\SampleApplications\2022\MediaCatalog\MediaLibrary4.8\MediaLibrary\MediaLibrary.Tests\MediaLibrary.Tests.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+
+----------------------
+Showing results for: C:\source\aws-net-guides\SampleApplications\2022\MediaCatalog\MediaLibrary4.8\MediaLibrary\MediaLibrary.Tests\MediaLibrary.Tests.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+
+----------------------
+Showing results for: C:\source\aws-net-guides\SampleApplications\2022\MediaCatalog\MediaLibrary4.8\MediaLibrary\MediaLibrary\MediaLibrary.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+
+
+===========
+BuildErrors
+===========
+
+
