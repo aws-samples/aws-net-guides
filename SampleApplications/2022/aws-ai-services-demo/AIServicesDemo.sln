@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32002.185
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIServicesDemo", "AIServicesDemo\AIServicesDemo.csproj", "{77E4A890-3618-4C62-AF6C-59006834190E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{1EC1EA9C-2D75-4638-B96F-40A925324C0D}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\bbq_receipt.jpg = Samples\bbq_receipt.jpg
+		Samples\beer_label.jpg = Samples\beer_label.jpg
+		Samples\family.jpg = Samples\family.jpg
+		Samples\grunt.jpg = Samples\grunt.jpg
+		Samples\loan_application.png = Samples\loan_application.png
+		Samples\paystub.jpg = Samples\paystub.jpg
+		Samples\whole_foods_receipt.jpg = Samples\whole_foods_receipt.jpg
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1D453D77-5B4B-4B21-9554-B1B2AA24EE5D}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77E4A890-3618-4C62-AF6C-59006834190E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77E4A890-3618-4C62-AF6C-59006834190E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77E4A890-3618-4C62-AF6C-59006834190E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77E4A890-3618-4C62-AF6C-59006834190E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C429919D-8226-4CA4-BF8B-8DD60DA29AD6}
+	EndGlobalSection
+EndGlobal
