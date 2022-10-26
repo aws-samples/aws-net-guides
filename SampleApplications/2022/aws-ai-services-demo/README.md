@@ -45,11 +45,8 @@ To run this solution, you will need the following:
 
 Open the solution or project file in your IDE, start the application. That's it! You don't need to configure the services, or deploy any infrastructure.
 
-Or if you are doing like using the command line, open the `AIServicesDemo` directory in your terminal and run the following command:
+Or if you are like using the command line, open the `AIServicesDemo` directory in your terminal and run the following command:
 
 ```bash
 dotnet run
 ```
-
-
-
