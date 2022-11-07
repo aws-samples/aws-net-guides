@@ -1,0 +1,75 @@
+﻿@page "/"
+@using EventDriven.Front.Data
+@inject RequestService RequestService
+
+<PageTitle>Event Driven Review Engine</PageTitle>
+<div class="w-full max-w-xs">
+    <h2>Review Submission</h2>
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Email Address
+            </label>
+            <input @bind="newEmailAddress" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" />
+        </div>
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Review Contents
+            </label>
+            <textarea @bind="newReviewContents" class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+        </div>
+        <div class="flex items-center justify-between">
+            <button onclick=@SubmitReview class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                Submit Review
+            </button>
+        </div>
+    </form>
+    @if(!string.IsNullOrEmpty(reviewId))
+    {
+        <p>Created Review id is: @reviewId</p>
+    }
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Review Id
+            </label>
+            <input @bind="reviewId" class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" type="text" />
+        </div>
+        <div class="flex items-center justify-between">
+            <button onclick=@QueryReviewResults class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                Query Review Results
+            </button>
+        </div>
+    </form>
+    @foreach (var result in queryResults)
+    {
+        <p>@result</p>
+    }
+</div>
+
+@code {
+    private string newEmailAddress;
+    private string newReviewContents;
+    private string reviewId = "";
+    private IEnumerable<string> queryResults;
+
+    protected override async Task OnInitializedAsync()
+    {
+        this.queryResults = new List<string>();
+    }
+
+    public async Task SubmitReview()
+    {
+        var response = await RequestService.SendRequest(newEmailAddress, newReviewContents);
+
+        newEmailAddress = "";
+        newReviewContents = "";
+        reviewId = response.ReviewId;
+    }
+
+    public async Task QueryReviewResults()
+    {
+        queryResults = await RequestService.GetReviewResults(reviewId);
+    }
+}
+
