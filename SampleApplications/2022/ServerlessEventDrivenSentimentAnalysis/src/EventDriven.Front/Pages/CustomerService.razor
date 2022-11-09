@@ -1,0 +1,56 @@
+@page "/customer-service"
+@using EventDriven.Front.Data
+@inject RequestService RequestService
+@inject CustomerInteractionService CustomerInteractionService
+
+<PageTitle>Event Driven Review Engine</PageTitle>
+<div class="w-full max-w-xs">
+    <h2>Customer Service Workflow</h2>
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="flex items-center justify-between">
+            <button onclick=@ClaimCustomerServiceItem class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                Claim Customer Service Record
+            </button>
+        </div>
+    </form>
+    @if (customerServiceMessage != null)
+    {
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <p>New negative review from @customerServiceMessage.Payload.EmailAddress saying '@customerServiceMessage.Payload.ReviewContent'</p>
+                <label class="block text-gray-700 text-sm font-bold mb-2">
+                    Who Are You?
+                </label>
+                <input @bind="customerServiceAgentName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" />
+            </div>
+            <div class="flex items-center justify-between">
+                <button onclick=@SubmitCustomerServiceResponse class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                    Submit Claim
+                </button>
+            </div>
+        </form>
+    }
+</div>
+
+@code {
+    private string queueUrl;
+    private SqsMessage customerServiceMessage;
+    private string customerServiceAgentName;
+
+    protected override async Task OnInitializedAsync()
+    {
+    }
+
+    public async Task ClaimCustomerServiceItem()
+    {
+        customerServiceMessage = await this.CustomerInteractionService.ClaimCustomerServiceItem();
+    }
+
+    public async Task SubmitCustomerServiceResponse()
+    {
+        await this.CustomerInteractionService.SubmitCustomerServiceResponse(customerServiceMessage, customerServiceAgentName);
+
+        customerServiceMessage = null;
+    }
+}
+
