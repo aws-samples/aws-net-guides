@@ -33,9 +33,9 @@ The following EC2 [User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuid
 #!/bin/bash
 # Install .NET 7 SDK for Linux
 sudo apt-get update -y
-curl -O https://download.visualstudio.microsoft.com/download/pr/bf594dbb-5ec8-486b-8395-95058e719e1c/42e8bc351654ed4c3ccaed58ea9180a1/dotnet-sdk-7.0.100-rc.1.22431.12-linux-x64.tar.gz
+curl -O https://download.visualstudio.microsoft.com/download/pr/253e5af8-41aa-48c6-86f1-39a51b44afdc/5bb2cb9380c5b1a7f0153e0a2775727b/dotnet-sdk-7.0.100-linux-x64.tar.gz
 mkdir /usr/bin/dotnet
-sudo tar -zxvf dotnet-sdk-7.0.100-rc.1.22431.12-linux-x64.tar.gz -C /usr/bin/dotnet
+sudo tar -zxvf dotnet-sdk-7.0.100-linux-x64.tar.gz -C /usr/bin/dotnet
 sudo ln -s /usr/bin/dotnet/dotnet /usr/bin/dotnet
 sudo sh -c 'echo "export DOTNET_ROOT=/usr/bin/dotnet" >> /etc/environment'
 sudo sh -c 'echo "export PATH=$PATH:$DOTNET_ROOT" >> /etc/environment'
@@ -70,15 +70,15 @@ By using containers, customer can deplooy .NET 7 applications on Elastic Beansta
 ## Tools, Libraries, and SDK
 
 ### AWS Code Build
-[AWS Code Build](https://aws.amazon.com/codebuild/) is a filly managed service to help developers automatically build application from source code. The code build service allows the user to customize the build environment, to suit the needs of the application being built. This includes the ability to install additional .NET runtimes. Users can add support for building .NET 7 applications by adding the following snippet to their applications buildspec.yml file.
+[AWS Code Build](https://aws.amazon.com/codebuild/) is a fully managed service to help developers automatically build applications from source code. The code build service allows the user to customize the build environment, to suit the needs of the application being built. This includes the ability to install additional .NET runtimes. Users can add support for building .NET 7 applications by adding the following snippet to their applications buildspec.yml file.
 
 ```
   install:
     commands:
-      - curl -O https://download.visualstudio.microsoft.com/download/pr/f5c74056-330b-452b-915e-d98fda75024e/18076ca3b89cd362162bbd0cbf9b2ca5/dotnet-sdk-7.0.100-rc.2.22477.23-linux-x64.tar.gz
-      - sudo tar -zxvf dotnet-sdk-7.0.100-rc.2.22477.23-linux-x64.tar.gz -C /root/.dotnet
+      - curl -O https://download.visualstudio.microsoft.com/download/pr/253e5af8-41aa-48c6-86f1-39a51b44afdc/5bb2cb9380c5b1a7f0153e0a2775727b/dotnet-sdk-7.0.100-linux-x64.tar.gz
+      - sudo tar -zxvf dotnet-sdk-7.0.100-linux-x64.tar.gz -C /root/.dotnet
 ```
-This will automatically download an install the .NET 7 RC2 SDK as part of the Install phase of CodeBuild.
+This will automatically download an install the .NET 7 SDK as part of the Install phase of CodeBuild.
 
 
 ### AWS Toolkit for Visual Studio
@@ -125,11 +125,4 @@ AWS Secrets Manager client-side caching in .NET.
 .NET 7 applications can integrate AWS X-Ray with [AWS X-Ray SDK for .NET](https://github.com/aws/aws-xray-sdk-dotnet) and the 
 [AWS Distro for OpenTelemetry .NET](https://docs.aws.amazon.com/xray/latest/devguide/xray-dotnet-opentel-sdk.html). 
 
-## DevOps
 
-### AWS CodeBuild
-
-[AWS CodeBuild](https://aws.amazon.com/codebuild/) is a fully managed continuous integration service that compiles source code, runs tests, and produces 
-software packages that are ready to deploy. You can provide Code Build with a 
-[Custom Build Environment](https://aws.amazon.com/blogs/devops/extending-aws-codebuild-with-custom-build-environments/) in order to support compilation of 
-.NET 7 applications today. 
