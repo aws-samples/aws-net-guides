@@ -75,8 +75,7 @@ By using containers, customer can deplooy .NET 7 applications on Elastic Beansta
 ```
   install:
     commands:
-      - curl -O https://download.visualstudio.microsoft.com/download/pr/253e5af8-41aa-48c6-86f1-39a51b44afdc/5bb2cb9380c5b1a7f0153e0a2775727b/dotnet-sdk-7.0.100-linux-x64.tar.gz
-      - sudo tar -zxvf dotnet-sdk-7.0.100-linux-x64.tar.gz -C /root/.dotnet
+      - curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel STS 
 ```
 This will automatically download an install the .NET 7 SDK as part of the Install phase of CodeBuild.
 
