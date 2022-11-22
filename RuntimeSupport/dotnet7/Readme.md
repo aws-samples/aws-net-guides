@@ -48,9 +48,8 @@ Customers can use automation facilities in the [AWS Systems Manager Service](htt
 automation documents, and use the [EC2 Image Builder](https://aws.amazon.com/image-builder/) service to precreate EC2 Images with the .NET Runtime pre-installed. 
 
 ### AWS Lambda
-[AWS Lambda](https://aws.amazon.com/lambda/) supports the ability to create your own 
-[custom runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html). Users who want to run .NET 7 applications can create their own custom runtime 
-and include .NET 7.
+[AWS Lambda](https://aws.amazon.com/lambda/) supports running .NET 7 applications in two ways. You can create your own  
+[custom runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) or you can publish native code to Lambda using .NET 7's native AOT compilation. A blog post on how to create native lambda functions is available [here](https://aws.amazon.com/blogs/compute/building-serverless-net-applications-on-aws-lambda-using-net-7/).
 
 
 ### Containers
