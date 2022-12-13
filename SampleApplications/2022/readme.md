@@ -25,4 +25,4 @@ This application catalogs images using Amazon Rekognition. Using the functionali
 
 ### [Using AWS Lambda functions, a non-public SQL Server, and AWS Secrets Manager together](https://github.com/aws-samples/aws-net-guides/tree/master/SampleApplications/2022/LambdaVPCSecretsManager)
 
-Securing your data can have unexpected side effects. In this sample you will see how making AWS RDS SQL Server database non-publicly accessible, and using AWS Secrets Manager to store the database credentials can cause problems when the AWS Lambda functions, and how to solve it with a VPC Endpoint or a NAT Gateway.
+Securing your data can have unexpected side effects. In this sample you will see how making an AWS RDS SQL Server database non-publicly accessible, and using AWS Secrets Manager to store the database credentials can cause problems for AWS Lambda functions. Solutions using a VPC Endpoint, and a NAT Gateway are shown.
