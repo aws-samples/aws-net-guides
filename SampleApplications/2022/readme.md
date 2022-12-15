@@ -14,7 +14,7 @@ The serverless text to speech assistant is a .NET 6.0-based serverless applicati
 
 ### [Compare Faces](https://github.com/aws-samples/aws-net-guides/tree/master/Serverless/Serverless%20App%20with%20Dynamic%20Step%20Functions)
 
-This sample shows how we can compare a photo image against several other photos images.
+This sample shows how we can compare a photo against several other photos.
 
 ### [Event Driven Serverless CDK](https://github.com/aws-samples/aws-net-guides/tree/master/SampleApplications/2022/ServerlessEventDrivenSentimentAnalysis)
 
