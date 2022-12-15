@@ -1,3 +1,7 @@
+## AWS .NET Samples
+
+In 2022 a number of AWS employees who love .NET on AWS go together to create a set of sample application that show how to use .NET with a variety of AWS services. All of the samples are written in C#, and are easy to follow. None will take more than 45 minutes to complete, and the shortest will take as little as 5 minutes. The goal is show you how easy it is to learn use .NET with AWS  
+
 Linked below you will find six sample applications that show how to use .NET with various AWS services. Each sample includes a readme file that describes a problem, and how it is solved.
 
 Full source code, and instructions for deployment are included in each sample.
