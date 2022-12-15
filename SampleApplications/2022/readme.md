@@ -1,16 +1,16 @@
 ## AWS .NET Samples
 
-In 2022 AWS employees who love .NET on AWS got together to create a set of sample application that show how to use .NET with a variety of AWS services. All the samples are written in C#, and are easy to follow. None will take more than 45 minutes to complete, and the shortest will take as little as 5 minutes. The goal is to show you how easy it is to learn to use .NET with AWS  
+In 2022 AWS employees who love .NET on AWS got together to create a set of sample applications that show how to use .NET with a variety of AWS services. All the samples are written in C#, and are easy to follow. No sample will take more than 45 minutes to complete, and the shortest will take as little as 5 minutes. The goal is to show you how easy it is to use .NET with AWS.
 
 Linked below you will find six sample applications. Each sample includes a readme file that describes a problem, and how it is solved. Full source code, and instructions for deployment are included in each sample.
 
 ### [AWS AI Services](https://github.com/aws-samples/aws-net-guides/tree/master/SampleApplications/2022/aws-ai-services-demo)
 
-With AWS AI services, you can add capabilities like image and video analysis, natural language processing, personalized recommendations and translation, virtual assistants, and speech recognition. You can use each service standalone, or you can use them together to build a sophisticated AI-capable application. This sample application demonstrates the usage of some of the AWS AI Services to enrich your existing .NET applications with AI capabilities using AWS SDK for .NET.
+With AWS AI services, you can add capabilities like image and video analysis, natural language processing, personalized recommendations and translation, virtual assistants, and speech recognition. You can use each service standalone, or you can use them together to build a sophisticated AI-capable application. This sample application demonstrates the usage of some of the AWS AI services to enrich your existing .NET applications with AI capabilities using AWS SDK for .NET.
 
 ### [AWS Text To Speech Assistant](https://github.com/aws-samples/aws-net-guides/tree/master/SampleApplications/2022/ServerlessTextToSpeech)
 
-The serverless text to speech assistant is a .NET 6.0-based serverless application (using AWS SAM) that allows you to upload a PDF file into an S3 bucket. The file will be sent to Amazon Textract to read the text that is in the document. Then, the text from the document will be sent to Amazon Polly to convert the text into an MP3 file. The file will be available via a Lambda function, which will provide a pre-signed URL that you can use to retrieve the file from the output S3 bucket. Two SNS topics are provided, one to deliver a notification in the event of failure, and one for success.
+The text to speech assistant is a .NET 6.0-based serverless application (using AWS SAM) that allows you to upload a PDF file into an S3 bucket. The file will be sent to Amazon Textract to read the text that is in the document. Then, the text from the document will be sent to Amazon Polly to convert the text into an MP3 file. The file will be available via a Lambda function, which will provide a pre-signed URL that you can use to retrieve the file from the output S3 bucket. Two SNS topics are provided, one to deliver a notification in the event of failure, and one for success.
 
 ### [Compare Faces](https://github.com/aws-samples/aws-net-guides/tree/master/Serverless/Serverless%20App%20with%20Dynamic%20Step%20Functions)
 
