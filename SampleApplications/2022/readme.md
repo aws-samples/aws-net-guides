@@ -1,10 +1,8 @@
 ## AWS .NET Samples
 
-In 2022 a number of AWS employees who love .NET on AWS go together to create a set of sample application that show how to use .NET with a variety of AWS services. All of the samples are written in C#, and are easy to follow. None will take more than 45 minutes to complete, and the shortest will take as little as 5 minutes. The goal is show you how easy it is to learn use .NET with AWS  
+In 2022 AWS employees who love .NET on AWS got together to create a set of sample application that show how to use .NET with a variety of AWS services. All the samples are written in C#, and are easy to follow. None will take more than 45 minutes to complete, and the shortest will take as little as 5 minutes. The goal is to show you how easy it is to learn to use .NET with AWS  
 
-Linked below you will find six sample applications that show how to use .NET with various AWS services. Each sample includes a readme file that describes a problem, and how it is solved.
-
-Full source code, and instructions for deployment are included in each sample.
+Linked below you will find six sample applications. Each sample includes a readme file that describes a problem, and how it is solved. Full source code, and instructions for deployment are included in each sample.
 
 ### [AWS AI Services](https://github.com/aws-samples/aws-net-guides/tree/master/SampleApplications/2022/aws-ai-services-demo)
 
@@ -20,12 +18,11 @@ This sample shows how we can compare a photo image against several other photos 
 
 ### [Event Driven Serverless CDK](https://github.com/aws-samples/aws-net-guides/tree/master/SampleApplications/2022/ServerlessEventDrivenSentimentAnalysis)
 
-This sample application demonstrates building an AWS native, event driven, customer review analysis application. It uses serverless components and native AWS service integrations. The application is deployed using the AWS CDK, and is written in C#.
-
+This sample shows how to build an AWS native, event driven, customer review analysis application. It uses serverless components and native AWS service integrations. The application is deployed using the AWS CDK, and is written in C#.
 
 ### [ML Integration - Media Catalog](https://github.com/aws-samples/aws-net-guides/tree/master/SampleApplications/2022/MediaCatalog)
 
-This application catalogs images using Amazon Rekognition. Using the functionality in this application users can take advantage of Rekognition’s ability to automatically apply moderation to images, and determine if images contain potentially offensive materials. Additionally, Rekognition will detect the content of images and build a cross reference between the items discovered and the images stored.
+This application catalogs images using Amazon Rekognition, letting you automatically apply moderation to images, and determine if images contain potentially offensive materials. Additionally, Rekognition will detect the content of images and build a cross reference between the items discovered, and the images stored.
 
 ### [Using AWS Lambda functions, a non-public SQL Server, and AWS Secrets Manager together](https://github.com/aws-samples/aws-net-guides/tree/master/SampleApplications/2022/LambdaVPCSecretsManager)
 
