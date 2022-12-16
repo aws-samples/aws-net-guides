@@ -43,3 +43,5 @@ You will then be brought back to the image list view. The image will no longer h
 This completes the tour of the Media Catalog application. Feel free to spend more time looking around at the application and becoming familiar with the other functions that are available before moving on to the next part of the guide. 
 
 
+[Next](../02-Getting-Started/01-Instalation.md) <br/>
+[Back to Start](../README.md)

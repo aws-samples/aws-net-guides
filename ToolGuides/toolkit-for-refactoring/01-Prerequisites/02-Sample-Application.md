@@ -30,3 +30,5 @@ You should make a copy of the Sample Application code, as the actions in this gu
 
 The rest of this guide will assume that your sample project is stored in "C:\Source\MediaLibrary4.8\".
 
+[Next](./03-Sample-Tour.md) <br/>
+[Back to Start](../README.md)

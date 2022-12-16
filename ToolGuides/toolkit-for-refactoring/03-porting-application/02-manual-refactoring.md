@@ -1,10 +1,10 @@
 # Manual Post-Porting refactoring
 
-Once your applciation has been refactored by the toolkit, you will have to go threough the procvess of manually refacoting any of the incompatable code that the refactoring toolkit was not able to automatically correct for you.
+Once your application has been refactored by the toolkit, you will have to go through a process of manually refactoring any of the incomparable code that the toolkit was not able to automatically correct for you.
 
-This section of the guide will walk through some of the manual effort required for this applciation.
+This section of the guide will walk through some of the manual effort required for completing the porting of this application.
 
-If you need assistance in progressing with the refactoring effort, there is a copy of the MediaLibrary project built to target .NET 6 in the AWS Samples repository at the following location:
+If you need help in progressing with the refactoring effort, there is a copy of the MediaLibrary project built to target .NET 6 in the AWS Samples repository at the following location:
 
 ```
 aws-net-guides\SampleApplications\2022\MediaCatalog\MediaLibrary6.0
@@ -12,11 +12,11 @@ aws-net-guides\SampleApplications\2022\MediaCatalog\MediaLibrary6.0
 
 ## Fixing the missing NuGet packages
 
-When you open up code files that referance the AWS SDKs you will notice errors with the using clauses in the code. This will in turn create code errors with classes that can not be found.
+When you open up code files that reference the AWS SDKs you will notice errors with the using clauses in the code. This will cause code errors with classes that cannot be found.
 
 ![Error List](img/s3-storage-class-errors.png)
 
-These errors are caused by missing NuGet packages after the projects have been ported. These errors are corrected by adding the list of required AWS SDKs back into the project via NuGet. Right click on your project, select "Manage NuGet Packages..." and then add the following packages to your project.
+These errors are caused by missing NuGet. These errors are corrected by adding the list of required AWS SDKs back into the project via NuGet. Right click on your project, select "Manage NuGet Packages..." and then add the following packages to your project.
 
 * AWSSDK.Core
 * AWSSDK.S3
@@ -29,7 +29,7 @@ These errors are caused by missing NuGet packages after the projects have been p
 
 ## Fixing the Upload function
 
-The **Controllers/FileManagementController.cs** file contains an upload method that referances the HttpPostedFileBase class. However this class is no longer available in .NET 6. This is one of the APIs that needs to be manually corrected.
+The **Controllers/FileManagementController.cs** file contains an upload method that references the HttpPostedFileBase class. However, this class is no longer available in .NET 6. This is one of the APIs that needs to be manually corrected.
 
 Replace the code:
 ```C#
@@ -53,7 +53,7 @@ with
 string SaveFile(IFormFile file);
 ```
 
-Open the **Services/S3StorageService.cs** file. This class will not compile due to the HttpPostedFileBase class not being available in .NET 6. 
+Open the **Services/S3StorageService.cs** file. This class will not compile because of the HttpPostedFileBase class not being available in .NET 6. 
 
 replace the code: 
 ```C#
@@ -88,7 +88,7 @@ try
 ```
 Open the file **Services/FileSystemStorageService.cs** this is a class primarily used for local testing of the website when not using Amazon S3 for storage. You can either delete the file from your solution, or you can fix the implementation for .NET 6.
 
-replace the code:
+If you choose to fix the optional class, replace the code:
 ```C#
 public string SaveFile(HttpPostedFileBase file)
 {
@@ -115,17 +115,17 @@ public string SaveFile(IFormFile file)
 
 ## Removing the Test Project
 
-At this point your main project will compile, however the Test project in the solution will fail to build. Normally you would carry on to fix the test project, however for the purposes of this guide we will remove the test project.
+At this point your main project will compile, however the Test project in the solution will fail to build. Normally you would carry on to fix the test project, however, for the purposes of this guide we will simply remove the test project.
 
-Right click on the test project and delect Remove.
+Right click on the test project and select Remove.
 ![Remove Tests](img/remove-tests.png)
 
 Attempting to build your project now will have some results that may appear confusing. A rebuild will show that there are no code errors:
 ![Build Failed 1](img/build-failed-1.png)
 
-However the project output will indicate that the build of the project has failed.![Build Failed 2](img/build-failed-2.png)
+However, the project output will indicate that the build of the project has failed.![Build Failed 2](img/build-failed-2.png)
 
-This discrepancy comes down to the code that is embedded in the projects CSHTML pages. The specific problems lie in the layout files used by the MVC framework.
+This discrepancy comes down to the code that is embedded in the project's CSHTML pages. The specific problems lie in the layout files used by the MVC framework.
 
 ## Fix the application views
 
@@ -165,7 +165,7 @@ with
 
 ## Fix the App Settings
 
-At this point your applciation will successfully compile. However if you run the applciation locally it will fail with the following error:
+At this point your application will successfully compile. However, if you run the application locally it will fail with the following error:
 ![Crypto Error](img/crypto-error.png)
 
 This error is caused by the boiler plate code that is used to create the .NET 6 AppSettings.json file. The default app settings attempts to support HTTPS on your test end points when the application is run in debug mode, however the default code does not have a certificate required to support HTTPS.
@@ -193,29 +193,22 @@ replace the code:
   with 
   ```json
     "AllowedHosts": "*"
-    "Kestrel": {
-    "Endpoints": {
-      "Http": {
-        "Url": "http://0.0.0.0:8080"
-      }
-    }
-  }
   ```
-This change completely eliminated the "Kestrel" section, and removes the trailing comma after the Allowed hosts.
+This change completely eliminated the "Kestrel" section, and removes the trailing comma after the AllowedHosts entry.
 
 Save all of your open files, and run the application using the debug option.
 
 ## Testing your application
 
-Once you ahve run the application, your project should start up correctly, and you should see the following:
+Once you have run the application, your project should start up correctly, and you should see the following:
 
 ![Final Results](img/final-results.png)
 
 Note that the title of the tab calls out that the application is running .NET version 6.0!
 
-You can test your application functionality by interacting with the application. This may uncover additional errors that occur at runtime, dispite your application successfully compiling. For example:
+You can test your application functionality by interacting with the application. This may uncover additional errors that occur at runtime, despite your application successfully compiling. 
 
-If you attempt to process an image
+For example, if you attempt to process an image:
 ![Process error 1](img/process-error-1.png)
 
 your will receive the following runtime error:
@@ -234,3 +227,7 @@ public async Task<ActionResult> Process(ImageProcessingModel model, IFormCollect
 ## Complete
 
 Congradulations! You have completed the porting of your application from .NET 4.8 to .NET 6. 
+
+
+[Next](../04-Cleanup/01-cleanup.md) <br/>
+[Back to Start](../README.md)

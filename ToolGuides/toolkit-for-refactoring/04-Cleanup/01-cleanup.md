@@ -13,3 +13,6 @@ The deployment process created three Dynamo DB tables. These tables contain the 
 
 ## Delete Cloud Formation Stack
 Once the manual cleanup has been completed, you can go into CloudFormation and delete the stack that you deployed in the first section of this guide. Cloud formation will clean up the rest of the resources in your account.
+
+ 
+[Back to Start](../README.md)
