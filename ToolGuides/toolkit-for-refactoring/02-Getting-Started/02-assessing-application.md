@@ -1,7 +1,6 @@
 # Assessing your application
 
-The first step in using the AWS Toolkit for .NET Refactoring to refactor your application from .NET Framework 4.8 to .NET 6 is to perform
-an assessment of the current application. This assessment will scan through your application code, dependencies and NuGet packages to help determine the level of complexity with converting your application. 
+The first step in using the AWS Toolkit for .NET Refactoring to refactor your application from .NET Framework 4.8 to .NET 6 is to perform an assessment of the current application. This assessment will scan through your application code, dependencies, and NuGet packages to help determine the level of complexity with converting your application. 
 
 The assessment is nondestructive, the results of the assessment is a report.
 
@@ -43,11 +42,11 @@ After configuring the toolkit, you are presented with the Refactoring Dashboard.
 
 ![Dashboard - Not Started](img/dashboard-not-started.png)
 
-At this point, the Assessment is listed as "Not Started." As a result other toolkit functionality may not be available. In order to perform an assessment, you fist need to open one of the code files in the solution. Double click on the "HomeController.cs" file to open it, then click back on the Dashboard Window.
+At this point, the Assessment is listed as "Not Started." As a result other toolkit functionality may not be available. In order to perform an assessment, you first need to open one of the code files in the solution. Double click on the "HomeController.cs" file to open it, then click back on the Dashboard Window.
 
 ![Dashboard - Not Started](img/open-code-file.png)
 
-From this window select the option to "Start Assessment" abd the toolkit will begin inspecting your application.
+From this window select the option to "Start Assessment" and the toolkit will begin inspecting your application.
 
 ![Dashboard - Not Started](img/assessment-in-progress.png)
 
@@ -59,13 +58,13 @@ Once your assessment is complete, you will receive an assessment report below.
 
 ### Incompatible NuGet packages
 
-This lists the number of packages that as included in the solution that are not compatible with the target version of .NET in this case .NET 6. Note that for these packages, you will need to find alternatives for the required functionality. 
+This lists the number of packages that are included in the solution that are not compatible with the target version of .NET in this case .NET 6. Note that for these packages, you will need to find alternatives for the required functionality. 
 
 ### Incompatible APIs
 
 This lists the number of API calls that are not portable to the new version of .NET. This may be cases where functionality has been deprecated or the API calls have breaking changes. Manual coding effort will be required, after porting, to make the code compatible with the new target version of .NET.
 
-These options provide hints to the amount of manual work, that the toolkit was able to identify, requred after the porting. It is important to understand that these are the incompatibilities that the tool was able to identify, it is not necessarily all of the changes that will be required. You may find code that needs to be reworked when you test your application after porting.
+These results provide details to the amount of manual work, that the toolkit was able to identify, that will be required after the porting. It is important to understand that these are the incompatibilities that the tool was able to identify, it is not necessarily all of the changes that will be required. You may find code that needs to be reworked when you test your application after porting.
 
 Further details of the incomparable code can be found by looking at the error list, and selecting to view Warnings. Each item in the list shows some manual effort that you will have to complete.
 

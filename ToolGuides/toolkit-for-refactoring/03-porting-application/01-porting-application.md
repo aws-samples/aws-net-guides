@@ -6,7 +6,7 @@ Porting application code is destructive. You can't undo the changes once the pro
 
 ## Start porting your application
 
-You start the porting process for your application from the assessment dashboard. Select the project to be ported in the Solution Explorer, then click the Port drop down, and click "Port selected project."
+You start the porting process for your application from the assessment dashboard. Select the project to be ported in the Solution Explorer, then click the Port drop down, and click "Port Selected Project."
 
 ![Start Assessment](img/start-porting.png)
 

@@ -1,6 +1,6 @@
 # Manual Post-Porting refactoring
 
-Once your application has been refactored by the toolkit, you will have to go through a process of manually refactoring any of the incomparable code that the toolkit was not able to automatically correct for you.
+Once your application has been refactored by the toolkit, you will have to go through a process of manually refactoring any of the incompatible code that the toolkit was not able to automatically correct for you.
 
 This section of the guide will walk through some of the manual effort required for completing the porting of this application.
 
@@ -12,11 +12,11 @@ aws-net-guides\SampleApplications\2022\MediaCatalog\MediaLibrary6.0
 
 ## Fixing the missing NuGet packages
 
-When you open up code files that reference the AWS SDKs you will notice errors with the using clauses in the code. This will cause code errors with classes that cannot be found.
+When you open up code files that reference the AWS SDKs you will notice errors with the using clauses in the code, and other errors indicating that classes that your code uses can not be found.
 
 ![Error List](img/s3-storage-class-errors.png)
 
-These errors are caused by missing NuGet. These errors are corrected by adding the list of required AWS SDKs back into the project via NuGet. Right click on your project, select "Manage NuGet Packages..." and then add the following packages to your project.
+These errors are caused by missing NuGet packages. These errors are corrected by adding the list of required AWS SDKs back into the project via NuGet. Right click on your project, select "Manage NuGet Packages..." and then add the following packages to your project.
 
 * AWSSDK.Core
 * AWSSDK.S3
