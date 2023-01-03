@@ -16,8 +16,9 @@ Following this guide will result in the possibility of charges to your AWS Accou
 
 ### Resources
 
-* Toolkit for Visual Studio 2022 [Here](https://marketplace.visualstudio.com/items?itemName=AWSTR.refactoringtoolkit2022)
-* Toolkit for Visual Studio 2019 [Here](https://marketplace.visualstudio.com/items?itemName=AWSTR.refactoringtoolkit2019)
+* [Toolkit for Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=AWSTR.refactoringtoolkit2022)
+* [Toolkit for Visual Studio 2019](https://marketplace.visualstudio.com/items?itemName=AWSTR.refactoringtoolkit2019)
 
 ### Further Reading
 
+[Product Page](https://aws.amazon.com/visual-studio-net/) <br>
