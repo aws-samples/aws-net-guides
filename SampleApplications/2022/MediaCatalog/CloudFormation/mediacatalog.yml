@@ -1,0 +1,442 @@
+Resources:
+  projectbucket49C58645:
+    Type: AWS::S3::Bucket
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/project-bucket/Resource
+  projectbucketPolicy1EC30B15:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: projectbucket49C58645
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:GetBucket*
+              - s3:GetObject*
+              - s3:List*
+            Effect: Allow
+            Principal:
+              CanonicalUser:
+                Fn::GetAtt:
+                  - OriginAccessIdentityDF1E3CAC
+                  - S3CanonicalUserId
+            Resource:
+              - Fn::GetAtt:
+                  - projectbucket49C58645
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - projectbucket49C58645
+                        - Arn
+                    - /*
+          - Action: s3:GetObject
+            Effect: Allow
+            Principal:
+              CanonicalUser:
+                Fn::GetAtt:
+                  - OriginAccessIdentityDF1E3CAC
+                  - S3CanonicalUserId
+            Resource:
+              Fn::Join:
+                - ""
+                - - Fn::GetAtt:
+                      - projectbucket49C58645
+                      - Arn
+                  - /*
+        Version: "2012-10-17"
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/project-bucket/Policy/Resource
+  OriginAccessIdentityDF1E3CAC:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: Allows CloudFront to reach the bucket
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/OriginAccessIdentity/Resource
+  projectdistribution6597D937:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        DefaultCacheBehavior:
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          Compress: true
+          TargetOriginId: MediaCatalogStackprojectdistributionOrigin126811F54
+          ViewerProtocolPolicy: allow-all
+        Enabled: true
+        HttpVersion: http2
+        IPV6Enabled: true
+        Origins:
+          - DomainName:
+              Fn::GetAtt:
+                - projectbucket49C58645
+                - RegionalDomainName
+            Id: MediaCatalogStackprojectdistributionOrigin126811F54
+            S3OriginConfig:
+              OriginAccessIdentity:
+                Fn::Join:
+                  - ""
+                  - - origin-access-identity/cloudfront/
+                    - Ref: OriginAccessIdentityDF1E3CAC
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/project-distribution/Resource
+  fileTable83642645:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      KeySchema:
+        - AttributeName: keyname
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: keyname
+          AttributeType: S
+      ProvisionedThroughput:
+        ReadCapacityUnits: 3
+        WriteCapacityUnits: 3
+      TableName: MetadataService-files
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/fileTable/Resource
+  imagesTable4174DE57:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      KeySchema:
+        - AttributeName: image
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: image
+          AttributeType: S
+      ProvisionedThroughput:
+        ReadCapacityUnits: 3
+        WriteCapacityUnits: 3
+      TableName: MetadataService-Images
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/imagesTable/Resource
+  lookupTable70C77133:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      KeySchema:
+        - AttributeName: label
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: label
+          AttributeType: S
+      ProvisionedThroughput:
+        ReadCapacityUnits: 3
+        WriteCapacityUnits: 3
+      TableName: MetadataService-Lookups
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/lookupTable/Resource
+  beanstalkroleE93800ED:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                Fn::Join:
+                  - ""
+                  - - ec2.
+                    - Ref: AWS::URLSuffix
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/CloudWatchLogsFullAccess
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/AmazonRekognitionReadOnlyAccess
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/AWSXrayFullAccess
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/beanstalk-role/Resource
+  beanstalkroleDefaultPolicy8C98130E:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:Abort*
+              - s3:DeleteObject*
+              - s3:GetBucket*
+              - s3:GetObject*
+              - s3:List*
+              - s3:PutObject
+              - s3:PutObjectLegalHold
+              - s3:PutObjectRetention
+              - s3:PutObjectTagging
+              - s3:PutObjectVersionTagging
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - projectbucket49C58645
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - projectbucket49C58645
+                        - Arn
+                    - /*
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:BatchWriteItem
+              - dynamodb:ConditionCheckItem
+              - dynamodb:DeleteItem
+              - dynamodb:DescribeTable
+              - dynamodb:GetItem
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+              - dynamodb:PutItem
+              - dynamodb:Query
+              - dynamodb:Scan
+              - dynamodb:UpdateItem
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - fileTable83642645
+                  - Arn
+              - Fn::GetAtt:
+                  - imagesTable4174DE57
+                  - Arn
+              - Fn::GetAtt:
+                  - lookupTable70C77133
+                  - Arn
+              - Ref: AWS::NoValue
+          - Action:
+              - ssm:DescribeParameters
+              - ssm:GetParameter
+              - ssm:GetParameterHistory
+              - ssm:GetParameters
+            Effect: Allow
+            Resource:
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - ":ssm:"
+                    - Ref: AWS::Region
+                    - ":"
+                    - Ref: AWS::AccountId
+                    - :parameter/
+                    - Ref: beanstalkrolerarameter1F07177C
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - ":ssm:"
+                    - Ref: AWS::Region
+                    - ":"
+                    - Ref: AWS::AccountId
+                    - :parameter/
+                    - Ref: cloudfronturl63DBF573
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - ":ssm:"
+                    - Ref: AWS::Region
+                    - ":"
+                    - Ref: AWS::AccountId
+                    - :parameter/
+                    - Ref: filemetadatatable2E0AD559
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - ":ssm:"
+                    - Ref: AWS::Region
+                    - ":"
+                    - Ref: AWS::AccountId
+                    - :parameter/
+                    - Ref: imagemetadatatable2A36F062
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - ":ssm:"
+                    - Ref: AWS::Region
+                    - ":"
+                    - Ref: AWS::AccountId
+                    - :parameter/
+                    - Ref: lookupmetadatatable6579D6CE
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - ":ssm:"
+                    - Ref: AWS::Region
+                    - ":"
+                    - Ref: AWS::AccountId
+                    - :parameter/
+                    - Ref: mediabucketnameAA0A697D
+        Version: "2012-10-17"
+      PolicyName: beanstalkroleDefaultPolicy8C98130E
+      Roles:
+        - Ref: beanstalkroleE93800ED
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/beanstalk-role/DefaultPolicy/Resource
+  beanstalkprofile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - Ref: beanstalkroleE93800ED
+      InstanceProfileName:
+        Ref: beanstalkroleE93800ED
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/beanstalk-profile
+  cloudfronturl63DBF573:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Type: String
+      Value:
+        Fn::GetAtt:
+          - projectdistribution6597D937
+          - DomainName
+      Description: The base URL for the Cloud Front Distribution
+      Name: Cloud-Front-URL
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/cloud-front-url/Resource
+  mediabucketnameAA0A697D:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Type: String
+      Value:
+        Ref: projectbucket49C58645
+      Description: The S3 Bucket that stores the files.
+      Name: Media-Bucket-name
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/media-bucket-name/Resource
+  filemetadatatable2E0AD559:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Type: String
+      Value:
+        Ref: fileTable83642645
+      Description: Table where the file metadata gets placed after upload.
+      Name: File-Metadata-Table
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/file-metadata-table/Resource
+  imagemetadatatable2A36F062:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Type: String
+      Value:
+        Ref: imagesTable4174DE57
+      Description: Metadata about images, what Tags are included and saved in the image.
+      Name: Image-Metadata-Table
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/image-metadata-table/Resource
+  lookupmetadatatable6579D6CE:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Type: String
+      Value:
+        Ref: lookupTable70C77133
+      Description: Metadata about images, what Tags are included and saved in the image.
+      Name: Lookup-Metadata-Table
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/lookup-metadata-table/Resource
+  beanstalkrolerarameter1F07177C:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Type: String
+      Value:
+        Ref: beanstalkroleE93800ED
+      Description: Role for your elastic beanstalk instance to use.
+      Name: Beanstalk-IAM-Role
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/beanstalk-role-rarameter/Resource
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Analytics: v2:deflate64:H4sIAAAAAAAA/21QwU6EMBD9Fu9lAEm8eVhZTfayEtx4NaUdNiPQbqZFsyH8u5Rq2IOn9+b1vcmb3kORQXYnv12idJf01MD05qXqxCJ9TK6A6WlUHXpRtuaXRahsT+q6yXGehertqFu2xsP0ynQms1MKnTtoNJ78miiD5yV4/nXsyXmmZvRkTbDfzrPQVyMHq5eiJ9n0GAwrmQXJAabaRm3FreTGDsZ5aRRWbFsKMeeGcDSTOVeS5YAeeY38DfMsanR2ZBU33/DSGk2x1976I/r0ATLI8xSOz6fSMu4ul+Qd2S2Wx68C8jRf3sOXfzqihMfl4gGhjvgDBsS2zo4BAAA=
+    Metadata:
+      aws:cdk:path: Media-Catalog-Stack/CDKMetadata/Default
+    Condition: CDKMetadataAvailable
+Conditions:
+  CDKMetadataAvailable:
+    Fn::Or:
+      - Fn::Or:
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - af-south-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-east-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-northeast-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-northeast-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-south-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-southeast-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-southeast-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ca-central-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - cn-north-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - cn-northwest-1
+      - Fn::Or:
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-central-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-north-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-south-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-west-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-west-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-west-3
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - me-south-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - sa-east-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-east-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-east-2
+      - Fn::Or:
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-west-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-west-2
