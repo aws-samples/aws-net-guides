@@ -1,8 +1,8 @@
 # ML Integration - Media Catalog
 
-This sample application is designed to catalog images using AMazon Rekognition. Using the functionality in this
+This sample application is designed to catalog images using Amazon Rekognition. Using the functionality in this
 application users can take advantage of Rekognition's ability to automatically apply moderation to images, and determine 
-if images contain potentially offensive materials. Additionally Rekohnotion will detect the content of images and build 
+if images contain potentially offensive materials. Additionally Rekognition will detect the content of images and build 
 a cross referance between the items discovered and the images stored.
 
 ![Screen Shot](img/screenshot01.png)
@@ -22,7 +22,7 @@ In order to use this project you will need to deploy the required infrastructure
 The supporing infrastructure has been created as a Cloud Development Kit (CDK) stack and can be deployed 
 by running the command CDK Deploy command from the MediaLibrary6.0\CDK folder. 
 
-Instructions for installign cdk can be found [here](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html)
+Instructions for installing CDK can be found [here](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html)
 
 Documentation for CDK can be found [here](https://docs.aws.amazon.com/cdk/v2/guide/home.html)
 
