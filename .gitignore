@@ -31,3 +31,6 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+.gitignore
+SampleApplications/2023/hotel-recommender/cdk.out
+SampleApplications/2023/hotel-recommender/node_modules
