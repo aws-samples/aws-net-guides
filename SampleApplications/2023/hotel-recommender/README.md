@@ -36,6 +36,12 @@ The CDK provisions the following
 
 **Prerequisite** Ensure you have run the CDK project before running the app
 
+You can the CDK prject by running the following command 
+
+```
+    cdk deploy
+```
+
 The App Source code can be found at [hotel-recommender-app](./src/hotel-recommender-app/)
 
 ### Initial Run
