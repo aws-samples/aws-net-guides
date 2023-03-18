@@ -8,14 +8,15 @@ using Amazon.IdentityManagement.Model;
 using CommandLine;
 using Amazon.Runtime.CredentialManagement;
 using Amazon.Runtime;
+using Amazon.SecurityToken;
 
 namespace hotel_recommender;
 class Program
 {
 
     public static readonly string LOGICALID = "hotel-picker";
-    public static readonly string ACCOUNTID = "";
-    public static readonly string REGION = "us-east-1";
+    public static string? AccountID;
+    public static string? Region;
 
     public class Options
     {
@@ -63,8 +64,15 @@ class Program
                 Environment.Exit(0);
             });
 
-        var amazonPersonalizeClient = new AmazonPersonalizeClient(RegionEndpoint.USEast1);
-        var amazonPersonalizeRunTimeClient = new AmazonPersonalizeRuntimeClient(RegionEndpoint.USEast1);
+        AmazonSecurityTokenServiceClient tokenServiceClient = new AmazonSecurityTokenServiceClient();
+        var amazonPersonalizeRunTimeClient = new AmazonPersonalizeRuntimeClient();
+        var response = await tokenServiceClient.GetCallerIdentityAsync(new Amazon.SecurityToken.Model.GetCallerIdentityRequest());
+        AccountID = response.Account;
+        Region = amazonPersonalizeRunTimeClient.Config.RegionEndpoint.SystemName;
+        
+        
+        var amazonPersonalizeClient = new AmazonPersonalizeClient();
+
         var client = new AmazonIdentityManagementServiceClient();
 
         var datasets = new List<Tuple<string, string>>
@@ -92,7 +100,7 @@ class Program
             {
                 var importJobs = await amazonPersonalizeClient.ListDatasetImportJobsAsync(new ListDatasetImportJobsRequest
                 {
-                    DatasetArn = $"arn:aws:personalize:{REGION}:{ACCOUNTID}:dataset/{LOGICALID}-DatasetGroup/{dataset.Item1}"
+                    DatasetArn = $"arn:aws:personalize:{Region}:{AccountID}:dataset/{LOGICALID}-DatasetGroup/{dataset.Item1}"
                 });
 
                 if (importJobs.DatasetImportJobs.Count == 0)
@@ -102,7 +110,7 @@ class Program
                         JobName = $"{dataset.Item1}-job",
                         DataSource = new DataSource { DataLocation = $"https://{LOGICALID}.s3.amazonaws.com/{dataset.Item2}" },
                         RoleArn = roleResponse.Role.Arn,
-                        DatasetArn = $"arn:aws:personalize:{REGION}:{ACCOUNTID}:dataset/{LOGICALID}-DatasetGroup/{dataset.Item1}"
+                        DatasetArn = $"arn:aws:personalize:{Region}:{AccountID}:dataset/{LOGICALID}-DatasetGroup/{dataset.Item1}"
                     });
                     Console.WriteLine(string.Format("interactions-job Response is {0}", importjob.DatasetImportJobArn));
                 }
@@ -126,7 +134,7 @@ class Program
                     Thread.Sleep(timeout);
                     importJobResponse = await amazonPersonalizeClient.DescribeDatasetImportJobAsync(new DescribeDatasetImportJobRequest
                     {
-                        DatasetImportJobArn = $"arn:aws:personalize:{REGION}:{ACCOUNTID}:dataset-import-job/{datasetgroupItem}"
+                        DatasetImportJobArn = $"arn:aws:personalize:{Region}:{AccountID}:dataset-import-job/{datasetgroupItem}"
                     });
                     Console.WriteLine($"Status of solution version is {importJobResponse.DatasetImportJob.Status}");
                 } while (importJobResponse.DatasetImportJob.Status != "ACTIVE");
@@ -139,7 +147,7 @@ class Program
             var recommender = await amazonPersonalizeClient.CreateSolutionAsync(new CreateSolutionRequest
             {
                 Name = $"{LOGICALID}",
-                DatasetGroupArn = $"arn:aws:personalize:{REGION}:{ACCOUNTID}:dataset-group/{LOGICALID}-DatasetGroup",
+                DatasetGroupArn = $"arn:aws:personalize:{Region}:{AccountID}:dataset-group/{LOGICALID}-DatasetGroup",
                 PerformAutoML = true
             });
             Console.WriteLine($"SolutinArn is {recommender.SolutionArn}");
@@ -200,7 +208,7 @@ class Program
 
         var recommendation = await amazonPersonalizeRunTimeClient.GetRecommendationsAsync(new GetRecommendationsRequest
         {
-            CampaignArn = $"arn:aws:personalize:{REGION}:{ACCOUNTID}:campaign/{LOGICALID}-campaign",
+            CampaignArn = $"arn:aws:personalize:{Region}:{AccountID}:campaign/{LOGICALID}-campaign",
             UserId = userID
         });
 
