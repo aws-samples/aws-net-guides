@@ -1,5 +1,5 @@
 {
-  "app": "dotnet run --project src/HotelPicker/HotelPicker.csproj",
+  "app": "dotnet run --project src/hotel-recommender-cdk/hotel-recommender-cdk.csproj",
   "watch": {
     "include": [
       "**"
