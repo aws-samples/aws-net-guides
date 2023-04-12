@@ -1,0 +1,10 @@
+{
+    "source": ["aws.s3"],
+    "detail-type": ["Object Created"],
+    "detail": {
+      "bucket": {
+        "name": ["eventbridge-lambda-and-s3-example"]
+      }
+    }
+  }
+  

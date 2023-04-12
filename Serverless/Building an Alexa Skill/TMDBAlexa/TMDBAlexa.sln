@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32728.150
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TMDBAlexa.SeedData", "TMDBAlexa.SeedData\TMDBAlexa.SeedData.csproj", "{0FA6B2A3-F020-4D2B-8375-2580530B49D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TMDBAlexa.Shared", "TMDBAlexa.Shared\TMDBAlexa.Shared.csproj", "{58EB52D9-7D4E-462D-B5FC-8A0B4B489BA4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TMDBAlexa.Skill", "TMDBAlexa.Skill\TMDBAlexa.Skill.csproj", "{37EE6586-3A93-472B-B2EE-CF3F7859B951}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FA6B2A3-F020-4D2B-8375-2580530B49D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FA6B2A3-F020-4D2B-8375-2580530B49D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FA6B2A3-F020-4D2B-8375-2580530B49D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FA6B2A3-F020-4D2B-8375-2580530B49D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58EB52D9-7D4E-462D-B5FC-8A0B4B489BA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58EB52D9-7D4E-462D-B5FC-8A0B4B489BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58EB52D9-7D4E-462D-B5FC-8A0B4B489BA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58EB52D9-7D4E-462D-B5FC-8A0B4B489BA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37EE6586-3A93-472B-B2EE-CF3F7859B951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37EE6586-3A93-472B-B2EE-CF3F7859B951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37EE6586-3A93-472B-B2EE-CF3F7859B951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37EE6586-3A93-472B-B2EE-CF3F7859B951}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AD7EE5EB-6853-4A44-B985-08D0EAF2806C}
+	EndGlobalSection
+EndGlobal
