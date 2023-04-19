@@ -9,14 +9,14 @@ namespace MediaLibrary.Controllers
 {
     public class RekognitionController : Controller
     {
-        
+
         private readonly AwsSettings _configuration;
         private readonly IFileMetadataService _metadataService;
         private readonly IImageMetadataService _imageMetadataService;
         private readonly IImageLookupService _imageLookupService;
         private readonly ILogger _logger;
 
-        public RekognitionController (IOptions<AwsSettings> options, IFileMetadataService metadataService, IImageMetadataService imageMetadataService, ILogger<RekognitionController> logger, IImageLookupService imageLookupService)
+        public RekognitionController(IOptions<AwsSettings> options, IFileMetadataService metadataService, IImageMetadataService imageMetadataService, ILogger<RekognitionController> logger, IImageLookupService imageLookupService)
         {
             _configuration = options.Value;
             _metadataService = metadataService;
@@ -58,7 +58,7 @@ namespace MediaLibrary.Controllers
             }
         }
 
-        public async Task<IActionResult> Process (string item)
+        public async Task<IActionResult> Process(string item)
         {
             _logger.Log(LogLevel.Information, "RekognitionController::Process", null);
             AWSXRayRecorder.Instance.BeginSubsegment("RekognitionController::Process - Getting File Metadata");
@@ -93,7 +93,7 @@ namespace MediaLibrary.Controllers
                 };
 
                 var labels = await client.DetectLabelsAsync(detectLabelsRequest);
-                
+
                 // Store the new data in a new dynamo DB Table
                 foreach (var label in labels.Labels)
                 {
@@ -111,7 +111,7 @@ namespace MediaLibrary.Controllers
                 AWSXRayRecorder.Instance.EndSubsegment();
             }
             // Sore individual indexes 
-            return View (viewModel); 
+            return View(viewModel);
         }
         [HttpPost]
         public async Task<IActionResult> Process(ImageProcessingModel model, IFormCollection collection)
@@ -162,7 +162,7 @@ namespace MediaLibrary.Controllers
             return RedirectToAction("Index", "FileManagement");
         }
 
-        public async Task<IActionResult> Search (string filter)
+        public async Task<IActionResult> Search(string filter)
         {
             var fullLabelData = await _imageLookupService.GetLabelData();
             ImageLookupDataModel imageLookupList;
@@ -189,7 +189,7 @@ namespace MediaLibrary.Controllers
             {
                 viewModel.CurrentValue = "---Choose Label---";
             }
-           
+
             viewModel.Labels = new List<string>();
 
             foreach (var item in fullLabelData)
@@ -200,7 +200,7 @@ namespace MediaLibrary.Controllers
                 }
             }
 
-            
+
 
             return View(viewModel);
         }
