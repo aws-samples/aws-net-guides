@@ -6,20 +6,23 @@ namespace MediaLibrary.Services
     public class RekognitionModerationService : IModerationService
     {
         private readonly AwsSettings _configuration;
-        private readonly ILogger<RekognitionModerationService> _logger;
+        private readonly ILogger _logger;
 
-        public RekognitionModerationService (IOptions<AwsSettings> options, ILogger<RekognitionModerationService> logger)
+
+
+        public RekognitionModerationService(AwsSettings options, ILogger logger)
         {
-            _configuration = options.Value;
+            _configuration = options;
             _logger = logger;
         }
+
         public async Task<ModerationResultsViewModel> IsContentAllowed(string objectLocation)
         {
             Amazon.Rekognition.AmazonRekognitionClient client = new Amazon.Rekognition.AmazonRekognitionClient();
 
             var results = await client.DetectModerationLabelsAsync(new Amazon.Rekognition.Model.DetectModerationLabelsRequest()
             {
-                MinConfidence = 75F,
+                MinConfidence = 50F,
                 Image = new Amazon.Rekognition.Model.Image()
                 {
                     S3Object = new Amazon.Rekognition.Model.S3Object()

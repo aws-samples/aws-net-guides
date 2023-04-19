@@ -15,7 +15,7 @@ builder.Services.AddScoped<IStorageService, S3StorageService>();
 builder.Services.AddScoped<IFileMetadataService, DynamoFileMetadataService>();
 builder.Services.AddScoped<IImageMetadataService, DynamoImageMetadataService>();
 builder.Services.AddScoped<IImageLookupService, DynamoImageLookupService>();
-builder.Services.AddScoped<IModerationService, RekognitionModerationService>();
+
 
 
 builder.Services.Configure<AwsSettings>(builder.Configuration.GetSection("AWSConfig"));
