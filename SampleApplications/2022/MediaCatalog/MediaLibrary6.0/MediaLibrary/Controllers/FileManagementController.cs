@@ -14,16 +14,14 @@ namespace MediaLibrary.Controllers
         private readonly IFileMetadataService _metadataService;
         private readonly IImageMetadataService _imageService;
         private readonly IImageLookupService _imageLookupService;
-        private readonly IModerationService _moderationService;
         private readonly ILogger _logger;
-        public FileManagementController (IStorageService storage, IOptions<AwsSettings> options, IFileMetadataService metadataService, IImageMetadataService imageService, ILogger<FileManagementController> logger, IImageLookupService imageLookupService, IModerationService moderationService)
+        public FileManagementController (IStorageService storage, IOptions<AwsSettings> options, IFileMetadataService metadataService, IImageMetadataService imageService, ILogger<FileManagementController> logger, IImageLookupService imageLookupService)
         {
             _storage = storage;
             _configuration = options.Value;
             _metadataService = metadataService;
             _imageService = imageService;
             _imageLookupService = imageLookupService;
-            _moderationService = moderationService;
             _logger = logger;
         }
         // We need to store the files in S3 and then push the metadata into a Dynamo DB Table.
@@ -62,6 +60,8 @@ namespace MediaLibrary.Controllers
 
                 string s3KeyName = _storage.SaveFile(file);
                 _logger.Log(LogLevel.Information, "Saved file {0} to S3 bucket as {1}", file.FileName, s3KeyName );
+
+                IModerationService _moderationService = new RekognitionModerationService (_configuration, _logger);
 
                 var moderationResults = await _moderationService.IsContentAllowed(s3KeyName);
                 if (moderationResults.ImageAllowed)
