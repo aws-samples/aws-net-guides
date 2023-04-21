@@ -69,8 +69,8 @@ class Program
         var response = await tokenServiceClient.GetCallerIdentityAsync(new Amazon.SecurityToken.Model.GetCallerIdentityRequest());
         AccountID = response.Account;
         Region = amazonPersonalizeRunTimeClient.Config.RegionEndpoint.SystemName;
-        
-        
+
+
         var amazonPersonalizeClient = new AmazonPersonalizeClient();
 
         var client = new AmazonIdentityManagementServiceClient();
@@ -202,20 +202,23 @@ class Program
             } while (campaignResponse.Campaign.Status != "ACTIVE");
         }
 
-        Console.Write("Getting recommendations, please enter your userId -> ");
-
-        var userID = Console.ReadLine();
-
-        var recommendation = await amazonPersonalizeRunTimeClient.GetRecommendationsAsync(new GetRecommendationsRequest
+        if (!initialLoad)
         {
-            CampaignArn = $"arn:aws:personalize:{Region}:{AccountID}:campaign/{LOGICALID}-campaign",
-            UserId = userID
-        });
+            Console.Write("Getting recommendations, please enter your userId -> ");
 
-        Console.WriteLine($"Hello User {userID}");
-        foreach (var hotel in recommendation.ItemList)
-        {
-            Console.WriteLine($"Amazon Personlize recommnds the following hotel for you {hotel.ItemId}");
+            var userID = Console.ReadLine();
+
+            var recommendation = await amazonPersonalizeRunTimeClient.GetRecommendationsAsync(new GetRecommendationsRequest
+            {
+                CampaignArn = $"arn:aws:personalize:{Region}:{AccountID}:campaign/{LOGICALID}-campaign",
+                UserId = userID
+            });
+
+            Console.WriteLine($"Hello User {userID}");
+            foreach (var hotel in recommendation.ItemList)
+            {
+                Console.WriteLine($"Amazon Personlize recommends the following hotel for you {hotel.ItemId}");
+            }
         }
     }
 }
