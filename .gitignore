@@ -34,3 +34,4 @@ msbuild.wrn
 .gitignore
 cdk.out/
 node_modules/
+Serverless/Serverless App with Dynamic Step Functions/.aws-sam/build.toml
