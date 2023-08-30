@@ -64,7 +64,7 @@ scaling up or down automatically to meet application traffic needs. To use with 
 to configure AWS App Runner to start, run, scale, and load balance the application. 
 
 [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) allows customers to package up their applications and deploy to elastic beanstalk as a container image. 
-By using containers, customer can deplooy .NET 7 applications on Elastic Beanstalk. 
+By using containers, customer can deploy .NET 7 applications on Elastic Beanstalk. 
 
 ## Tools, Libraries, and SDK
 
