@@ -1,0 +1,8 @@
+{
+    "function-handler"     : "bootstrap",
+    "msbuild-parameters"   : "--self-contained true",
+    "framework"            : "net8.0",
+    "function-description" : "",
+    "package-type"         : "Zip",
+    "function-architecture" : "x86_64"
+}

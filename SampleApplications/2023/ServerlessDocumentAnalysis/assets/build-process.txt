@@ -1,0 +1,56 @@
+1. Run CDK Synth from CDK directory
+
+cdk synth
+
+
+2. Go to CDK directory (cdk.out)
+
+sam-nightly build -t .\cdk.out\ServerlessDocProcessingStack.template.json --use-container --mount-with WRITE
+(add --use-container for .net7)
+(use sam-nightly because of recent issue)
+sam-nightly build -t .\cdk.out\ServerlessDocProcessingStack.template.json
+
+3. sam deploy
+
+1st time around:
+sam-deploy --guided
+
+
+subsequent:
+sam-deploy
+
+
+
+
+
+Overall
+--------------
+
+cdk synth
+
+
+sam build -t .\cdk.out\ServerlessDocProcessingStack.template.json
+
+
+sam deploy
+
+
+
+
+
+
+build-DotNet7Lambda:
+	dotnet clean src/DotNet7Lambda
+	dotnet publish src/DotNet7Lambda/DotNet7Lambda.csproj -c Release -r linux-x64 --self-contained -o $(ARTIFACTS_DIR)
+
+	dotnet clean
+	dotnet publish DotNet7Lambda/DotNet7Lambda.csproj -c Release -r linux-x64 --self-contained -o $(ARTIFACTS_DIR)
+
+
+
+
+
+
+cdk synth  --build build.bat
+
+cdk deploy --build build.bat --require-approval never --profile dotnet-ohio
