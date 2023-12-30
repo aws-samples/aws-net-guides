@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <AWSProjectType>Lambda</AWSProjectType>
+    <AssemblyName>bootstrap</AssemblyName>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <NoWarn>AWSLambda0103;IDE0060</NoWarn>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(RuntimeIdentifier)' == 'linux-arm64'">
+    <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="68.2.0.9" />
+    <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="68.2.0.9" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Amazon.Lambda.Annotations" Version="1.1.0" />
+    <PackageReference Include="Amazon.Lambda.CloudWatchEvents" Version="4.4.0" />
+    <PackageReference Include="Amazon.Lambda.RuntimeSupport" Version="1.10.0" />
+    <PackageReference Include="Amazon.Lambda.Core" Version="2.2.0" />
+    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.4.0" />
+    <PackageReference Include="AWS.Lambda.Powertools.Logging" Version="1.4.4" />
+    <PackageReference Include="AWS.Lambda.Powertools.Metrics" Version="1.5.3" />
+    <PackageReference Include="AWS.Lambda.Powertools.Tracing" Version="1.3.2" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.300.27" />
+    <PackageReference Include="AWSSDK.StepFunctions" Version="3.7.302.19" />
+    <PackageReference Include="AWSSDK.XRay" Version="3.7.300.27" />
+    <PackageReference Include="AWSXRayRecorder.Handlers.AwsSdk" Version="2.12.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DocProcessing.Shared\DocProcessing.Shared.csproj" />
+  </ItemGroup>
+</Project>

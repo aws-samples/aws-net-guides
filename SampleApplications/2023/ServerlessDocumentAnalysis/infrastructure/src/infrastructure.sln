@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_SolutionItems", "{C2A31D6F-B414-4D08-A8D7-06ACE97632BC}"
+	ProjectSection(SolutionItems) = preProject
+		..\build.bat = ..\build.bat
+		..\build.sh = ..\build.sh
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerlessDocAnalysis", "ServerlessDocAnalysis\ServerlessDocAnalysis.csproj", "{AA122E9D-6EDA-49F1-A680-A88052A05BA7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA122E9D-6EDA-49F1-A680-A88052A05BA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA122E9D-6EDA-49F1-A680-A88052A05BA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA122E9D-6EDA-49F1-A680-A88052A05BA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA122E9D-6EDA-49F1-A680-A88052A05BA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C188C153-6109-4166-8005-96323A3D3897}
+	EndGlobalSection
+EndGlobal
