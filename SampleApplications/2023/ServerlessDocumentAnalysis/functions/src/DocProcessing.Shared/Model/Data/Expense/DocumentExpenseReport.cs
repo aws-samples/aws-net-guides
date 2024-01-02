@@ -3,8 +3,16 @@ using System.Text.Json.Serialization;
 
 namespace DocProcessing.Shared.Model.Data.Expense;
 
-public class DocumentExpenseReport
+public class DocumentExpenseReport()
 {
+    public DocumentExpenseReport(IEnumerable<DocumentExpenseSummary> summaryItems, IEnumerable<DocumentExpenseGroup> groups)
+        : this()
+    {
+        ExpenseGroups.AddRange(groups);
+        ScalarExpenseSummaryValues.AddRange(summaryItems);
+    }
+
+
     [JsonPropertyName("expenseGroups")]
     [DynamoDBProperty("expenseGroups")]
     public List<DocumentExpenseGroup> ExpenseGroups { get; set; } = [];
@@ -12,12 +20,6 @@ public class DocumentExpenseReport
     [JsonPropertyName("scalarSummaryItems")]
     [DynamoDBProperty("scalarSummaryItems")]
     public List<DocumentExpenseSummary> ScalarExpenseSummaryValues { get; set; } = [];
-
-    public void AddScalarExpenseSummaryValue(string currency, string label, string type, string value) =>
-        ScalarExpenseSummaryValues.Add(new DocumentExpenseSummary { Currency = currency, Label = label, Type = type, Value = value });
-
-
-
 
 
 

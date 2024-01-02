@@ -8,57 +8,60 @@ namespace DocProcessingTest;
 [DeploymentItem(@"TestAssets\TextractResults.json")]
 public class TestTextractQuery
 {
-    private TextractDataModel? TextractData { get; set; }
-    private TextractAnalysisResult? TextractResult { get; set; }
+    private TextractDataModel TextractData { get; set; }
+    private TextractAnalysisResult TextractResult { get; set; }
 
     [TestInitialize()]
     public void Setup()
     {
         using FileStream jsonStream = File.OpenRead(@"TextractResults.json");
-        if (jsonStream is null)
-        {
-            throw new ArgumentNullException(nameof(jsonStream));
-        }
+        Assert.IsNotNull(jsonStream);
+
         TextractResult = JsonSerializer.Deserialize<TextractAnalysisResult>(jsonStream);
-        if (TextractResult is null)
-        {
-            throw new ArgumentNullException(nameof(TextractResult));
-        }
+        Assert.IsNotNull(TextractResult);
+
         TextractData = new TextractDataModel(TextractResult.Blocks);
     }
 
-
-    [TestMethod("Test Block Count")]
-    public void TestBlockCount()
+    [TestMethod]
+    public void GetBlockCount_Count_Valid()
     {
         Assert.IsTrue(TextractResult?.GetBlockCount() == 1000);
-
     }
 
-    [TestMethod("Get Query Result")]
-    public void TestQueryResults()
+    [TestMethod]
+    public void GetQueryResults_Count_Valid()
     {
-        var queryResultPatientName = TextractData?.GetQueryResults("patientname");
+        // Test several patient results from the test file.
 
-        Assert.IsTrue(queryResultPatientName?.Count() == 2);
+        // 1) Confirm that for the patient name query, there are two results
+        var queryResultPatientName = TextractData?.GetQueryResults("patientname").ToList();
+        Assert.IsTrue(queryResultPatientName?.Count == 2);
 
-        Assert.AreEqual(queryResultPatientName.Where(a => a.Text == "Edward Sang").Count(), 1);
+        // 2) Confirm the presence of the two well known values for patient name query
+        var patientResult1a = queryResultPatientName.Where(a => a.Text == "Edward Sang").ToList();
+        Assert.IsTrue(patientResult1a.Count == 1);
 
-        Assert.AreEqual(queryResultPatientName.Where(a => a.Text == "Denis Roegel").Count(), 1);
+        var patientResult1b = queryResultPatientName.Where(a => a.Text == "Denis Roegel").ToList();
+        Assert.IsTrue(patientResult1b.Count == 1);
 
-        var queryResultDateOfService = TextractData?.GetQueryResults("dateofservice");
+        // Confirm the presence of the two well known values for date of service query
+        var queryResultDateOfService = TextractData?.GetQueryResults("dateofservice").ToList();
+        Assert.IsTrue(queryResultPatientName?.Count == 2);
 
-        Assert.AreEqual(queryResultDateOfService?.Where(a => a.Text == "20 July 1865").Count(), 1);
+        // Confirm the presence of the two well known values for date of service query
+        var dateOfServiceResult1a = queryResultDateOfService?.Where(a => a.Text == "20 July 1865").ToList();
+        Assert.IsTrue(dateOfServiceResult1a?.Count == 1);
 
-        Assert.AreEqual(queryResultDateOfService?.Where(a => a.Text == "11 january 2021").Count(), 1);
+        var dateOfServiceResult1b = queryResultDateOfService?.Where(a => a.Text == "11 january 2021").ToList();
+        Assert.IsTrue(dateOfServiceResult1b?.Count == 1);
     }
 
-    [TestMethod("Get Invalid Query Result")]
-    public void TestInvalidQueryResults()
+    [TestMethod]
+    public void GetQueryResults_Count_Invalid()
     {
-        var queryResultPatientName = TextractData?.GetQueryResults("baadvalue");
-
-        Assert.IsTrue(queryResultPatientName?.Count() == 0);
+        var queryResultPatientName = TextractData?.GetQueryResults("baadvalue").ToList();
+        Assert.IsTrue(queryResultPatientName?.Count == 0);
     }
 
 }

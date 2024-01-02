@@ -115,13 +115,13 @@ public class Function(IAmazonTextract textractClient, IDataService dataService)
             OutputConfig = new OutputConfig
             {
                 S3Bucket = Environment.GetEnvironmentVariable("TEXTRACT_BUCKET"),
-                S3Prefix = Environment.GetEnvironmentVariable("TEXTRACT_OUTPUT_KEY")
+                S3Prefix = Environment.GetEnvironmentVariable("TEXTRACT_EXPENSE_OUTPUT_KEY")
             }
         };
         var textractResult = await _textractClient.StartExpenseAnalysisAsync(textractRequest).ConfigureAwait(false);
         data.TextractJobId = textractResult.JobId;
         data.TextractTaskToken = input.TaskToken;
-        data.ExpenseOutputKey = $"{Environment.GetEnvironmentVariable("TEXTRACT_OUTPUT_KEY")}/{textractResult.JobId}";
+        data.ExpenseOutputKey = $"{Environment.GetEnvironmentVariable("TEXTRACT_EXPENSE_OUTPUT_KEY")}/{textractResult.JobId}";
         data.OutputBucket = Environment.GetEnvironmentVariable("TEXTRACT_BUCKET");
 
         await _dataService.SaveData(data).ConfigureAwait(false);

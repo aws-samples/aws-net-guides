@@ -1,13 +1,15 @@
-﻿using DocProcessing.Shared.Model.Data.Query;
+﻿using DocProcessing.Shared.Model;
+using DocProcessing.Shared.Model.Data;
+using DocProcessing.Shared.Model.Data.Query;
 
 namespace DocProcessing.Shared.Service;
 
 public interface IDataService
 {
+    Task<ProcessData> InitializeProcessData(IProcessDataInitializer initializer, string idTagKey = null, string queryTagKey = null);
+
     Task<IEnumerable<DocumentQuery>> GetAllQueries();
     Task<IEnumerable<DocumentQuery>> GetQueries(IEnumerable<string> queryKeys);
-
-
 
     string GenerateId(string id = null);
 

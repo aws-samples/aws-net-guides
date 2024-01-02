@@ -12,6 +12,17 @@ public class StepFunctionConstruct : Construct
     private string EnvironmentName { get; }
     public string ResourceNamePrefix { get; }
 
+    // Step Function Steps for this state machine.
+    LambdaInvoke InitializeState { get; init; }
+    LambdaInvoke SendSuccess { get; init; }
+    LambdaInvoke SendFailure { get; init; }
+    LambdaInvoke TextractState { get; init; }
+    LambdaInvoke ProcessTextractResultsState { get; init; }
+    LambdaInvoke TextractExpenseState { get; init; }
+    LambdaInvoke ProcessTextractExpenseResultsState { get; init; }
+    SqsSendMessage SendFailureQueue { get; init; }
+    SqsSendMessage SendSuccessQueue { get; init; }
+
 
     public StepFunctionConstruct(Construct scope, string id, StepFunctionProps props)
         : base(scope, id)
@@ -20,7 +31,7 @@ public class StepFunctionConstruct : Construct
         ResourceNamePrefix = props.ResourceNamePrefix;
 
         // Step Functions Tasks
-        LambdaInvoke initializeState = new(this, "initializeState", new LambdaInvokeProps
+        InitializeState = new(this, "initializeState", new LambdaInvokeProps
         {
             LambdaFunction = props.InitializeFunction,
             Comment = "Initializes the Document Processing Workflow",
@@ -32,7 +43,7 @@ public class StepFunctionConstruct : Construct
             })
         });
 
-        LambdaInvoke sendSuccess = new(this, "sendSuccess", new LambdaInvokeProps
+        SendSuccess = new(this, "sendSuccess", new LambdaInvokeProps
         {
             LambdaFunction = props.SuccessFunction,
             Comment = "Sends a success message to the SQS Queue",
@@ -43,7 +54,7 @@ public class StepFunctionConstruct : Construct
 
         });
 
-        LambdaInvoke sendFailure = new(this, "sendFailure", new LambdaInvokeProps
+        SendFailure = new(this, "sendFailure", new LambdaInvokeProps
         {
             LambdaFunction = props.FailureFunction,
             Comment = "Sends a failure message to the SQS Queue",
@@ -56,7 +67,7 @@ public class StepFunctionConstruct : Construct
         });
 
         // Standard Textract Analysis
-        LambdaInvoke textractState = new(this, "textractState", new LambdaInvokeProps
+        TextractState = new(this, "textractState", new LambdaInvokeProps
         {
             IntegrationPattern = IntegrationPattern.WAIT_FOR_TASK_TOKEN,
             TaskTimeout = Timeout.Duration(Duration.Seconds(600)),
@@ -69,7 +80,7 @@ public class StepFunctionConstruct : Construct
             })
         });
 
-        LambdaInvoke processTextractResultsState = new(this, "processTextractQueryResults", new LambdaInvokeProps
+        ProcessTextractResultsState = new(this, "processTextractQueryResults", new LambdaInvokeProps
         {
             LambdaFunction = props.ProcessTextractQueryFunction,
             Comment = "Function to process textract query results asynchronously",
@@ -77,7 +88,7 @@ public class StepFunctionConstruct : Construct
         });
 
         // Expense Textract Analysis
-        LambdaInvoke textractExpenseState = new(this, "textractExpenseState", new LambdaInvokeProps
+        TextractExpenseState = new(this, "textractExpenseState", new LambdaInvokeProps
         {
             IntegrationPattern = IntegrationPattern.WAIT_FOR_TASK_TOKEN,
             TaskTimeout = Timeout.Duration(Duration.Seconds(600)),
@@ -89,66 +100,29 @@ public class StepFunctionConstruct : Construct
             })
         });
 
-        LambdaInvoke processTextractExpenseResultsState = new(this, "processTextractExpenseResults", new LambdaInvokeProps
+        ProcessTextractExpenseResultsState = new(this, "processTextractExpenseResults", new LambdaInvokeProps
         {
             LambdaFunction = props.ProcessTextractExpenseFunction,
             Comment = "Function to process textract Expense results asynchronously",
             OutputPath = "$.Payload",
         });
 
-        SqsSendMessage sendFailureQueue = new(this, "sendFailureQueue", new SqsSendMessageProps
+        SendFailureQueue = new(this, "sendFailureQueue", new SqsSendMessageProps
         {
             Queue = props.SendFailureQueue,
             Comment = "Send Failure Message",
             MessageBody = TaskInput.FromJsonPathAt("$"),
         });
 
-        SqsSendMessage sendSuccessQueue = new(this, "sendSuccessQueue", new SqsSendMessageProps
+        SendSuccessQueue = new(this, "sendSuccessQueue", new SqsSendMessageProps
         {
             Queue = props.SendSuccessQueue,
             Comment = "Send Success Message",
             MessageBody = TaskInput.FromJsonPathAt("$")
         });
 
-        // Compose the workflow sequence
-        initializeState.Next(textractState);
-        initializeState.AddCatch(sendFailure, new CatchProps
-        {
-            Errors = new[] { "States.ALL" },
-            ResultPath = "$.error"
-        });
-        textractState.Next(processTextractResultsState);
-        textractState.AddCatch(sendFailure, new CatchProps
-        {
-            Errors = new[] { "States.ALL" },
-            ResultPath = "$.error"
-        });
-
-        processTextractResultsState.Next(textractExpenseState);
-        processTextractResultsState.AddCatch(sendFailure, new CatchProps
-        {
-            Errors = new[] { "States.ALL" },
-            ResultPath = "$.error"
-        });
-
-        textractExpenseState.Next(processTextractExpenseResultsState);
-        textractExpenseState.AddCatch(sendFailure, new CatchProps
-        {
-            Errors = new[] { "States.ALL" },
-            ResultPath = "$.error"
-        });
-
-        processTextractExpenseResultsState.Next(sendSuccess);
-        processTextractExpenseResultsState.AddCatch(sendFailure, new CatchProps
-        {
-            Errors = new[] { "States.ALL" },
-            ResultPath = "$.error"
-        });
-
-        sendSuccess.Next(sendSuccessQueue);
-
-        sendFailure.Next(sendFailureQueue);
-
+        // Take the resources and build the state machine structure.
+        IChainable workflowChain = BuildWorkflowChain();
 
         // Log group for the step function
         LogGroup stepFunctionLogGroup = new(this, "stepFunctionLogGroup", new Amazon.CDK.AWS.Logs.LogGroupProps
@@ -161,7 +135,7 @@ public class StepFunctionConstruct : Construct
         StateMachine = new StateMachine(this, $"{id}StateMachine", new StateMachineProps
         {
             StateMachineName = GetStateMachineName("stateMachine"),
-            DefinitionBody = DefinitionBody.FromChainable(initializeState),
+            DefinitionBody = DefinitionBody.FromChainable(workflowChain),
             Comment = "State Machine used to process uploaded PDFs and retrieve Query/Expense data.",
             TracingEnabled = true,
             StateMachineType = StateMachineType.STANDARD,
@@ -180,11 +154,40 @@ public class StepFunctionConstruct : Construct
         props.EventBridgeRule.AddTarget(new SfnStateMachine(StateMachine, new SfnStateMachineProps
         {
             DeadLetterQueue = props.DeadLetterQueue,
-            RetryAttempts = 3,
             Role = props.EventBridgeRole
         }));
         StateMachine.GrantStartExecution(props.EventBridgeRole);
     }
+
+    private LambdaInvoke BuildWorkflowChain()
+    {
+        // Compose the workflow sequence
+        InitializeState.Next(TextractState);
+        AddCatch(InitializeState, SendFailure);
+
+        TextractState.Next(ProcessTextractResultsState);
+        AddCatch(TextractState, SendFailure);
+
+        ProcessTextractResultsState.Next(TextractExpenseState);
+        AddCatch(ProcessTextractResultsState, SendFailure);
+
+        TextractExpenseState.Next(ProcessTextractExpenseResultsState);
+        AddCatch(TextractExpenseState, SendFailure);
+
+        ProcessTextractExpenseResultsState.Next(SendSuccess);
+        AddCatch(ProcessTextractExpenseResultsState, SendFailure);
+
+        SendSuccess.Next(SendSuccessQueue);
+
+        SendFailure.Next(SendFailureQueue);
+
+        return InitializeState;
+    }
+    private static void AddCatch(LambdaInvoke step, IChainable failureStep) => step.AddCatch(failureStep, new CatchProps
+    {
+        Errors = new[] { "States.ALL" },
+        ResultPath = "$.error"
+    });
 
     private string GetStateMachineName(string baseName) => $"{ResourceNamePrefix}-{baseName}-{EnvironmentName}";
     private string GetLogGroupName(string baseName) => $"{ResourceNamePrefix}-{baseName}-{EnvironmentName}";

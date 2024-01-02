@@ -8,40 +8,36 @@ namespace DocProcessingTest;
 public class TestTextractExpense
 {
 
-    private ExpenseResult? ExpenseResult { get; set; }
-    private ExpenseDataModel? ExpenseData { get; set; }
+    private ExpenseResult ExpenseResult { get; set; }
+    private ExpenseDataModel ExpenseData { get; set; }
 
     [TestInitialize()]
     public void Setup()
     {
         using FileStream jsonStream = File.OpenRead(@"ExpenseAnalysis.json");
-        if (jsonStream is null)
-        {
-            throw new ArgumentNullException(nameof(jsonStream));
-        }
+        Assert.IsNotNull(jsonStream);
+
         ExpenseResult = JsonSerializer.Deserialize<ExpenseResult>(jsonStream);
-        if (ExpenseResult is null)
-        {
-            throw new ArgumentNullException(nameof(ExpenseResult));
-        }
+        Assert.IsNotNull(ExpenseResult);
+
         ExpenseData = new ExpenseDataModel(ExpenseResult.ExpenseDocuments);
     }
 
-    [TestMethod("Test Expense Document Count")]
-    public void TestExpenseDocumentCount()
+    [TestMethod]
+    public void ExpenseDocuments_Count_Valid()
     {
         Assert.IsTrue(ExpenseResult?.ExpenseDocuments.Count == 2);
     }
 
-    [TestMethod("Test Expense Document Indexes")]
-    public void TestExpenseDocumentIndexes()
+    [TestMethod]
+    public void GetExpenseReportIndexes_Count_Valid()
     {
         var indexes = ExpenseData?.GetExpenseReportIndexes();
         CollectionAssert.AreEquivalent(indexes?.ToList(), new int[] { 1, 2 });
     }
 
-    [TestMethod("Test Group IDs")]
-    public void TestGroupIds()
+    [TestMethod]
+    public void GetGroupIds_Count_Valid()
     {
         var groupIds1 = ExpenseData?.GetGroupIds(1);
         CollectionAssert.AreEquivalent(groupIds1?.ToList(), new string[]
@@ -52,8 +48,8 @@ public class TestTextractExpense
             { "b1c3723b-bf53-4d02-8a23-358c63f0a6ae", "95d257f3-3d27-42d1-924f-82d50564af1e" });
     }
 
-    [TestMethod("Test Scalar Summary Fields")]
-    public void TestScalarSummaryFields()
+    [TestMethod]
+    public void GetScalarSummaryFields_Count_Valid()
     {
         var summaryFields1 = ExpenseData?.GetScalarSummaryFields(1);
         Assert.IsTrue(summaryFields1?.Count() == 18);
@@ -62,8 +58,8 @@ public class TestTextractExpense
         Assert.IsTrue(summaryFields2?.Count() == 18);
     }
 
-    [TestMethod("Test Group Summary Fields")]
-    public void TestGroupSummaryFields()
+    [TestMethod]
+    public void GetGroupSummaryFields_Count_Valid()
     {
         var groupSummaryFields1a = ExpenseData?.GetGroupSummaryFields(1, "a0c3723b-bf53-4d02-8a23-358c63f0a6ae", "RECEIVER_SHIP_TO");
         Assert.IsTrue(groupSummaryFields1a?.Count() == 7);
@@ -88,21 +84,25 @@ public class TestTextractExpense
 
     }
 
-    [TestMethod("Test Get Types For Group")]
-    public void TestGetTypesForGroup()
+    [TestMethod]
+    public void GetTypesForGroup_List_Valid()
     {
         var group1Data = ExpenseData?.GetTypesForGroup(1, "a0c3723b-bf53-4d02-8a23-358c63f0a6ae");
-        CollectionAssert.AreEquivalent(group1Data?.ToList(), new string[] { "RECEIVER_SHIP_TO" }); ;
+        CollectionAssert.AreEquivalent(group1Data?.ToList(), new string[] { "RECEIVER_SHIP_TO" });
 
         var group2Data = ExpenseData?.GetTypesForGroup(1, "84c257f3-3d27-42d1-924f-82d50564af1e");
-        CollectionAssert.AreEquivalent(group2Data?.ToList(), new string[] { "VENDOR" }); ;
+        CollectionAssert.AreEquivalent(group2Data?.ToList(), new string[] { "VENDOR" });
 
         var group3Data = ExpenseData?.GetTypesForGroup(2, "b1c3723b-bf53-4d02-8a23-358c63f0a6ae");
-        CollectionAssert.AreEquivalent(group3Data?.ToList(), new string[] { "RECEIVER_SHIP_TO_2" }); ;
+        CollectionAssert.AreEquivalent(group3Data?.ToList(), new string[] { "RECEIVER_SHIP_TO_2" });
 
         var group4Data = ExpenseData?.GetTypesForGroup(2, "95d257f3-3d27-42d1-924f-82d50564af1e");
-        CollectionAssert.AreEquivalent(group4Data?.ToList(), new string[] { "VENDOR_2" }); ;
+        CollectionAssert.AreEquivalent(group4Data?.ToList(), new string[] { "VENDOR_2" });
+    }
 
+    [TestMethod]
+    public void GetTypesForGroup_List_Inalid()
+    {
         var group5Data = ExpenseData?.GetTypesForGroup(1, "FAIL_VALUE");
         Assert.IsTrue(group5Data?.Count() == 0);
     }

@@ -3,8 +3,16 @@ using System.Text.Json.Serialization;
 
 namespace DocProcessing.Shared.Model.Data.Expense;
 
-public class DocumentExpenseGroup
+public class DocumentExpenseGroup()
 {
+    public DocumentExpenseGroup(string group, string type, IEnumerable<DocumentExpenseSummary> summaryItems)
+        : this()
+    {
+        Group = group;
+        Type = type;
+        GroupSummaryItems.AddRange(summaryItems);
+    }
+
     [JsonPropertyName("group")]
     [DynamoDBProperty("group")]
     public string Group { get; set; }

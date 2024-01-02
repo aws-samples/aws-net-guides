@@ -149,6 +149,17 @@ You can then deploy the stack with the following command:
 cdk deploy --profile my-profile
 ```
 
+### Configure queries
+
+To configure natural language queries for your environment, you will need to add them to the "QueryData" dynamoDB table. Each record will represent one query. This is an example of what a query should look like:
+
+```
+{
+    "query":"q1",
+    "queryText":"What is the date of service?"
+}
+```
+
 ## Cleanup
 You can remove the infrastructure by using the following command:
 

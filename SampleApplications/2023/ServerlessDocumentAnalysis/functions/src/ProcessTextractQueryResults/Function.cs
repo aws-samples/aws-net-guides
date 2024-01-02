@@ -5,7 +5,7 @@ using Amazon.XRay.Recorder.Handlers.AwsSdk;
 using AWS.Lambda.Powertools.Logging;
 using AWS.Lambda.Powertools.Metrics;
 using AWS.Lambda.Powertools.Tracing;
-using DocProcessing.Shared.Model.Data.Query;
+using DocProcessing.Shared.Model;
 
 [assembly: LambdaSerializer(typeof(DefaultLambdaJsonSerializer))]
 [assembly: LambdaGlobalProperties(GenerateMain = true)]
@@ -35,26 +35,15 @@ public class Function(ITextractService textractService, IDataService dataService
         // Get the query Results
         foreach (var query in processData.Queries)
         {
-            var queryResult = textractModel.GetQueryResults(query.QueryId);
-
-            if (queryResult.Any())
-            {
-                query.IsValid = false;
-            }
-            else
-            {
-                query.IsValid = true;
-                query.Result.AddRange(queryResult.Select(r => new DocumentQueryResult() { Confidence = r.Confidence, ResultText = r.Text }));
-            }
+            var results = DocumentAnalysisUtilities.GetDocumentQueryResults(textractModel, query.QueryId);
+            query.Result.AddRange(results);
+            query.IsValid = results.Any();
         }
 
         // Save the query results back to the database, and clear the task token
-        processData.TextractJobId = null;
-        processData.TextractTaskToken = null;
+        processData.ClearTextractJobData();
+
         await _dataService.SaveData(processData).ConfigureAwait(false);
-
-        Logger.LogInformation($"Blocks Found = {textractModel.BlockCount}");
-
         return input;
     }
 

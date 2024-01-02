@@ -410,3 +410,11 @@ build/
 .vscode/
 
 
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+cdk.context.json
+cdk.out/
+function-output/
+.sarif/
+serverless.template

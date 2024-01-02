@@ -76,4 +76,22 @@ public class ProcessData : IdMessage
     [DynamoDBProperty("execution")]
     [JsonPropertyName("execution")]
     public string ExecutionId { get; set; }
+
+    public void ClearTextractJobData()
+    {
+        TextractJobId = null;
+        TextractTaskToken = null;
+    }
+
+    public void PopulateQueries(IEnumerable<DocumentQuery> queries)
+    {
+        Queries.AddRange(queries.Select(CreateInitializedQuery));
+    }
+
+    private static DocumentQuery CreateInitializedQuery(DocumentQuery query) =>
+        new()
+        {
+            QueryId = query.QueryId,
+            QueryText = query.QueryText
+        };
 }
