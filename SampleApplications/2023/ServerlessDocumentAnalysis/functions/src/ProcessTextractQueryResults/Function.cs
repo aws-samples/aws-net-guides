@@ -38,21 +38,12 @@ public class Function(ITextractService textractService, IDataService dataService
             var results = DocumentAnalysisUtilities.GetDocumentQueryResults(textractModel, query.QueryId);
             query.Result.AddRange(results);
             query.IsValid = results.Any();
-            }
-            else
-            {
-                query.IsValid = true;
-                query.Result.AddRange(queryResult.Select(r => new DocumentQueryResult() { Confidence = r.Confidence, ResultText = r.Text }));
-            }
         }
 
         // Save the query results back to the database, and clear the task token
         processData.ClearTextractJobData();
 
         await _dataService.SaveData(processData).ConfigureAwait(false);
-
-        Logger.LogInformation($"Blocks Found = {textractModel.BlockCount}");
-
         return input;
     }
 

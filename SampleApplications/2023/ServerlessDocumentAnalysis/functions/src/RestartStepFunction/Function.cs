@@ -35,17 +35,8 @@ public class Function(IAmazonStepFunctions stepFunctionClient, IDataService data
     {
         var record = input.Records.FirstOrDefault() ?? throw new RestartStepFunctionException("No message received");
 
-        //If there is no message, throw an error
-        if (record is null)
-        {
-            Logger.LogError(input);
-            throw new RestartStepFunctionException("No message received");
-        }
-
         // Deserialize the Message
         var message = JsonSerializer.Deserialize<TextractCompletionModel>(record.Sns.Message) ?? throw new RestartStepFunctionException($"Completion Message is Null");
-        Logger.LogInformation("Message:");
-        Logger.LogInformation(message);
 
         // Get the Task Token
         var processData = await _dataService.GetData<ProcessData>(message.JobTag).ConfigureAwait(false);
@@ -64,7 +55,6 @@ public class Function(IAmazonStepFunctions stepFunctionClient, IDataService data
 
         if (message.IsSuccess)
         {
-            Logger.LogInformation("Success!");
             response = await _stepFunctionClient.SendTaskSuccessAsync(new()
             {
                 TaskToken = processData.TextractTaskToken,
@@ -73,7 +63,6 @@ public class Function(IAmazonStepFunctions stepFunctionClient, IDataService data
         }
         else
         {
-            Logger.LogInformation("Failure!");
             response = await _stepFunctionClient.SendTaskFailureAsync(new()
             {
                 TaskToken = processData.TextractTaskToken,

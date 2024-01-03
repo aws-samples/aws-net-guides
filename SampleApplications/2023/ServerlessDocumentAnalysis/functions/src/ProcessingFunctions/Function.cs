@@ -1,13 +1,11 @@
 using Amazon.Lambda.Annotations;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.Serialization.SystemTextJson;
-using Amazon.S3;
 using Amazon.XRay.Recorder.Handlers.AwsSdk;
 using AWS.Lambda.Powertools.Logging;
 using AWS.Lambda.Powertools.Metrics;
 using AWS.Lambda.Powertools.Tracing;
 using DocProcessing.Shared.Exceptions;
-using DocProcessing.Shared.Model.Data.Query;
 using InitializeProcessing.Input;
 using ProcessingFunctions.Input;
 using ProcessingFunctions.Output;
@@ -28,7 +26,6 @@ public class Function(IDataService dataSvc)
         AWSSDKHandler.RegisterXRayForAllServices();
     }
 
-    private readonly IAmazonS3 _s3Client = s3Client;
     private readonly IDataService _dataSvc = dataSvc;
 
     [LambdaFunction]
@@ -93,7 +90,6 @@ public class Function(IDataService dataSvc)
         {
             throw new FileTypeException(pl.Id, $"Invalid file extension: {pl.FileExtension}");
         }
-
         return IdMessage.Create(pl.Id);
     }
 }

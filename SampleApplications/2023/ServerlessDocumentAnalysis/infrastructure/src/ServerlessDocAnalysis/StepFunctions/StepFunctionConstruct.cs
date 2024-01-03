@@ -124,25 +124,6 @@ public class StepFunctionConstruct : Construct
         // Take the resources and build the state machine structure.
         IChainable workflowChain = BuildWorkflowChain();
 
-        textractExpenseState.Next(processTextractExpenseResultsState);
-        textractExpenseState.AddCatch(sendFailure, new CatchProps
-        {
-            Errors = new[] { "States.ALL" },
-            ResultPath = "$.error"
-        });
-
-        processTextractExpenseResultsState.Next(sendSuccess);
-        processTextractExpenseResultsState.AddCatch(sendFailure, new CatchProps
-        {
-            Errors = new[] { "States.ALL" },
-            ResultPath = "$.error"
-        });
-
-        sendSuccess.Next(sendSuccessQueue);
-
-        sendFailure.Next(sendFailureQueue);
-
-
         // Log group for the step function
         LogGroup stepFunctionLogGroup = new(this, "stepFunctionLogGroup", new Amazon.CDK.AWS.Logs.LogGroupProps
         {
@@ -173,7 +154,6 @@ public class StepFunctionConstruct : Construct
         props.EventBridgeRule.AddTarget(new SfnStateMachine(StateMachine, new SfnStateMachineProps
         {
             DeadLetterQueue = props.DeadLetterQueue,
-            RetryAttempts = 3,
             Role = props.EventBridgeRole
         }));
         StateMachine.GrantStartExecution(props.EventBridgeRole);

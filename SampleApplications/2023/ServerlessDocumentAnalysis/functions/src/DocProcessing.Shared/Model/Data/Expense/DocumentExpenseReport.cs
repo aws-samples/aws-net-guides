@@ -21,12 +21,6 @@ public class DocumentExpenseReport()
     [DynamoDBProperty("scalarSummaryItems")]
     public List<DocumentExpenseSummary> ScalarExpenseSummaryValues { get; set; } = [];
 
-    public void AddScalarExpenseSummaryValue(string currency, string label, string type, string value) =>
-        ScalarExpenseSummaryValues.Add(new DocumentExpenseSummary { Currency = currency, Label = label, Type = type, Value = value });
-
-
-
-
 
 
 
