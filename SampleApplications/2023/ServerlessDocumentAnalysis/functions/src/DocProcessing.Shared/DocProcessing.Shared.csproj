@@ -10,10 +10,6 @@
     <PackageReference Include="Amazon.Lambda.Annotations" Version="1.1.0" />
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.300.28" />
     <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.300" />
-    <PackageReference Include="AWSSDK.S3" Version="3.7.305.3" />
-    <PackageReference Include="AWSSDK.StepFunctions" Version="3.7.302.20" />
-    <PackageReference Include="AWSSDK.Textract" Version="3.7.300.28" />
-    <PackageReference Include="AWSSDK.XRay" Version="3.7.300.28" />
     <PackageReference Include="AWSXRayRecorder.Handlers.AwsSdk" Version="2.12.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>

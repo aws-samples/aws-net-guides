@@ -18,6 +18,8 @@ public class DataService(IDynamoDBContext dbContext, IAmazonS3 s3Client) : IData
         return await asyncData.GetRemainingAsync().ConfigureAwait(false);
     }
 
+
+
     public async Task<IEnumerable<DocumentQuery>> GetQueries(IEnumerable<string> queryKeys)
     {
         if (queryKeys is null || !queryKeys.Any())
@@ -52,10 +54,10 @@ public class DataService(IDynamoDBContext dbContext, IAmazonS3 s3Client) : IData
     }
 
     public async Task<List<T>> GetBySingleIndex<T>(string id, string indexName)
-    {
+    {            
         return await DbContext.QueryAsync<T>(id, new DynamoDBOperationConfig
         {
-            IndexName = indexName,
+            IndexName = indexName,                                
         }).GetRemainingAsync().ConfigureAwait(false);
     }
 

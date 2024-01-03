@@ -11,6 +11,8 @@ public interface IDataService
     Task<IEnumerable<DocumentQuery>> GetAllQueries();
     Task<IEnumerable<DocumentQuery>> GetQueries(IEnumerable<string> queryKeys);
 
+
+
     string GenerateId(string id = null);
 
     Task<List<T>> GetBySingleIndex<T>(string id, string indexName);
