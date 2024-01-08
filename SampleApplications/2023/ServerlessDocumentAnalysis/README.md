@@ -26,7 +26,7 @@ This solution is meant to be useful in real-world scenario, in which multiple te
 ## Overview of the solution
 
 This is an overview of the process. The names of the resources are generic, since each deployment will yield resources with different physical names (to avoid resource name collission). Sone design decisions are noted below, but there are alternate ways of accomplishing some of the items.
-![Overview of serverless document analysis](/assets/doc-analysis-overview.jpg)
+![Overview of serverless document analysis](/SampleApplications/2023/ServerlessDocumentAnalysis/assets/doc-analysis-overview.jpg)
 
 This application is self contained. We will refer to an external application that integrates with this system as the "client application". There can be more than one client application, and a client application that provides input (i.e. uploads a file) may be different than an application that responds to the output of the system.
 1. A client application writes a PDF to the `InputBucket` S3 bucket. 
@@ -51,7 +51,7 @@ This application is self contained. We will refer to an external application tha
 
 3. The Step Function definition can be seen here. It consists of seven Lambda function integrations and two SQS integrations. Any unrecoverable errors (from any of the Lambda functions) are caught and sent to the `FailureFunction` function, which then writes a message to the `FailureQueue` with details for the client.
 
-    ![Step Function Definition](/assets/stepfunctions_graph.png)
+    ![Step Function Definition](/SampleApplications/2023/ServerlessDocumentAnalysis/assets/stepfunctions_graph.png)
 
 4. The EventBridge message is parsed by the `InitializeProcessing` Lambda function, which creates a record in the `ProcessData` DynamoDB table. It also retrieves the query text from the `ConfigData` DynamoDB table for use in the next step.
 
