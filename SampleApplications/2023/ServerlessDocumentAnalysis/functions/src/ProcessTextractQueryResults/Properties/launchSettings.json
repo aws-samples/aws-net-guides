@@ -1,0 +1,22 @@
+{
+  "profiles": {
+    "ProcessTextractResults": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ENVIRONMENT_NAME": "stg",
+        "AWS_LAMBDA_RUNTIME_API": "localhost:5050",
+        "AWS_PROFILE": "dotnet-ohio",
+        "AWS_REGION": "us-east-2",
+        "POWERTOOLS_LOGGER_CASE": "SnakeCase",
+        "POWERTOOLS_LOGGER_LOG_EVENT": "true",
+        "POWERTOOLS_LOGGER_SAMPLE_RATE": "0",
+        "POWERTOOLS_LOG_LEVEL": "Debug",
+        "POWERTOOLS_METRICS_NAMESPACE": "SubmitToTextract-stg",
+        "POWERTOOLS_SERVICE_NAME": "docprocessing-stg",
+        "POWERTOOLS_TRACER_CAPTURE_ERROR": "true",
+        "POWERTOOLS_TRACER_CAPTURE_RESPONSE": "true",
+        "POWERTOOLS_TRACE_DISABLED": "false"
+      }
+    }
+  }
+}

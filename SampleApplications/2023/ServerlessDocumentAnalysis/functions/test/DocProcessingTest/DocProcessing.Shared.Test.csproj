@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <NoWarn>CA1861</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="TestAssets\TextractResults.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestAssets\TextractResults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0-preview-23577-04" />
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="17.9.0-preview-23577-04" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.2.0-preview.23623.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.2.0-preview.23623.1" />
+    <PackageReference Include="coverlet.collector" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DocProcessing.Shared\DocProcessing.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="TestAssets\ExpenseAnalysis.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
