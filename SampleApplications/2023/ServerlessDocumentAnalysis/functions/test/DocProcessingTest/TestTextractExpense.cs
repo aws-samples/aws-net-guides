@@ -4,7 +4,7 @@ using System.Text.Json;
 namespace DocProcessingTest;
 
 [TestClass]
-[DeploymentItem(@"TestAssets\ExpenseAnalysis.json")]
+[DeploymentItem(@"TestAssets/ExpenseAnalysis.json")]
 public class TestTextractExpense
 {
 

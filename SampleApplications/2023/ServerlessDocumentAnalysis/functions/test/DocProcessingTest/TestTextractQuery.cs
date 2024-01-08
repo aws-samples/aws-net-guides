@@ -5,7 +5,7 @@ using System.Text.Json;
 namespace DocProcessingTest;
 
 [TestClass]
-[DeploymentItem(@"TestAssets\TextractResults.json")]
+[DeploymentItem(@"TestAssets/TextractResults.json")]
 public class TestTextractQuery
 {
     private TextractDataModel TextractData { get; set; }

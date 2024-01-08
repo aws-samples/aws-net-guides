@@ -29,7 +29,7 @@ public class Function(ITextractService textractService, IDataService dataService
     [Metrics]
     [Logging]
     [LambdaFunction]
-    public async Task<IdMessage> FunctionHandler(IdMessage input, ILambdaContext _context)
+    public async Task<IdMessage> FunctionHandler(IdMessage input, ILambdaContext context)
     {
         var processData = await _dataService.GetData<ProcessData>(input.Id).ConfigureAwait(false);
 

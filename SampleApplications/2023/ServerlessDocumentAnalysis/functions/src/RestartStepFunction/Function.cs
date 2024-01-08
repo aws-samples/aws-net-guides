@@ -31,7 +31,7 @@ public class Function(IAmazonStepFunctions stepFunctionClient, IDataService data
     [Metrics]
     [Logging]
     [LambdaFunction]
-    public async Task FunctionHandler(SNSEvent input, ILambdaContext _context)
+    public async Task FunctionHandler(SNSEvent input, ILambdaContext context)
     {
         var record = input.Records.FirstOrDefault() ?? throw new RestartStepFunctionException("No message received");
 

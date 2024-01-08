@@ -9,7 +9,7 @@ using System.Text.Json;
 namespace TestProcessTextractExpenseResults;
 
 [TestClass]
-[DeploymentItem(@"TestAssets\ExpenseAnalysis.json")]
+[DeploymentItem(@"TestAssets/ExpenseAnalysis.json")]
 public class TestFunctions
 {
     readonly Mock<ILambdaContext> _context = new();

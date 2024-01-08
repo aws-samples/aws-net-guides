@@ -10,7 +10,7 @@ using System.Text.Json;
 namespace TestProcessTextractQueryResults;
 
 [TestClass]
-[DeploymentItem(@"TestAssets\TextractResults.json")]
+[DeploymentItem(@"TestAssets/TextractResults.json")]
 public class TestFunctions
 {
     readonly Mock<ILambdaContext> _context = new();

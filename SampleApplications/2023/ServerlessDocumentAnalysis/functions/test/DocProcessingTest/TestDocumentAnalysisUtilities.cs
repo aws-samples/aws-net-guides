@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 namespace DocProcessing.Shared.Test;
 
 [TestClass]
-[DeploymentItem(@"TestAssets\TextractResults.json")]
-[DeploymentItem(@"TestAssets\ExpenseAnalysis.json")]
+[DeploymentItem(@"TestAssets/TextractResults.json")]
+[DeploymentItem(@"TestAssets/ExpenseAnalysis.json")]
 public class TestDocumentAnalysisUtilities
 {
     private ExpenseResult ExpenseResult { get; set; }

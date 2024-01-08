@@ -91,7 +91,7 @@ public class Function(IAmazonTextract textractClient, IDataService dataService)
     [Metrics]
     [Logging]
     [LambdaFunction]
-    public async Task<IdMessage> SubmitToTextractForExpenseAnalysis(IdMessage input, ILambdaContext _context)
+    public async Task<IdMessage> SubmitToTextractForExpenseAnalysis(IdMessage input, ILambdaContext context)
     {
         var data = await _dataService.GetData<ProcessData>(input.Id).ConfigureAwait(false);
 

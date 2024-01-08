@@ -32,7 +32,7 @@ public class Function(IDataService dataSvc)
     [Tracing]
     [Metrics]
     [Logging]
-    public async Task<SuccessOutput> SuccessOutputHandler(IdMessage input, ILambdaContext _context)
+    public async Task<SuccessOutput> SuccessOutputHandler(IdMessage input, ILambdaContext context)
     {
         var processData = await _dataSvc.GetData<ProcessData>(input.Id).ConfigureAwait(false);
         processData.Success = true;
@@ -53,7 +53,7 @@ public class Function(IDataService dataSvc)
     [Tracing]
     [Metrics]
     [Logging]
-    public async Task<FailOutput> FailOutputHandler(ErrorInput error, ILambdaContext _context)
+    public async Task<FailOutput> FailOutputHandler(ErrorInput error, ILambdaContext context)
     {
         var processData = (await _dataSvc.GetBySingleIndex<ProcessData>(error.Execution, "executionIndex").ConfigureAwait(false)).FirstOrDefault();
 
@@ -75,7 +75,7 @@ public class Function(IDataService dataSvc)
     [Tracing]
     [Metrics]
     [Logging]
-    public async Task<IdMessage> InitializeHandler(S3StepFunctionCompositeEvent input, ILambdaContext _context)
+    public async Task<IdMessage> InitializeHandler(S3StepFunctionCompositeEvent input, ILambdaContext context)
     {
 
         //Initialize the Payload
