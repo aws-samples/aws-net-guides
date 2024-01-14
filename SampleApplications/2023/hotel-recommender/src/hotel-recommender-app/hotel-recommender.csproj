@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>hotel_recommender</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.IdentityManagement" Version="3.7.100.87" />
+    <PackageReference Include="AWSSDK.Personalize" Version="3.7.101.66" />
+    <PackageReference Include="AWSSDK.PersonalizeRuntime" Version="3.7.100.86" />
+    <PackageReference Include="AWSSDK.SecurityToken" Version="3.7.101.29" />
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+  </ItemGroup>
+
+</Project>

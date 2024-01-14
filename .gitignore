@@ -31,3 +31,7 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+.gitignore
+cdk.out/
+node_modules/
+Serverless/Serverless App with Dynamic Step Functions/.aws-sam/build.toml

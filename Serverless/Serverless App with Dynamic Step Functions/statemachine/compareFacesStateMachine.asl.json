@@ -20,7 +20,7 @@
         "ProcessTasksMappedTask": {
             "Type": "Map",
             "ItemsPath": "$.faceComparisonRequest",
-            "MaxConcurrency": 5,
+            "MaxConcurrency": 0,
             "ResultPath": "$.facematch",
             "Iterator": {
                 "StartAt": "CompareImagesStep",
