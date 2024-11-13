@@ -1,0 +1,38 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model RekognitionModel
+@{
+    ViewData["Title"] = "Image analysis";
+}
+
+<div>
+    <h2 class="display-4">Image analysis</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="FormFile" class="control-label">Photo:</label>
+            <input asp-for="FormFile" class="form-control" type="file" />
+        </div>
+        <div class="form-group pt-3">
+            <input type="submit" class="btn btn-primary" asp-page-handler="Faces" value="Detect faces" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="Entities" value="Detect entities" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="PPE" value="Detect PPE" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="Text" value="Detect Text" />
+        </div>
+    </form>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 pt-3">
+                @if (!string.IsNullOrEmpty(Model.FileName))
+                {
+                    <img class="w-100" src="uploads/@Model.FileName" />
+                }
+            </div>
+            <div class="col-6 pt-3">
+                @Html.Raw(Model.Result)
+            </div>
+        </div>
+    </div>
+
+</div>

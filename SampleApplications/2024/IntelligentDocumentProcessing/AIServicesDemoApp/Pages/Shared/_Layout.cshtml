@@ -1,0 +1,120 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - AIServicesDemo</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/sidebars.css"/>
+</head>
+<body>
+
+<header>
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">AI/ML with .NET on AWS</a>
+
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    @*<li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/IDP">IDP</a>
+                    </li>*@
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-3 pt-3">
+            <div class="flex-shrink-0 p-3" style="width: 280px;">
+
+                <ul class="list-unstyled ps-0">
+                    <li class="mb-1">
+                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#intro-collapse" aria-expanded="true">
+                            Intro to AI/ML
+                        </button>
+                        <div class="collapse show" id="intro-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li>
+                                    <a asp-area="" asp-page="/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Text analysis</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/Rekognition" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Image analysis</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                            IDP
+                        </button>
+                        <div class="collapse show" id="dashboard-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li>
+                                    <a asp-area="" asp-page="/DocumentClassification" class="link-body-emphasis d-inline-flex text-decoration-none rounded">1. Classification</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/AnalyzeDocument" class="link-body-emphasis d-inline-flex text-decoration-none rounded">2a. Extraction - Text / Tables / Forms</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/AnalyzeExpense" class="link-body-emphasis d-inline-flex text-decoration-none rounded">2b. Extraction - Invoices</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/AnalyzeID" class="link-body-emphasis d-inline-flex text-decoration-none rounded">2c. Extraction - ID</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/DetectSignatures" class="link-body-emphasis d-inline-flex text-decoration-none rounded">2d. Extraction - Signatures</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/Query" class="link-body-emphasis d-inline-flex text-decoration-none rounded">2e. Extraction - Query based</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/DetectPII" class="link-body-emphasis d-inline-flex text-decoration-none rounded">3a. Enrichment - PII</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/Summarization" class="link-body-emphasis d-inline-flex text-decoration-none rounded">3b. Enrichment - summarization</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/Identity" class="link-body-emphasis d-inline-flex text-decoration-none rounded">4. Validation - Identity check</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-9 pt-3">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">AWS re:Invent 2024</p>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item">
+                <a href="https://aws.amazon.com/developer/language/net/" class="nav-link px-2 text-body-secondary">.NET on AWS</a>
+            </li>
+            <li class="nav-item">
+                <a href="https://aws.amazon.com/machine-learning/ai-services/" class="nav-link px-2 text-body-secondary">Explore AWS AI services</a>
+            </li>
+        </ul>
+    </footer>
+</div>
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

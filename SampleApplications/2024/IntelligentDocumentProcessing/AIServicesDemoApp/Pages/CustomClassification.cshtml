@@ -1,0 +1,26 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model CustomClassificationModel
+@{
+    ViewData["Title"] = "Document Classification - Custom classification";
+}
+
+<div>
+    <h2 class="display-4">Custom Classification</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group pt-3">
+            <input type="submit" class="btn btn-primary" asp-page-handler="PrepareData" value="1 - Prepare training data" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="CreateClassifier" value="2 - Create classifier" />
+        </div>
+    </form>
+    
+    <div class="container">
+            <div class="row">
+                <div class="col-6 pt-3">
+                    @Html.Raw(Model.Result)
+                </div>
+            </div>
+        </div>
+
+</div>

@@ -1,0 +1,33 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model DetectSignaturesModel
+@{
+    ViewData["Title"] = "Detect Signatures";
+}
+
+<div>
+    <h2 class="display-4">Detect Signatures</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="FormFile" class="control-label">Document:</label>
+            <input asp-for="FormFile" class="form-control" type="file" />
+        </div>
+        <div class="form-group pt-3">
+            <input type="submit" class="btn btn-primary" asp-page-handler="DetectSignatures" value="Detect Signatures" />
+        </div>
+    </form>
+    
+    <div class="container">
+            <div class="row">
+                <div class="col-12 pt-3">
+                    @if (!string.IsNullOrEmpty(Model.FileName))
+                    {
+                        <img class="w-100" src="uploads/@Model.FileName" />
+                    }
+                </div>
+                
+            </div>
+        </div>
+
+</div>

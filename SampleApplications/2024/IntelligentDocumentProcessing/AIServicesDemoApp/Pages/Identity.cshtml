@@ -1,0 +1,44 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IdentityCheckModel
+@{
+    ViewData["Title"] = "IdentityCheck";
+}
+
+<div>
+    <h2 class="display-4">Identity check</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="IdentityFormFile" class="control-label">ID:</label>
+            <input asp-for="IdentityFormFile" class="form-control" type="file" />
+        </div>
+        <div class="form-group">
+            <label asp-for="PhotoFormFile" class="control-label">Photo:</label>
+            <input asp-for="PhotoFormFile" class="form-control" type="file" />
+        </div>
+        <div class="form-group pt-3">
+            <input type="submit" class="btn btn-primary" asp-page-handler="Identities" value="Identity Check" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="IdentitiesBedrock" value="Identity Check (Bedrock)" />
+        </div>
+    </form>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 pt-3">
+                @if (!string.IsNullOrEmpty(Model.IdentityFileName))
+                {
+                    <img class="w-100" src="uploads/@Model.IdentityFileName" />
+                }
+            </div>
+            <div class="col-6 pt-3">
+                @Html.Raw(Model.Result)
+                @if (!string.IsNullOrEmpty(Model.PhotoFileName))
+                {
+                    <img class="w-100" src="uploads/@Model.PhotoFileName" />
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
