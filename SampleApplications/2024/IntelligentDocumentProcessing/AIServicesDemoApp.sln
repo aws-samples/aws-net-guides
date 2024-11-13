@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIServicesDemoApp", "AIServicesDemoApp\AIServicesDemoApp.csproj", "{55EA291C-8258-41B1-8613-721AC04932B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{B9BDE768-2DA1-41ED-9EC6-C5BA2968786C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AIServices", "AIServices", "{8FCD2F5B-04E6-4D67-9576-2B0A9F73149F}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\AIServices\bbq_receipt.jpg = Samples\AIServices\bbq_receipt.jpg
+		Samples\AIServices\beer_label.jpg = Samples\AIServices\beer_label.jpg
+		Samples\AIServices\family.jpg = Samples\AIServices\family.jpg
+		Samples\AIServices\grunt.jpg = Samples\AIServices\grunt.jpg
+		Samples\AIServices\loan_application.png = Samples\AIServices\loan_application.png
+		Samples\AIServices\Photo_alex_prasad.jpg = Samples\AIServices\Photo_alex_prasad.jpg
+		Samples\AIServices\whole_foods_receipt.jpg = Samples\AIServices\whole_foods_receipt.jpg
+		Samples\AIServices\paystub.jpg = Samples\AIServices\paystub.jpg
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Insurance", "Insurance", "{09FDA3BF-C0E8-4E2C-8F40-663718A461A2}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\Insurance\4-Photo_alex.jpg = Samples\Insurance\4-Photo_alex.jpg
+		Samples\Insurance\1-CMS1500.png = Samples\Insurance\1-CMS1500.png
+		Samples\Insurance\1-discharge-summary.jpg = Samples\Insurance\1-discharge-summary.jpg
+		Samples\Insurance\1-drivers_license_alex.jpg = Samples\Insurance\1-drivers_license_alex.jpg
+		Samples\Insurance\2-insurance_card.jpg = Samples\Insurance\2-insurance_card.jpg
+		Samples\Insurance\3-discharge-summary.jpg = Samples\Insurance\3-discharge-summary.jpg
+		Samples\Insurance\3-dr-note-sample.jpg = Samples\Insurance\3-dr-note-sample.jpg
+		Samples\Insurance\4-id_alex.jpg = Samples\Insurance\4-id_alex.jpg
+		Samples\Insurance\4-Photo_prasad.jpg = Samples\Insurance\4-Photo_prasad.jpg
+		Samples\Insurance\insurance_comprehend_train_data.csv = Samples\Insurance\insurance_comprehend_train_data.csv
+		Samples\Insurance\insurance_invoice.png = Samples\Insurance\insurance_invoice.png
+		Samples\Insurance\hand-written-note.jpg = Samples\Insurance\hand-written-note.jpg
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55EA291C-8258-41B1-8613-721AC04932B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55EA291C-8258-41B1-8613-721AC04932B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55EA291C-8258-41B1-8613-721AC04932B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55EA291C-8258-41B1-8613-721AC04932B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8FCD2F5B-04E6-4D67-9576-2B0A9F73149F} = {B9BDE768-2DA1-41ED-9EC6-C5BA2968786C}
+		{09FDA3BF-C0E8-4E2C-8F40-663718A461A2} = {B9BDE768-2DA1-41ED-9EC6-C5BA2968786C}
+	EndGlobalSection
+EndGlobal

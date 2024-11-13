@@ -1,0 +1,93 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div>
+    <h2 class="display-4">Discover insights and relationships in text</h2>
+
+    <p class="gap-1">
+        <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Sample texts
+        </a>
+    </p>
+    <p class="gap-1">
+        <a data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+            Sample text to translate
+        </a>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <h4>About AWS Lambda (in French)</h4>
+            <p>
+                AWS Lambda est un service de calcul sans serveur qui exécute votre code en réponse à des événements et gère automatiquement les ressources de calcul sous-jacentes pour vous. Ces événements peuvent inclure des changements d'état ou une mise à jour, comme un utilisateur plaçant un élément dans un panier sur un site web de e-commerce. Vous pouvez utiliser AWS Lambda pour étendre les autres services AWS avec une logique personnalisée ou créer vos propres services backend qui fonctionnent en bénéficiant de la mise à l’échelle, des performances et de la sécurité AWS. AWS Lambda exécute automatiquement un code en réponse à plusieurs événements, tels que les requêtes HTTP via Amazon API Gateway, les modifications d'objets dans des compartiments Amazon Simple Storage Service (Amazon S3), les mises à jour de tables dans Amazon DynamoDB ou les transitions d'états dans AWS Step Functions.
+            </p>
+            <h4>Chief Executive Officer, Amazon Web Services</h4>
+            <p>
+                Jeff Bezos founded Amazon.com in 1994. Amazon’s mission is to be Earth's most customer-centric company. Amazon offers low prices and fast delivery on millions of items, provides thousands of movies and TV shows through Prime Video, designs and builds the bestselling Kindle, Fire and Echo devices and Alexa voice recognition service, and empowers companies and governments in over 190 countries around the world with the leading cloud computing infrastructure through Amazon Web Services. Bezos is also the founder of aerospace company Blue Origin, which is working to lower the cost and increase the safety of spaceflight, and he is owner of the Washington Post. Bezos has launched two philanthropic organizations. The Bezos Earth Fund helps fund nonprofits preserving and protecting the natural world, and The Bezos Day One Fund provides grants to nonprofits to help homeless families and is creating a network of preschools in low-income communities. Bezos graduated summa cum laude, Phi Beta Kappa in electrical engineering and computer science from Princeton University in 1986, and was named TIME Magazine’s Person of the Year in 1999.
+            </p>
+            @*<h4>About Amazon EC2 (in Portuguese)</h4>
+        <p>
+            O Amazon Elastic Compute Cloud (Amazon EC2) oferece a plataforma de computação mais ampla e profunda, com mais de 500 instâncias e opções do processador, armazenamento, redes, sistema operacional e modelo de compra mais recentes para ajudar você a atender melhor às necessidades da sua workload. Somos o primeiro grande provedor de nuvem a oferecer suporte para processadores Intel, AMD e Arm, a única nuvem com instâncias Mac do EC2 sob demanda e a única nuvem com redes Ethernet de 400 Gbps. Oferecemos a melhor performance de preço para treinamento de machine learning, bem como o menor custo por instâncias de inferência na nuvem. Mais workloads SAP, computação de alta performance (HPC), ML e Windows são executadas na AWS do que qualquer outra nuvem.
+        </p>
+        
+        <h4>Contact Form</h4>
+        <p>
+            Hi, my name is John Stanley. For verification, the last 4 digits of my social are 6789 and my birth date is 20/09. I paid for my credit card 5412-0000-1111-0000 last week from my bank account 123876738-4352. The check was mailed from 100 Main Street, Anytown, WA 98121.
+        </p>*@
+        </div>
+    </div>
+
+
+    <div class="collapse" id="collapseExample2">
+        <div class="card card-body">
+    Amazon Translate fournit une traduction rapide, abordable et personnalisable de grande qualité. Il s'agit d'un service de traduction automatique neuronale, une méthode de traduction automatique qui exploite des modèles de deep learning pour générer une traduction plus précise, plus fluide et plus naturelle que les algorithmes de traduction traditionnels, basés sur les statistiques et les règles. Les moteurs sont formés sur une grande variété de contenu à travers différents cas d'utilisation et domaines pour bien fonctionner sur de nombreux types de contenu.
+
+    Amazon Translate prend en charge la traduction entre les 75 langues suivantes : afrikaans, albanais, allemand, amharique, anglais, arabe, arménien, azerbaïdjanais, bengali, bosniaque, bulgare, catalan, chinois (simplifié), chinois (traditionnel), coréen, croate, créole haïtien, danois, dari, espagnol, espagnol mexicain, estonien, farsi persan, finlandais, français, français canadien, gallois, grec, gujarati, géorgien, haoussa, hindi, hongrois, hébreu, indonésien, irlandais, islandais, italien, japonais, kannada, kazakh, letton, lituanien, macédonien, malais, malayalam, maltais, marathi, mongol, norvégien, néerlandais, ouzbek, pachto, penjabi, polonais, portugais, portugais (Portugal), roumain, russe, serbe, sinhala, slovaque, slovène, somali, suédois, swahili, tagalog philippin, tamoul, tchèque, thaï, turc, télougou, ukrainien, urdu et vietnamien. Grâce à ces différentes combinaisons, 5 550 paires de langues sont prises en charge au total pour la traduction. Pour la liste actualisée des langues prises en charge, consultez la documentation Amazon Translate.
+    Basé sur un réseau neuronal
+
+    Amazon Translate utilise des techniques d'apprentissage profond pour produire des traductions plus précises et plus fluides que les modèles de traduction traditionnels, basés sur les statistiques et les règles. Le système de traduction machine neuronale est conçu sur un réseau neuronal qui prend en compte l'ensemble du contexte de la phrase source ainsi que les traductions qu'il a générées jusqu'alors, pour produire des traductions plus fluides et plus précises. Par comparaison, les machines de traduction conventionnelles basées sur les phrases ne prennent comme contexte que quelques mots avant et après le mot traduit.
+
+    Grâce à Active Custom Translation (ACT), Amazon Translate vous permet de mieux contrôler la sortie de votre traduction automatique. Vous pouvez désormais apporter vos données (données parallèles) à Amazon Translate pour personnaliser la sortie traduite automatiquement en fonction de vos besoins.ous pouvez désormais apporter vos données (données parallèles) à Amazon Translate pour personnaliser la sortie traduite automatiquement en fonction de vos besoins. ACT est capable de produire une sortie traduite personnalisée sans qu'il soit nécessaire de créer et de maintenir un modèle de traduction personnalisé. Vous pouvez mettre à jour vos données parallèles aussi souvent que nécessaire pour garder votre traduction personnalisée à jour sans frais. Ce qui est vraiment beau avec ACT c’est que vous obtenez les meilleurs résultats de traduction automatique, même lorsque vous traduisez des documents qui ne relèvent pas du domaine de vos données parallèles. Pour plus d’informations, consultez cette page de documentation.
+
+    En utilisant une terminologie personnalisée, Amazon Translate vous permet de définir comment des termes ou des noms spécifiques à certaines organisations, certains secteurs et certaines industries doivent être traduits. La possibilité de personnaliser les résultats avec la terminologie personnalisée peut réduire le nombre de traductions à modifier par des traducteurs professionnels, ce qui entraîne des économies de coûts et des traductions plus rapides. Pour des informations, consultez cette page de documentation.
+ 
+    Amazon Translate identifie automatiquement la langue source lorsqu'elle n'est pas précisée. Par exemple, le contenu généré par l'utilisateur, comme les critiques de clients et les flux de réseaux sociaux ne contiennent souvent pas de code langue. Amazon Translate peut automatiquement reconnaître les langues, avec une haute précision.
+   
+    Amazon Translate est la solution idéale pour réaliser à la fois des traductions par lots (lorsque vous possédez un grand volume de textes à traduire) et en temps réel (lorsque vous souhaitez générer des traductions de contenu à la demande en tant que fonction de vos applications). Par exemple, vous pouvez utiliser l’API TextTranslation d’un lot asynchrone pour traduire en bloc une grande quantité de documents Word (docx), de présentations PowerPoint (pptx), de feuilles de calcul Excel (xlsx), de textes et de documents HTML d’une langue à l’autre et partager votre contenu sans barrière linguistique. Vous pouvez aussi utiliser l’API TranslateText en temps réel d’Amazon pour traduire instantanément les conversations instantanées du service client afin d’aider les agents dédiés à mieux répondre aux besoins des clients internationaux.
+   
+    Amazon Translate prend en charge la traduction en temps réel de fichiers texte, HTML et Docx. Les clients peuvent soumettre un document à partir de la console AWS, de la CLI ou de l'API SDK et recevoir le document traduit en temps réel tout en conservant le format du document d'origine.
+    
+    La communication entre votre page Web ou vos applications et le service Amazon Translate est protégée par le chiffrement SSL. Tout contenu traité par Amazon Translate est chiffré et stocké au repos dans la région AWS où vous utilisez le service. Les administrateurs peuvent également contrôler l'accès à Amazon Translate via une stratégie d'autorisations AWS Identity and Access Management (IAM), en s'assurant que les informations sensibles sont protégées et restent confidentielles.
+ 
+    Avec Amazon Translate, vous ne payez qu'en fonction de votre consommation, ce qui vous permet de vous adapter facilement, et à moindre coût, à vos besoins en matière de traduction. Vous êtes facturé en fonction du nombre total de caractères envoyés à l'API pour traduction.
+
+        </div>
+    </div>
+    
+    <form method="post">
+        <div class="form-group pt-3">
+            <label for="Text">Text to analyze:</label>
+            <textarea class="form-control" id="Text" name="Text" rows="5">@Model.Text</textarea>
+        </div>
+        <div class="form-group pt-3">
+            <input type="submit" class="btn btn-primary" asp-page-handler="Entities" value="Detect entities" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="PII" value="Detect PII" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="Translate" value="Translate text" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="ClaudeTranslate" value="Claude Translate" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="LlamaTranslate" value="Llama Translate" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="ConverseTranslate" value="Converse Translate" />
+        </div>
+    </form>
+
+    <div class="container">
+        <div class="row">
+            <div class="col pt-3">
+                @Html.Raw(Model.Result)
+            </div>
+        </div>
+    </div>
+
+</div>

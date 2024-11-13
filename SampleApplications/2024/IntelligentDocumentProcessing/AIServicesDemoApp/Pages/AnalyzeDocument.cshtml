@@ -1,0 +1,37 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model AnalyzeDocumentModel
+@{
+    ViewData["Title"] = "Analyze Document";
+}
+
+<div>
+    <h2 class="display-4">Analyze Document</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="FormFile" class="control-label">Document:</label>
+            <input asp-for="FormFile" class="form-control" type="file" />
+        </div>
+        <div class="form-group pt-3">
+            <input type="submit" class="btn btn-primary" asp-page-handler="DetectText" value="Detect text" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="DetectTables" value="Detect tables" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="DetectForms" value="Detect forms" />
+        </div>
+    </form>
+    
+    <div class="container">
+            <div class="row">
+                <div class="col-6 pt-3">
+                    @if (!string.IsNullOrEmpty(Model.FileName))
+                    {
+                        <img class="w-100" src="uploads/@Model.FileName" />
+                    }
+                </div>
+                <div class="col-6 pt-3">
+                    @Html.Raw(Model.Result)
+                </div>
+            </div>
+        </div>
+
+</div>

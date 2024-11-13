@@ -1,0 +1,67 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model QueryModel
+@{
+    ViewData["Title"] = "Query";
+}
+
+<div>
+    <h2 class="display-4">Query form</h2>
+
+    <p class="d-inline-flex gap-1">
+        <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Sample queries
+        </a>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            @*<h4>Questions - Loan Application</h4>
+            <p>What is the borrower SSN?</p>
+            <p>What is the co-borrower SSN?</p>
+            <p>What is the co-borrower name?</p>
+
+            <h4>Questions - Paystub</h4>
+            <p>What is social security tax?</p>
+            <p>What is social security tax year to date?</p>
+            <p>What is social security tax YTD?</p>*@
+            
+            <h4>Questions - Insurance Id</h4>
+            <p>What is the member name?</p>
+            <p>What is the member id?</p>
+            <p>What is the PCP name?</p>
+            <p>What is the PCP phone number?</p>
+            
+        </div>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group pt-3">
+            <label asp-for="FormFile" class="control-label">Form:</label>
+            <input asp-for="FormFile" class="form-control" type="file"/>
+        </div>
+        <div class="form-group pt-3">
+            <label for="Query">Question:</label>
+            <input type="text" class="form-control" id="Query" name="Query" value="@Model.Query"/>
+        </div>
+        <div class="form-group pt-3">
+            <input type="submit" value="Submit query (AI)" asp-page-handler="Textract" class="btn btn-primary"/>
+            <input type="submit" value="Submit query (GenAI)" asp-page-handler="Bedrock" class="btn btn-primary"/>
+            <input type="submit" value="Submit query (Converse API)" asp-page-handler="Converse" class="btn btn-primary"/>
+        </div>
+    </form>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 pt-3">
+                @if (!string.IsNullOrEmpty(Model.FileName))
+                {
+                    <img class="w-100" src="uploads/@Model.FileName"/>
+                }
+            </div>
+            <div class="col-6 pt-3">
+                @Html.Raw(Model.Result)
+            </div>
+        </div>
+    </div>
+
+</div>
