@@ -1,0 +1,27 @@
+{
+  "Information": [
+    "This file provides default values for the deployment wizard inside Visual Studio and the AWS Lambda commands added to the .NET Core CLI.",
+    "To learn more about the Lambda commands with the .NET Core CLI execute the following command at the command line in the project root directory.",
+    "dotnet lambda help",
+    "All the command line options for the Lambda command can be specified in this file."
+  ],
+  "profile": "VisualStudioToolkit",
+  "region": "us-west-1",
+  "configuration": "Release",
+  "function-runtime": "provided.al2",
+  "function-memory-size": 256,
+  "function-timeout": 30,
+  "function-handler": "bootstrap",
+  "msbuild-parameters": "--self-contained true",
+  "framework": "net7.0",
+  "function-name": "LambdaTriggers_GetThumbnail",
+  "function-description": "",
+  "package-type": "Zip",
+  "function-role": "arn:aws:iam::723361041013:role/lambda_exec_LambdaTriggers-0",
+  "function-architecture": "x86_64",
+  "function-subnets": "",
+  "function-security-groups": "",
+  "tracing-mode": "Active",
+  "environment-variables": "",
+  "image-tag": ""
+}
