@@ -73,6 +73,8 @@ Resources:
             BucketName: photos-source-images
         - S3ReadPolicy:
             BucketName: photos-target-images
+        - RekognitionFacesPolicy:
+            !Ref CompareImagesFunction
 
   FaceComparisonTable:
     Type: AWS::DynamoDB::Table # More info about SimpleTable Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-simpletable.html

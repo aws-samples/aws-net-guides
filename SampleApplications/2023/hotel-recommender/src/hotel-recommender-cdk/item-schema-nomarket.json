@@ -1,0 +1,12 @@
+{
+    "type": "record",
+    "name": "Items",
+    "namespace": "com.amazonaws.personalize.schema",
+    "fields": [
+        {"name": "ITEM_ID", "type": "string"},
+        {"name": "SRCH_DESTINATION_TYPE_ID", "type": "string", "categorical": true},
+        {"name": "HOTEL_CONTINENT", "type": "string", "categorical": true},
+        {"name": "HOTEL_COUNTRY", "type": "string", "categorical":true}
+    ],
+    "version": "1.0"
+}
