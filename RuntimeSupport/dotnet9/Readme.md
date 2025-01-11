@@ -87,11 +87,17 @@ You can download the AWS Toolkit for Visual Studio 2022 from the [Visual Studio 
 
 ## .NET Modernization Tools
 
-AWS provides assistive tools that help architects, developers, and IT professionals modernize .NET workloads. At present, the following AWS modernization tools support **.NET 8**.
+AWS provides assistive tools that help architects, developers, and IT professionals modernize .NET workloads. 
+
+The following AWS modernization tools support **.NET 9**:
 
 [AWS App2Container](https://aws.amazon.com/app2container/) (A2C) is a command line tool that containerizes your applications. It automatically generates a container image configured with the correct dependencies, network configurations, and deployment instructions for Amazon ECS or Amazon EKS. A2C can  detect a .NET 8 runtime version and containerize the application using the corresponding runtime base images.
 
-[AWS Microservice Extractor for .NET](https://aws.amazon.com/microservice-extractor/) is an assistive tool that serves as an advisor to assess and visualize monolithic code, and recommend microservice candidates using artificial intelligence and heuristics. It also serves as a robotic builder to simplify microservices extraction. Microservice Extractor supports analyzing .NET 8 applications for visualization, grouping, and extraction. With its integrated strangler-fig porting capability, you can also use Microservice Extractor to break down a large .NET Framework-based application with hundreds of projects and thousands of classes into manageable groups and port those directly to .NET 8.
+The following AWS modernization tools support **.NET 8**:
+
+[Amazon Q Developer .NET transformation](https://aws.amazon.com/q/developer/transform#NET) Amazon Q Developer now offers (in preview) new capabilities for porting .NET Framework applications to cross-platform .NET; using a web experience for large-scale porting, or a Visual Studio IDE experience. Accelerate .NET application porting from Windows to Linux up to 4 times faster. Streamline transformation tasks and slash operational costs by up to 40%. 
+
+[AWS Microservice Extractor for .NET](https://aws.amazon.com/microservice-extractor/) is an assistive tool that serves as an advisor to assess and visualize monolithic code, and recommend microservice candidates using artificial intelligence and heuristics. It also serves as a robotic builder to simplify microservices extraction. Microservice Extractor supports analyzing .NET 8 applications for visualization, grouping, and extraction. With its integrated strangler-fig porting capability, you can also use Microservice Extractor to break down a large .NET Framework-based application with hundreds of projects and thousands of classes into manageable groups and port those directly to .NET 8. Offload tedious .NET porting tasks, such as code analysis, dependency mapping, and refactoring, and reduce Windows licensing costs.
 
 [Migration Hub Strategy Recommendations](https://docs.aws.amazon.com/migrationhub-strategy/latest/userguide/what-is-mhub-strategy.html) (MHSR) helps you plan migration and modernization initiatives by offering strategy recommendations for viable transformation paths for your applications. MHSR can detect .NET 8 applications and provide recommendations for them.
 
