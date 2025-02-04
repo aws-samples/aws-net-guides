@@ -30,7 +30,7 @@ You can use automation facilities in [AWS Systems Manager](https://aws.amazon.co
 
 Elastic Beanstalk is a managed service that allows you to quickly deploy and manage applications in the AWS Cloud without having to learn about the infrastructure that runs those applications. Your EC2 assets are fully visible in your AWS account and you have full access to them.
 
-Elastic Beanstalk Linux currently supports the **.NET 8** runtime on Windows and Linux. To use .NET 9 on Linux, you can provide a self-contained application as described under [Bundling applications for the .NET Core on Linux Elastic Beanstalk](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/dotnet-linux-platform-bundle-app.html) (AWS) and [.NET application publishing overview](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/dotnet-linux-platform-bundle-app.html) (Microsoft).
+Elastic Beanstalk supports .NET 9 on Amazon Linux 2023. See [AWS Elastic Beanstalk now supports .NET 9 on Amazon Linux 2023](https://aws.amazon.com/about-aws/whats-new/2025/01/aws-elastic-beanstalk-net-9-amazon-linux-2023/) for details.
 
 ## AWS Lambda
 
