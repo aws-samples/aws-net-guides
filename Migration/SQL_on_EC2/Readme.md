@@ -226,7 +226,7 @@ D:\\Restore-AdventureWorks.ps1
 $EncodeUserData = [System.Text.Encoding]::UTF8.GetBytes($userDataString)
 $userData = [System.Convert]::ToBase64String($EncodeUserData)
 #Get Latest AMI
-$latestamiid = ((Get-EC2Image -Filter @{"Name"="platform";"Value"="windows"} | where {$_.name -like "*2016*english*full*base*"} | sort -Property CreationDate -Descending)[0]).imageid
+$latestamiid = ((Get-EC2Image -Owner amazon -Filter @{"Name"="platform";"Value"="windows"} | where {$_.name -like "*2016*english*full*base*"} | sort -Property CreationDate -Descending)[0]).imageid
  
 $reservation = New-EC2Instance -ImageId $latestamiid -MinCount 1 -MaxCount 1 -InstanceType m4.large -KeyName "Prototyping(Virigina).pem" -SecurityGroup default -AvailabilityZone us-east-1a -Region us-east-1 -InstanceProfile_Name UA-Role-Demo -UserData $userData
 
