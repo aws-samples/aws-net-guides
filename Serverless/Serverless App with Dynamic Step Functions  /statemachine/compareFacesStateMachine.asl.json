@@ -1,0 +1,120 @@
+{
+    "Comment": "A state machine that does mock Face Comparison.",
+    "StartAt": "Get Target Images",
+    "States": {
+        "Get Target Images": {
+            "Type": "Task",
+            "Resource": "${GetTargetImagesFunctionArn}",
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "States.TaskFiled"
+                    ],
+                    "IntervalSeconds": 15,
+                    "MaxAttempts": 5,
+                    "BackoffRate": 1.5
+                }
+            ],
+            "Next": "ProcessTasksMappedTask"
+        },
+        "ProcessTasksMappedTask": {
+            "Type": "Map",
+            "ItemsPath": "$.faceComparisonRequest",
+            "MaxConcurrency": 5,
+            "ResultPath": "$.facematch",
+            "Iterator": {
+                "StartAt": "CompareImagesStep",
+                "States": {
+                    "CompareImagesStep": {
+                        "Type": "Task",
+                        "Resource": "${CompareImagesFunctionArn}",
+                        "Catch": [
+                            {
+                                "ErrorEquals": [
+                                    "States.ALL"
+                                ],
+                                "Next": "ProcessTaskErrorFallback"
+                            }
+                        ],
+                        "Next": "CheckIfMatchFound"
+                    },
+                    "CheckIfMatchFound": {
+                        "Type": "Choice",
+                        "Choices": [
+                            {
+                                "Variable": "$.hasResults",
+                                "BooleanEquals": true,
+                                "Next": "Record Transaction"
+                            },
+                            {
+                                "Variable": "$.hasResults",
+                                "BooleanEquals": false,
+                                "Next": "Skip"
+                            }
+                        ]
+                    },
+                    "Skip": {
+                        "Type": "Succeed"
+                    },
+                    "Record Transaction": {
+                        "Type": "Task",
+                        "Resource": "${DDBPutItem}",
+                        "Parameters": {
+                            "TableName": "${DDBTable}",
+                            "Item": {
+                                "SourceImage": {
+                                    "S.$": "$.sourceImage"
+                                },
+                                "TargetImage": {
+                                    "S.$": "$.targetImage"
+                                },
+                                "BatchID": {
+                                    "S.$": "$.batchId"
+                                },
+                                "Result": {
+                                    "S.$": "States.JsonToString($.results)"
+                                }
+                            }
+                        },
+                        "Retry": [
+                            {
+                                "ErrorEquals": [
+                                    "States.TaskFailed"
+                                ],
+                                "IntervalSeconds": 20,
+                                "MaxAttempts": 5,
+                                "BackoffRate": 10
+                            }
+                        ],
+                        "End": true
+                    },
+                    "ProcessTaskErrorFallback": {
+                        "Type": "Fail",
+                        "Cause": "Error when processing a task"
+                    }
+                }
+            },
+            "Next": "CopyObject"
+        },
+        "CopyObject": {
+            "Type": "Task",
+            "Next": "DeleteObject",
+            "ResultPath": "$.taskresult",
+            "Parameters": {
+                "Bucket": "${ProcessedBucketName}",
+                "CopySource.$": "States.Format('photos-source-images/{}',$.faceComparisonRequest[0].sourceImage)",
+                "Key.$": "$.faceComparisonRequest[0].sourceImage"
+            },
+            "Resource": "arn:aws:states:::aws-sdk:s3:copyObject"
+        },
+        "DeleteObject": {
+            "Type": "Task",
+            "End": true,
+            "Resource": "arn:aws:states:::aws-sdk:s3:deleteObject",
+            "Parameters": {
+              "Bucket": "${UploadBucketName}",
+              "Key.$": "$.faceComparisonRequest[0].sourceImage"
+            }
+          }
+    }
+}

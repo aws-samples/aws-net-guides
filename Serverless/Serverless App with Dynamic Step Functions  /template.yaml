@@ -1,0 +1,120 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  comparefaces
+
+  Sample SAM Template for comparefaces
+
+Resources:
+  CompareFacesStateMachine:
+    Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
+    Properties:
+      DefinitionUri: statemachine/compareFacesStateMachine.asl.json
+      DefinitionSubstitutions:
+        GetTargetImagesFunctionArn: !GetAtt GetTargetImagesFunction.Arn
+        CompareImagesFunctionArn: !GetAtt CompareImagesFunction.Arn
+        DDBPutItem: !Sub arn:${AWS::Partition}:states:::dynamodb:putItem
+        DDBTable: !Ref FaceComparisonTable
+        ProcessedBucketName: !Ref ProcessedBucket
+        UploadBucketName: !Ref UploadBucket
+      Events:
+        S3ObjectCreateRule:
+          Type: EventBridgeRule  # More info about Schedule Event Source: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-statemachine-schedule.html
+          Properties:
+            Pattern:
+              source:
+                - aws.s3              
+              detail-type:
+                - Object Created
+              detail:               
+                bucket:
+                  name:
+                    - !Ref UploadBucket                 
+            
+      Policies: # Find out more about SAM policy templates: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
+        - LambdaInvokePolicy:
+            FunctionName: !Ref GetTargetImagesFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref CompareImagesFunction
+        - DynamoDBWritePolicy:
+            TableName: !Ref FaceComparisonTable
+        - S3CrudPolicy:
+            BucketName: !Ref UploadBucket
+        - S3WritePolicy:
+            BucketName: !Ref ProcessedBucket
+
+  GetTargetImagesFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+    Properties:
+      CodeUri: ./functions/GetTargetImages/
+      Handler: GetTargetImages::GetTargetImages.Function::FunctionHandler
+      Runtime: dotnet6
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Policies:
+        - S3ReadPolicy:
+            BucketName: photos-target-images
+         
+
+  CompareImagesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./functions/CompareImages/
+      Handler: CompareImages::CompareImages.Function::FunctionHandler
+      Runtime: dotnet6
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Policies:
+        - RekognitionNoDataAccessPolicy: 
+            CollectionId: 1
+        - S3ReadPolicy:
+            BucketName: photos-source-images
+        - S3ReadPolicy:
+            BucketName: photos-target-images
+
+  FaceComparisonTable:
+    Type: AWS::DynamoDB::Table # More info about SimpleTable Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-simpletable.html
+    Properties:
+      AttributeDefinitions:
+        -
+          AttributeName: "SourceImage"
+          AttributeType: "S"
+        -
+          AttributeName: "TargetImage"
+          AttributeType: "S"
+      KeySchema:
+        - 
+          AttributeName: "SourceImage"
+          KeyType: "HASH"
+        - 
+          AttributeName: "TargetImage"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+
+  UploadBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: photos-source-images
+      NotificationConfiguration:
+        EventBridgeConfiguration:
+          EventBridgeEnabled: true
+
+  ProcessedBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: photos-source-images-processed
+
+
+Outputs:
+  # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-generated-resources.html
+  CompareFacesStateMachineArn:
+    Description: "Face Comparison State machine ARN"
+    Value: !Ref CompareFacesStateMachine
+  
+  CompareFacesStateMachineRoleArn:
+    Description: "IAM Role created for Face Comparison State machine based on the specified SAM Policy Templates"
+    Value: !GetAtt CompareFacesStateMachineRole.Arn
