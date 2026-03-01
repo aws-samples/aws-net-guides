@@ -1,0 +1,45 @@
+  LambdaInvoke submitInteractionsJob = new LambdaInvoke(this, "Interactions Submit Job", new LambdaInvokeProps
+            {
+                LambdaFunction = Function.FromFunctionArn(this, "hotel-picker-import-interactions-job", "arn:aws:lambda:us-east-1:ACCOUNTID:function:personalize-import-job"),
+                Payload = TaskInput.FromObject(new System.Collections.Generic.Dictionary<string, object> {
+                        { "JobName", "INTERACTIONS" },
+                        { "FileName", "inter" },
+                }),
+                // Lambda's result is in the attribute `Payload`
+            });
+
+            LambdaInvoke submitItemsJob = new LambdaInvoke(this, "Items Submit Job", new LambdaInvokeProps
+            {
+                LambdaFunction = Function.FromFunctionArn(this, "hotel-picker-import-items-job", "arn:aws:lambda:us-east-1:ACCOUNTID:function:personalize-import-job"),
+                Payload = TaskInput.FromObject(new System.Collections.Generic.Dictionary<string, object> {
+                        { "JobName", "ITEMS" },
+                        { "FileName", "items" },
+                }),
+                // Lambda's result is in the attribute `Payload`                
+            });
+
+            LambdaInvoke submitUsersJob = new LambdaInvoke(this, "Users Submit Job", new LambdaInvokeProps
+            {
+                LambdaFunction = Function.FromFunctionArn(this, "hotel-picker-import-users-job", "arn:aws:lambda:us-east-1:ACCOUNTID:function:personalize-import-job"),
+                Payload = TaskInput.FromObject(new System.Collections.Generic.Dictionary<string, object> {
+                        { "JobName", "USERS" },
+                        { "FileName", "users" },
+                }),
+                // Lambda's result is in the attribute `Payload`                
+            });
+
+            Wait waitX = new Wait(this, "Wait X Seconds", new WaitProps
+            {
+                Time = WaitTime.Duration(Duration.Seconds(2))
+            });
+
+            Chain definition = submitInteractionsJob
+                .Next(submitItemsJob)
+                .Next(submitUsersJob);            
+
+
+            var stateMachine = new StateMachine(this, "StateMachine", new StateMachineProps
+            {
+                Definition = definition,
+                Timeout = Duration.Minutes(5)
+            });

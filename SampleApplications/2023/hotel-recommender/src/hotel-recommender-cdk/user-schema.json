@@ -1,0 +1,13 @@
+{
+    "type": "record",
+    "name": "Users",
+    "namespace": "com.amazonaws.personalize.schema",
+    "fields": [
+        {"name": "USER_ID", "type": "string"},
+        {"name": "SITE_NAME", "type": "string", "categorical": true},
+        {"name": "POSA_CONTINENT", "type": "string", "categorical": true},
+        {"name": "USER_LOCATION_COUNTRY", "type": "string", "categorical":true},
+        {"name": "USER_LOCATION_REGION", "type": "string", "categorical": true}
+    ],
+    "version": "1.0"
+}
